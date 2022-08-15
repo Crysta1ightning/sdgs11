@@ -1,0 +1,44 @@
+.AuthPage{
+    padding: 0;
+    margin: 0;
+    height: 720px;
+    background-color: #f9fafb;
+    overflow-y: hidden;
+}
+
+.AuthPage h1{
+    text-align: center;
+    font-size: 32px;
+    font-family: sans-serif;
+}
+
+.AuthPage h2{
+    text-align: center;
+    font-size: 32px;
+    font-family: sans-serif;
+}
+
+.AuthPage .form{
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.AuthPage .box{
+    display: block;
+    margin: auto;
+}
+
+.AuthPage input{
+    display: block;
+    all: unset;
+    background-color: #ffffff;
+    font: 15px 'Poppins';
+    color: #767676;
+    width: 100%;
+    height: 5%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.AuthPage footer{
+    text-align: center;
+}
