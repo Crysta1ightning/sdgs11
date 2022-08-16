@@ -33,6 +33,7 @@ function PathMain() {
                 finished: false,
             });
         }
+        console.log("SET PATH LIST");
         setPathList(newlist);
     }, []);
 
@@ -88,8 +89,9 @@ function PathMain() {
 	}, []);
 
     useEffect(() => {
-        GetPaths();
-        setFinishPath();
+        GetPaths().then(() => {
+            setFinishPath();
+        });
     }, [GetPaths, setFinishPath]);
 
     function ChoosePath (path){
