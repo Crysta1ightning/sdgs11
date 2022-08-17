@@ -4,13 +4,12 @@ import All from './pages/all';
 import PathMain from './pages/path/pathmain';
 import Path from './pages/path/pathpage';
 import PathMap from './pages/path/pathmap';
+import Navbar from './navbar';
 
 function App() {
   return (
     <div className="App">
-      <button onClick={() => {window.location.href = '/'}}>Auth</button>
-      <button onClick={() => {window.location.href = '/all'}}>All</button>
-      <button onClick={() => {window.location.href = '/path'}}>Path</button>
+      <Navbar/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Auth/>} />

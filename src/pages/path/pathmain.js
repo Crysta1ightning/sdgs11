@@ -10,7 +10,14 @@ function PathMain() {
         // {pathID: 2, name: "生科, 人社路徑", finished: false},
         // {pathID: 3, name: "科管院路徑", finished: false},
     ]);
-
+    const imgList = [
+        {src: require('../../images/大門.png')},
+        {src: require('../../images/永續路徑.png')},
+        {src: require('../../images/台達館.png')},
+        {src: require('../../images/工一.png')},
+        {src: require('../../images/台積館.png')},
+    ];
+ 
     const GetPaths = useCallback(async () => {
         const response = await fetch('https://sdgs12.herokuapp.com/api/pathList', {
             method: 'GET',
@@ -108,6 +115,7 @@ function PathMain() {
                 return(
                     <div className="card" style={{animationDelay: `${(path.pathID-1)*150}ms`}} key={path.pathID} onClick={() => {ChoosePath(path)}}>
                         <h2>{path.name}{path.finished ? "✅": ""}</h2>
+                        <img src={imgList[path.pathID-1].src} alt="圖片"></img>
                     </div>
                 )
 			})}

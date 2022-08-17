@@ -1,6 +1,6 @@
 import React from 'react';
-import { useEffect, useState } from 'react'
-import GoogleMapReact from 'google-map-react';
+// import { useEffect, useState } from 'react'
+// import GoogleMapReact from 'google-map-react';
 
 function PathMap() {
 
