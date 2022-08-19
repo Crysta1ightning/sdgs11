@@ -1,6 +1,9 @@
 import React from 'react';
 import './auth.css';
 import { useState } from 'react'
+import Navbar from '../navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
 function RegisterPage() {
 	const [newEmail, setNewEmail] = useState('')
@@ -40,46 +43,58 @@ function RegisterPage() {
 
 	return (
 		<div className='AuthPage'>
-			<h1>建立帳號</h1>
-			<form onSubmit={register}>
-				<div className='box'>
-					<label>Email: </label>
-					<input 
-						type="email"
-						required
-						value={newEmail} 
-						onChange={(e) => setNewEmail(e.target.value)}
-						id="new-email"
-						autoComplete="new-email">
-					</input>
+			<div className='decoration-box'>
+				<h1>立即註冊</h1>
+			</div>
+			<Navbar/> 
+			<div className="container">
+				<img src={require("../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
+				<form onSubmit={register}>
+					<div className='box' style={{marginTop:"4%"}}>
+						<FontAwesomeIcon className="gradient" icon={solid("user")}/>
+						<input 
+							className='inp'
+							type="email"
+							required
+							value={newEmail} 
+							onChange={(e) => setNewEmail(e.target.value)}
+							id="new-email"
+							autoComplete="new-email"
+							placeholder="輸入Email">	
+						</input>
+					</div>
+					<div className='box'>
+						<FontAwesomeIcon className="gradient" icon={solid("lock")}/>
+						<input 
+							className='inp'
+							type="password"
+							required
+							value={newPassword}
+							onChange={(e) => setNewPassword(e.target.value)}
+							id="new-password"
+							autoComplete="new-password"
+							placeholder='輸入密碼'>
+						</input>
+					</div>
+					<div className='box'>
+						<FontAwesomeIcon className='gradient' icon={solid("graduation-cap")}/>
+						<input 
+							className='inp'
+							type="text"
+							value={studentID}
+							onChange={(e) => setStudentID(e.target.value)}
+							placeholder="學號(非必填):">
+						</input>
+					</div>
+					<input className='submit-button' type="submit" value="註冊帳號"></input>
+				</form>
+				<div className='parent'>
+					<h2>已經註冊了?</h2>
+					<button onClick={() => {window.location.href = '/login'}}>
+						登入帳號
+					</button>
 				</div>
-				<div className='box'>
-					<label>密碼: </label>
-					<input 
-						type="password"
-						required
-						value={newPassword}
-						onChange={(e) => setNewPassword(e.target.value)}
-						id="new-password"
-						autoComplete="new-password">
-					</input>
-				</div>
-				<div className='box'>
-					<label>學號(非必填): </label>
-					<input 
-						type="text"
-						value={studentID}
-						onChange={(e) => setStudentID(e.target.value)}>
-					</input>
-				</div>
-				<div className='box'>
-					<input className='submit-button' type="submit" value="Register"></input>
-				</div>
-			</form>
-			<button onClick={() => {window.location.href = '/login'}}>Login</button>
-			<footer>
-				Author: Magnus & David
-			</footer>
+			</div>
 		</div>
 	)
 }

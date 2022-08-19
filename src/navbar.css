@@ -1,4 +1,4 @@
-.side-bar{
+.Navbar .side-bar{
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(15px);
     z-index: 1;
@@ -13,21 +13,21 @@
     transition-property: left;
 }
 
-.side-bar.active{
+.Navbar .side-bar.active{
     left: 0;
     transition: 0.4s ease-in;
 }
 
-.side-bar .menu{
+.Navbar .side-bar .menu{
     width: 100%;
     margin-top: 10vh;
 }
 
-.side-bar .menu .item{
+.Navbar .side-bar .menu .item{
     position: relative;
 }
 
-.side-bar .menu .item button{
+.Navbar .side-bar .menu .item button{
     width:100%;
     color: black;
     border: none;
@@ -42,23 +42,24 @@
     text-align: center;
 }
 
-.side-bar .menu .item button:hover{
+.Navbar .side-bar .menu .item button:hover{
     background: #731dd8;
     color: white;
     transition: 0.2s ease;
 }
 
-.side-bar .menu .item button h1{
+.Navbar .side-bar .menu .item button h1{
+    color: black;
     display: inline-block;
     font-size: 20px;
     padding-left: 20px;
 }
 
-.side-bar .menu .item button i{
+.Navbar .side-bar .menu .item button i{
     display: inline-block;
 }
 
-.close-btn{
+.Navbar .close-btn{
     position: absolute;
     color: black;
     font-size: 30px;
@@ -66,19 +67,19 @@
     margin: 25px;
 }
 
-.menu-btn{
+.Navbar .menu-btn{
     position: absolute;
     color: black;
     font-size: 30px;
     margin: 25px;
 }
 
-.menu-btn:hover{
+.Navbar .menu-btn:hover{
     color:#731dd8;
     transition: 0.05s;
 }
 
-.close-btn:hover{
+.Navbar .close-btn:hover{
     color: red;
     transition: 0.05s;
 }

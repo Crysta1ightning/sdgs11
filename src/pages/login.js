@@ -3,6 +3,10 @@ import './auth.css';
 import jwtDecode from 'jwt-decode'
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import Navbar from '../navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+
 
 function LoginPage() {
 	const navigate = useNavigate();
@@ -77,50 +81,72 @@ function LoginPage() {
 
 	return (
 		<div className='AuthPage'>
-			<h1>登入</h1>
 			{!signIn ? (
 				<div>
-					<form onSubmit={login}>
-						<div className='box'>
-							<label>Email:</label>
-							<input
-								type="email"
-								required
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								id="current-email"
-								autoComplete="current-email">
-							</input>
+					<div className='decoration-box'>
+						<Navbar/> 
+						<h1>立即登入</h1>
+					</div>
+					<div className="container">
+						<img src={require("../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
+						<form onSubmit={login}>
+							<div className="box" style={{marginTop:"4%"}}>
+								<FontAwesomeIcon className="gradient" icon={solid("user")}/>
+								<input
+									className='inp'
+									type="email"
+									required
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									id="current-email"
+									autoComplete="current-email"
+									placeholder="輸入Email">
+								</input>
+							</div>
+							<div className="box">
+								<FontAwesomeIcon className="gradient" icon={solid("lock")}/>
+								<input
+									className='inp'
+									type="password"
+									required
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									id="current-password"
+									autoComplete="current-password"
+									placeholder="輸入密碼">
+								</input>
+							</div>
+							<input className='submit-button' type="submit" value="登入帳號"></input>
+						</form>
+						<div>
+							<button>忘記密碼?</button>
 						</div>
-						<div className='box'>
-							<label>密碼: </label>
-							<input
-								type="password"
-								required
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								id="current-password"
-								autoComplete="current-password">
-							</input>
+						<div className='parent'>
+							<h2>還沒註冊過?</h2>
+							<button onClick={() => {window.location.href = '/register'}}>
+								註冊帳號
+							</button>
 						</div>
-						<div className='box'>
-							<input className='submit-button' type="submit" value="Login"></input>
-						</div>
-					</form>
+					</div>
 				</div>
 				) : (
 				<div>
-					<h3>目前帳號: {user.email} {user.studentID ? <>學號: {user.studentID}</> : ""}</h3>
-					<form onSubmit={logout}>
-						<input type="submit" value="Logout"></input>
-					</form>
+					<div className='decoration-box'>
+						<Navbar/> 
+						<h1>會員資料</h1>
+					</div>
+					<div className="container">
+						<img src={require("../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
+						<form onSubmit={logout}>
+							<div className="box">
+								<h3>目前帳號: {user.email} {user.studentID ? <>學號: {user.studentID}</> : ""}</h3>
+							</div>
+							<input className="submit-button" type="submit" value="登出"></input>
+						</form>
+					</div>
 				</div>
 				)
 			} 
-			<button onClick={() => {window.location.href = '/register'}}>Register</button>
-			<footer>
-				Author: Magnus & David
-			</footer>
 		</div>
 	)
 }
