@@ -1,5 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Auth from './pages/auth';
+import Login from './pages/login';
+import Register from './pages/register';
+import Preface from './pages/preface';
 import All from './pages/all';
 import PathMain from './pages/path/pathmain';
 import Path from './pages/path/pathpage';
@@ -12,7 +14,9 @@ function App() {
       <Navbar/>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Auth/>} />
+          <Route path="/" element={<Preface/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
           <Route path="/all" element={<All/>} />
           <Route path="/path" element={<PathMain/>} />
 					<Route path="/path/pathpage" element={<Path/>} />

@@ -25,7 +25,7 @@ function Navbar(){
                         </button>
                     </div>
                     <div className="item">
-                        <button onClick={() => {window.location.href = '/'}}>
+                        <button onClick={() => {window.location.href = '/login'}}>
                             <i><FontAwesomeIcon icon={solid("user")}></FontAwesomeIcon></i>
                             <h1>會員資料</h1>
                         </button>
