@@ -3,7 +3,7 @@ import './auth.css';
 import jwtDecode from 'jwt-decode'
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import Navbar from '../navbar';
+import Navbar from '../../navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
@@ -17,7 +17,7 @@ function LoginPage() {
 
 	async function getUser() {
 		console.log("Get User Data");
-        const req = await fetch ('https://sdgs12.herokuapp.com/api/user', {
+        const req = await fetch ('https://dashboard.heroku.com/apps/sdgs12/api/user', {
             method: 'GET',
             headers: {
                 'x-access-token': localStorage.getItem('token')
@@ -46,7 +46,7 @@ function LoginPage() {
 
 	async function login(event){
 		event.preventDefault()
-		const response = await fetch('https://sdgs12.herokuapp.com/api/login', {
+		const response = await fetch('https://dashboard.heroku.com/apps/sdgs12/api/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ function LoginPage() {
 			navigate('/all');
 			// window.location.href = '/all';
 		} else {
-			alert('Login Fail');
+			alert(data.error);
 		}
 	}
 
@@ -88,10 +88,10 @@ function LoginPage() {
 						<h1>立即登入</h1>
 					</div>
 					<div className="container">
-						<img src={require("../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
+						<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
 						<form onSubmit={login}>
-							<div className="box" style={{marginTop:"4%"}}>
-								<FontAwesomeIcon className="gradient" icon={solid("user")}/>
+							<div className="box first">
+								<FontAwesomeIcon className="gradient" icon={solid("envelope")}/>
 								<input
 									className='inp'
 									type="email"
@@ -119,7 +119,7 @@ function LoginPage() {
 							<input className='submit-button' type="submit" value="登入帳號"></input>
 						</form>
 						<div>
-							<button>忘記密碼?</button>
+							<button onClick={() => {window.location.href = '/resetmail'}}>忘記密碼?</button>
 						</div>
 						<div className='parent'>
 							<h2>還沒註冊過?</h2>
@@ -136,12 +136,12 @@ function LoginPage() {
 						<h1>會員資料</h1>
 					</div>
 					<div className="container">
-						<img src={require("../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
+						<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
 						<form onSubmit={logout}>
-							<div className="box">
-								<h3>目前帳號: {user.email} {user.studentID ? <>學號: {user.studentID}</> : ""}</h3>
+							<div>
+								<h3>帳號: {user.email} <br/>{user.studentID ? <>學號: {user.studentID}</> : ""}</h3>
+								<input className="submit-button" type="submit" value="登出"></input>
 							</div>
-							<input className="submit-button" type="submit" value="登出"></input>
 						</form>
 					</div>
 				</div>

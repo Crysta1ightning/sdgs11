@@ -81,6 +81,10 @@
     margin:8.5% auto;
 }
 
+.AuthPage .container form .first{
+    margin-top: 4%;
+}
+
 .AuthPage .submit-button{
     background-image: linear-gradient(45deg, #f046ff, #731dd8);
     width: 80%;

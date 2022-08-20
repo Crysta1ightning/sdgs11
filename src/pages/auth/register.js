@@ -1,7 +1,7 @@
 import React from 'react';
 import './auth.css';
 import { useState } from 'react'
-import Navbar from '../navbar';
+import Navbar from '../../navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
@@ -12,7 +12,7 @@ function RegisterPage() {
 
 	async function register(event){
 		event.preventDefault();
-		const response = await fetch('https://sdgs12.herokuapp.com/api/register', {
+		const response = await fetch('https://dashboard.heroku.com/apps/sdgs12/api/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -23,18 +23,18 @@ function RegisterPage() {
 				studentID,
 			}),
 		})
-
 		const data = await response.json();
 		if(data.status === 'ok1' || data.status === 'ok2') {
 			if(data.status === 'ok1') {
-				console.log(studentID + " Register Successfully");
+				console.log(studentID + " Register Successfully, Check Inbox for Verification Letter");
 			}else {
-				console.log( "Register Successfully");
+				console.log("Register Successfully, Check Inbox for Verification Letter");
 			}
-			alert('Register Successfully');
+			alert('Register Successfully, Check Inbox for Verification Letter');
 			setNewEmail('');
 			setNewPassword('');
 			setStudentID('');
+			window.location.href = '/login';
 		}else {
 			if(data.error) alert(data.error);
 			else alert("Register Fail");
@@ -44,14 +44,14 @@ function RegisterPage() {
 	return (
 		<div className='AuthPage'>
 			<div className='decoration-box'>
+				<Navbar/> 
 				<h1>立即註冊</h1>
 			</div>
-			<Navbar/> 
 			<div className="container">
-				<img src={require("../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
+				<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
 				<form onSubmit={register}>
-					<div className='box' style={{marginTop:"4%"}}>
-						<FontAwesomeIcon className="gradient" icon={solid("user")}/>
+					<div className='box first' >
+						<FontAwesomeIcon className="gradient" icon={solid("envelope")}/>
 						<input 
 							className='inp'
 							type="email"
