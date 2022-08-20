@@ -35,7 +35,7 @@ function ResetPasswordPage() {
 		event.preventDefault();
         console.log(token);
         console.log(password);
-		const response = await fetch('https://dashboard.heroku.com/apps/sdgs12/api/resetPassword', {
+		const response = await fetch('https://sdgs12.herokuapp.com/api/resetPassword', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

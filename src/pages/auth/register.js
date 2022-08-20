@@ -12,7 +12,7 @@ function RegisterPage() {
 
 	async function register(event){
 		event.preventDefault();
-		const response = await fetch('https://dashboard.heroku.com/apps/sdgs12/api/register', {
+		const response = await fetch('https://sdgs12.herokuapp.com/api/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

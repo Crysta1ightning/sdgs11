@@ -17,7 +17,7 @@ function LoginPage() {
 
 	async function getUser() {
 		console.log("Get User Data");
-        const req = await fetch ('https://dashboard.heroku.com/apps/sdgs12/api/user', {
+        const req = await fetch ('https://sdgs12.herokuapp.com/api/user', {
             method: 'GET',
             headers: {
                 'x-access-token': localStorage.getItem('token')
@@ -46,7 +46,7 @@ function LoginPage() {
 
 	async function login(event){
 		event.preventDefault()
-		const response = await fetch('https://dashboard.heroku.com/apps/sdgs12/api/login', {
+		const response = await fetch('https://sdgs12.herokuapp.com/api/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

@@ -12,7 +12,7 @@ function ResetMailPage() {
 
 	async function resetMail(event){
 		event.preventDefault()
-		const response = await fetch('https://dashboard.heroku.com/apps/sdgs12/api/resetMail', {
+		const response = await fetch('https://sdgs12.herokuapp.com/api/resetMail', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
