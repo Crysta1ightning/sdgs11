@@ -38,7 +38,7 @@ function VerifyMailPage() {
                 {valid? (
                     <div>
                         <h3>Your Email Has Been Verified Successfully</h3>
-                        <p>Go to Login Page <button onClick={() => {window.location.href = '/'}}>Here</button></p>
+                        <p>Go to Login Page <button onClick={() => {window.location.href = '/login'}}>Here</button></p>
                     </div>
                 ) : (
                     <div>
