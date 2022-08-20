@@ -13,7 +13,7 @@ function ResetPasswordPage() {
 
     const verifyToken = useCallback(async () => {
         if (token) {
-            const url = `https://dashboard.heroku.com/apps/sdgs12/api/verify/${token}`
+            const url = `https://sdgs12.herokuapp.com/sdgs12/api/verify/${token}`
             console.log(url);
             const response = await fetch(url, {
                 method: 'GET',
