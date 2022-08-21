@@ -12,9 +12,6 @@ function PrefacePage() {
                 <Navbar/> 
                 <h1>前言</h1>
             </div>
-			<footer>
-				Author: Magnus & David
-			</footer>
 		</div>
 	)
 }

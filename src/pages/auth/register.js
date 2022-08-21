@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import './auth.css';
 import { useState } from 'react'
 import Navbar from '../../navbar';
@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
 function RegisterPage() {
-	const [newEmail, setNewEmail] = useState('')
-	const [newPassword, setNewPassword] = useState('')
-	const [studentID, setStudentID] = useState('')
+	const [newEmail, setNewEmail] = useState('');
+	const [newPassword, setNewPassword] = useState('');
+	const [studentID, setStudentID] = useState('');
+	const [countdown, setCountdown] = useState(60);
+    const [resend, setResend] = useState(true);
 
 	async function register(event){
 		event.preventDefault();
@@ -34,12 +36,29 @@ function RegisterPage() {
 			setNewEmail('');
 			setNewPassword('');
 			setStudentID('');
-			window.location.href = '/login';
+			setResend(false);
+			setCountdown(60);
 		}else {
 			if(data.error) alert(data.error);
 			else alert("Register Fail");
 		}
 	}
+
+	const tick = useCallback(() => {
+		if(countdown !== 1) {
+			const newCountdown = countdown-1;
+			setCountdown(newCountdown);
+		} else {
+			setResend(true);
+		}
+	}, [countdown])
+
+	useEffect ( () => {
+		let interval;
+		if(!resend) interval = setInterval(tick, 1000);
+		return () => clearInterval(interval);
+	}, [tick, resend]
+	)
 
 	return (
 		<div className='AuthPage'>
@@ -86,7 +105,7 @@ function RegisterPage() {
 							placeholder="學號(非必填):">
 						</input>
 					</div>
-					<input className='submit-button' type="submit" value="註冊帳號"></input>
+					{resend? <input className='submit-button' type="submit" value="註冊帳號"></input> :　<p>Send again in {countdown}s</p>}
 				</form>
 				<div className='parent'>
 					<h2>已經註冊了?</h2>

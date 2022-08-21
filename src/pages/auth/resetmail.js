@@ -32,7 +32,6 @@ function ResetMailPage() {
 	}
 
 	const tick = useCallback(() => {
-		console.log("tick");
 		if(countdown !== 1) {
 			const newCountdown = countdown-1;
 			setCountdown(newCountdown);
