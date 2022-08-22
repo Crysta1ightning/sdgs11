@@ -140,3 +140,13 @@
 .AuthPage .Navbar .menu-btn{
     color: white;
 }
+
+.AuthPage .Navbar .side-bar .menu .item h1{
+    color: black;
+}
+
+.AuthPage .Navbar .side-bar .menu .item button:hover h1{
+    color: white;
+    transition: 0.2s ease;
+}
+
