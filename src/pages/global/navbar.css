@@ -1,7 +1,7 @@
 .Navbar .side-bar{
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(15px);
-    z-index: 1;
+    z-index: 999;
     width: 60%;
     overflow-y: auto;
     position: fixed;
@@ -37,7 +37,7 @@
     display: block;
     padding: 13% 0;
     padding-right: 10%;
-    line-height: 30%;
+    line-height: 25%;
     transition: 0.2s ease;
     text-align: center;
 }
@@ -76,7 +76,7 @@
     position: absolute;
     color: black;
     font-size: 30px;
-    margin: 25px;
+    margin: 35px 25px;
 }
 
 .Navbar .menu-btn:hover{

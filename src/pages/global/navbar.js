@@ -21,7 +21,7 @@ function Navbar(){
                     <div className="item">
                         <button onClick={() => {window.location.href = '/path'}}>
                             <i><FontAwesomeIcon icon={solid("shoe-prints")}></FontAwesomeIcon></i>
-                            <h1>各院導覽</h1>
+                            <h1>路徑導覽</h1>
                         </button>
                     </div>
                     <div className="item">
@@ -31,15 +31,21 @@ function Navbar(){
                         </button>
                     </div>
                     <div className="item">
-                        <button onClick={() => {window.location.href = '#'}}>
+                        <button onClick={() => {window.location.href = '/'}}>
+                            <i><FontAwesomeIcon icon={solid("compass")}></FontAwesomeIcon></i>
+                            <h1>使用指南</h1>
+                        </button>
+                    </div>
+                    <div className="item">
+                        <button onClick={() => {window.location.href = '/about'}}>
                             <i><FontAwesomeIcon icon={solid("info-circle")}></FontAwesomeIcon></i>
                             <h1>關於計畫</h1>
                         </button>
                     </div>
                     <div className="item">
-                        <button onClick={() => {window.location.href = '#'}}>
-                            <i><FontAwesomeIcon icon={solid("compass")}></FontAwesomeIcon></i>
-                            <h1>使用指南</h1>
+                        <button onClick={() => {window.location.href = '/contact'}}>
+                            <i><FontAwesomeIcon icon={solid("address-book")}></FontAwesomeIcon></i>
+                            <h1>聯絡我們</h1>
                         </button>
                     </div>
                 </div>

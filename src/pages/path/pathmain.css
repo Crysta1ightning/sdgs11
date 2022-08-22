@@ -1,6 +1,7 @@
 .PathMain {
-    height: 720px;
+    height: 800px;
     background-color: #ffffff;
+    padding-bottom: 70vh;
 }
 
 @keyframes boxanimation {
@@ -13,28 +14,50 @@
       opacity: 1;
     }
 }
+
+@keyframes imganimation {
+    0% {
+      transform: translateX(-30%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+
 .PathMain .card {
-    background-color: #731dd8;
+    background-image: linear-gradient(45deg, #f046ff, #731dd8);
     animation: 0.6s ease-out 1s 1 boxanimation;
     display: flex;
-    margin: auto;
     border-radius: 33px;
-    margin-top: 10%;
+    margin: 10% auto;
     width: 85%;
-    height: 25%;
+    height: 27%;
     box-shadow: 0px 8px 8px 8px rgba(0,0,0,0.15);
     transition: 0.2s;
+    overflow: hidden;
 }
 .PathMain .card:hover{
-    opacity: 0.9;
+    transform: scale(1.05);
+    /* opacity: 0.9; */
     box-shadow: 0px 4px 4px 4px rgba(0,0,0,0.15);
     transition: 0.2s;
 }
 
 .PathMain img {
-    width: 80%;
-    margin-left: 20%;
+    animation: 0.6s ease-out 0.1s 1 imganimation;
+    width: 100%;
     height: 100%;
+    border-radius: 20px;
+    /* transition: 0.1s; */
+    transition: 0.5s;
+}
+
+.PathMain .card:hover img{
+    transform: scale(1.1);
+    /* transition: 0.1s; */
+    transition: 0.5s;
 }
 
 .PathMain h1 {
@@ -46,13 +69,11 @@
     color: black;
 }
 .PathMain h2 {
+    z-index: 1;
     position: absolute;
-    /* padding-left: 10%;
-    padding-top: 6%; */
     padding-left: 30px;
     padding-top: 20px;
     font-family: 'Poppins';
-    font-size: 18px;
+    font-size: 20px;
     color: white; 
 }
-

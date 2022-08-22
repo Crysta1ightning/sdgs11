@@ -4,8 +4,6 @@ import Navbar from '../global/navbar';
 import { useEffect, useState } from 'react'
 
 function AllPage () {
-    const [userX, setUserX] = useState(0);
-    const [userY, setUserY] = useState(0);
 	const [spotList, setSpotList] = useState([
 		// {spotID: 1, x: 50, y: 150, name: "人社院", description: "人社院是迷宮", distance: 0},
 		// {spotID: 2, x: 70, y: 60, name: "台達館", description: "資工電神所在地", distance: 0},
@@ -56,27 +54,11 @@ function AllPage () {
         }
         setSpotList(newList);
         setSearchList(newList);
-        setUserX(70);
-        setUserY(70);
     }, []);
 
     useEffect(() => {
         getSpots();
     }, [getSpots]);
-
-    useEffect(() => {
-        console.log("Set New Distance");
-        var newDistance;
-        setSpotList(spotList => spotList.map((spot) => {
-            newDistance = Math.round(Math.sqrt(Math.pow(userX-spot.x, 2) + Math.pow(userY-spot.y, 2)));
-            return {...spot, distance: newDistance}; 
-        }))
-        setSearchList(searchList => searchList.map((spot) => {
-            newDistance = Math.round(Math.sqrt(Math.pow(userX-spot.x, 2) + Math.pow(userY-spot.y, 2)));
-            return {...spot, distance: newDistance}; 
-        }))
-    }, [userX, userY]);
-
 
     return (
         <div className="AllPage">
@@ -97,9 +79,6 @@ function AllPage () {
                     return ( 
                         <button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID}}>
                             <h3>{spot.name}</h3>
-                            {/* <p>距離: {spot.distance}m</p>
-                            <p>{spot.description}</p>
-                            <p>x: {spot.x} y: {spot.y}</p> */}
                         </button>
                     )
                 })}

@@ -3,15 +3,18 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import Preface from './pages/auth/preface';
-import VerfifyMail from './pages/auth/verifymail.js'
-import ResetMail from './pages/auth/resetmail.js'
-import ResetPassword from './pages/auth/resetpassword.js'
+import VerfifyMail from './pages/auth/verifymail'
+import ResetMail from './pages/auth/resetmail'
+import ResetPassword from './pages/auth/resetpassword'
 
 import PathMain from './pages/path/pathmain';
 import Path from './pages/path/path';
 import PathMap from './pages/path/pathmap';
 
-import All from './pages/all/all';
+import About from './pages/others/about'
+import All from './pages/others/all';
+import Contact from './pages/others/contact'
+
 import Spot from './pages/global/spot';
 
 function App() {
@@ -28,10 +31,13 @@ function App() {
 
           <Route path="/path" element={<PathMain/>} />
 					<Route path="/path/:pathID" element={<Path/>} />
-          <Route path="/path/map" element={<PathMap/>}/>
+          <Route path="/path/:pathID/map" element={<PathMap/>}/>
 
           <Route path="/spot/:spotID" element={<Spot/>} />
+
+          <Route path="/about" element={<About/>} />
           <Route path="/all" element={<All/>} />
+          <Route path="/contact" element={<Contact/>} />
         </Routes>
       </BrowserRouter>
     </div>

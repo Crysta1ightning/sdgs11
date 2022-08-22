@@ -86,7 +86,7 @@ function PathPage() {
         };
 		console.log(spotIDList);
 
-		const response2 = await fetch('https://sdgs12.herokuapp.com/api/spot', {
+		const response2 = await fetch('https://sdgs12.herokuapp.com/api/spotAll', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -139,7 +139,7 @@ function PathPage() {
 			{valid? (
 				<>
 					<div>
-						<BackKey/>
+						<BackKey/> 
 						<h1>{pathName}{pathFinished? "✅": ""}</h1>
 						<h2>所有建築預覽</h2>
 					</div>
@@ -149,24 +149,12 @@ function PathPage() {
 								<button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID}}>
 									<h3>{spot.name}{spot.finished? "✅": ""}</h3>
 									<p>距離: {spot.distance}m</p>
-									{/* {(spot.distance <= 50 && !spot.finished) ? 
-										<button onClick={() => {claim(spot.spotID)}}>CLAIM</button> : 
-									} */}
-									{/* <p>{spot.description}</p> */}
-									{/* <p>x: {spot.x} y: {spot.y}</p> */}
 								</button>
 							)
 						})}
 					</div>
 					<h2 className="predictedTime">預計完成時間: {predictTime}分鐘</h2>
-					<button onClick={() => {window.location.href = '/path/map'}}>Map</button>
-					{/* <div>
-						<h3>User X: {userX}, User Y: {userY}</h3>
-						<button onClick={() => {setUserX(userX+10)}}>User X+</button>
-						<button onClick={() => {setUserX(userX-10)}}>User X-</button>
-						<button onClick={() => {setUserY(userY+10)}}>User Y+</button>
-						<button onClick={() => {setUserY(userY-10)}}>User Y-</button>
-					</div> */}
+					<button onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>Map</button>
 				</>
             ) : (
                 <div>

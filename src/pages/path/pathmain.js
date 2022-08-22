@@ -109,7 +109,7 @@ function PathMainPage() {
 	return (
 		<div className="PathMain">
             <Navbar/>
-            <h1>各院導覽</h1>
+            <h1>路徑導覽</h1>
             {pathList.map((path) => {
                 return(
                     <div className="card" style={{animationDelay: `${(path.pathID-1)*150}ms`}} key={path.pathID} onClick={() => {ChoosePath(path)}}>
