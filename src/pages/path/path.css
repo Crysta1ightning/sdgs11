@@ -1,21 +1,21 @@
-.PathPage {
+.Path {
   height: 1000px;
   background-color: #f9fafb;
   overflow-y: hidden;
   text-align: center;
 }
-.PathPage h1 {
+.Path h1 {
   padding-top: 4%;
   font-size: 30px;
   font-family: 'Poppins';
   font-style: normal;
   color: black;
 }
-.PathPage .predictedTime {
+.Path .predictedTime {
   color: gray;
 }
 
-.PathPage .pathSpots {
+.Path .pathSpots {
   text-align: center;
   overflow-x: scroll;
   white-space: nowrap;
@@ -26,11 +26,12 @@
   margin-bottom: 10%;
   scrollbar-width: none; /*remove scrollbar for firefox */
 }
-.PathPage .pathSpots::-webkit-scrollbar {
+.Path .pathSpots::-webkit-scrollbar {
   display: none; /*remove scrollbar for chrome */
 }
 
-.PathPage .card {
+.Path .card {
+  all: unset;
   display: inline-block;
   width: 60%;
   height: 90%;
@@ -42,12 +43,11 @@
   box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.15);
   transition: box-shadow 0.2s;
 }
-
-.PathPage .card:hover{
+.Path .card:hover{
   opacity: 0.9;
   box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
 }
-.PathPage .card button {
+.Path .card button {
   width: 60px;
   height: 20px;
   font-size: 12px;

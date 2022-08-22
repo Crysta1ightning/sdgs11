@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import './auth.css';
-import Navbar from '../../navbar';
 
 function VerifyMailPage() {
     const {token} = useParams();
@@ -31,14 +30,13 @@ function VerifyMailPage() {
 	return (
         <div className='AuthPage'>
             <div className='decoration-box'>
-                <Navbar/> 
                 <h1>Email 驗證</h1>
             </div>
             <div className="container">
                 {valid? (
                     <div>
                         <h3>Your Email Has Been Verified Successfully</h3>
-                        <p>Go to Login Page <button onClick={() => {window.location.href = '/login'}}>Here</button></p>
+                        <p>Go to Login Page <button onClick={() => {window.location.replace('/login')}}>Here</button></p>
                     </div>
                 ) : (
                     <div>

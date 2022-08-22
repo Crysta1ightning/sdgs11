@@ -1,7 +1,7 @@
 import './navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
-import {useState} from 'react'
+import { useState } from 'react'
 
 function Navbar(){
     const [active, setActive] = useState(false);

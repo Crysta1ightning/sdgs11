@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useState } from 'react'
 import './auth.css';
-import Navbar from '../../navbar';
+import BackKey from '../global/backkey';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
@@ -51,7 +51,7 @@ function ResetMailPage() {
 	return (
 		<div className='AuthPage'>
             <div className='decoration-box'>
-                <Navbar/> 
+                <BackKey/> 
                 <h1>忘記密碼</h1>
             </div>
             <div className="container">

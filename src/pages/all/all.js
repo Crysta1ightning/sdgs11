@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import './all.css';
-// import jwtDecode from 'jwt-decode'
+import Navbar from '../global/navbar';
 import { useEffect, useState } from 'react'
 
 function AllPage () {
@@ -80,6 +80,7 @@ function AllPage () {
 
     return (
         <div className="AllPage">
+            <Navbar/>
             <h1>新生導覽</h1>
             <form onSubmit={search}>
                 <input
@@ -94,12 +95,12 @@ function AllPage () {
             <div className='card-container'>
                 {searchList.map((spot) => {
                     return ( 
-                        <div className="card" key={spot.spotID}>
+                        <button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID}}>
                             <h3>{spot.name}</h3>
                             {/* <p>距離: {spot.distance}m</p>
                             <p>{spot.description}</p>
                             <p>x: {spot.x} y: {spot.y}</p> */}
-                        </div>
+                        </button>
                     )
                 })}
             </div>

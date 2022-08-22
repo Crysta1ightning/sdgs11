@@ -2,14 +2,12 @@ import React from 'react';
 import './auth.css';
 import jwtDecode from 'jwt-decode'
 import { useEffect, useState } from 'react'
-import { useNavigate } from "react-router-dom";
-import Navbar from '../../navbar';
+import Navbar from '../global/navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
 
 function LoginPage() {
-	const navigate = useNavigate();
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [signIn, setSignIn] = useState(false);
@@ -65,8 +63,7 @@ function LoginPage() {
 			setEmail('');
 			setPassword('');
 			alert('Login Successfully');
-			navigate('/all');
-			// window.location.href = '/all';
+			window.location.replace('/all');
 		} else {
 			alert(data.error);
 		}
@@ -119,11 +116,11 @@ function LoginPage() {
 							<input className='submit-button' type="submit" value="登入帳號"></input>
 						</form>
 						<div>
-							<button onClick={() => {window.location.href = '/resetmail'}}>忘記密碼?</button>
+							<button onClick={() => {window.location.href='/resetmail'}}>忘記密碼?</button>
 						</div>
 						<div className='parent'>
 							<h2>還沒註冊過?</h2>
-							<button onClick={() => {window.location.href = '/register'}}>
+							<button onClick={() => {window.location.href='/register'}}>
 								註冊帳號
 							</button>
 						</div>

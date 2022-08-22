@@ -1,19 +1,17 @@
 import React from 'react';
+import BackKey from '../global/backkey';
 // import { useEffect, useState } from 'react'
 // import GoogleMapReact from 'google-map-react';
 
-function PathMap() {
-
+function PathMapPage() {
 
 
 	return (
 		<div className='PathMap'>
-			<div id="map">PathMap</div>
-			<footer>
-				Author: Magnus & David
-			</footer>
+			<BackKey/>
+			Map Page
 		</div>
 	)
 }
 
-export default PathMap
+export default PathMapPage

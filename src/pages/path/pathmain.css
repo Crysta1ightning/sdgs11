@@ -25,10 +25,16 @@
     box-shadow: 0px 8px 8px 8px rgba(0,0,0,0.15);
     transition: 0.2s;
 }
-.card:hover{
+.PathMain .card:hover{
     opacity: 0.9;
     box-shadow: 0px 4px 4px 4px rgba(0,0,0,0.15);
     transition: 0.2s;
+}
+
+.PathMain img {
+    width: 80%;
+    margin-left: 20%;
+    height: 100%;
 }
 
 .PathMain h1 {
@@ -40,9 +46,13 @@
     color: black;
 }
 .PathMain h2 {
-    padding-left: 10%;
-    padding-top: 10%;
+    position: absolute;
+    /* padding-left: 10%;
+    padding-top: 6%; */
+    padding-left: 30px;
+    padding-top: 20px;
     font-family: 'Poppins';
     font-size: 18px;
     color: white; 
 }
+

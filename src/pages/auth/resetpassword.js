@@ -2,7 +2,6 @@ import React from 'react';
 import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import './auth.css';
-import Navbar from '../../navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
@@ -58,7 +57,6 @@ function ResetPasswordPage() {
 	return (
         <div className='AuthPage'>
             <div className='decoration-box'>
-                <Navbar/> 
                 <h1>忘記密碼</h1>
             </div>
             <div className="container">

@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 import './pathmain.css';
-import { useNavigate } from "react-router-dom";
+import Navbar from '../global/navbar';
 
-function PathMain() {
-    const navigate = useNavigate();
+
+function PathMainPage() {
     const [pathList, setPathList] = useState([
         // {pathID: 1, name: "共同生活圈", finished: false},
         // {pathID: 2, name: "生科, 人社路徑", finished: false},
@@ -103,13 +103,12 @@ function PathMain() {
 
     function ChoosePath (path){
         console.log("Choose Path");
-        localStorage.setItem('pathID', path.pathID);
-        navigate('/path/pathpage');
-        // window.location.href = 'path/pathpage';
+        window.location.href = '/path/' + path.pathID;
     }
 
 	return (
 		<div className="PathMain">
+            <Navbar/>
             <h1>各院導覽</h1>
             {pathList.map((path) => {
                 return(
@@ -124,4 +123,4 @@ function PathMain() {
 
 }
 
-export default PathMain
+export default PathMainPage

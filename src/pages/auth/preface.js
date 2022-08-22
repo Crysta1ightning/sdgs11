@@ -1,9 +1,8 @@
 import React from 'react';
 import './auth.css';
-import Navbar from '../../navbar';
+import Navbar from '../global/navbar';
 // import jwtDecode from 'jwt-decode'
 // import { useEffect, useState } from 'react'
-// import { useNavigate } from "react-router-dom";
 
 function PrefacePage() {
 	return (

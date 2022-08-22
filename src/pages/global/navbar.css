@@ -44,7 +44,7 @@
 
 .Navbar .side-bar .menu .item button:hover{
     background: #731dd8;
-    color: white !important;
+    color: white;
     transition: 0.2s ease;
 }
 
@@ -53,6 +53,11 @@
     display: inline-block;
     font-size: 20px;
     padding-left: 20px;
+}
+
+.Navbar .side-bar .menu .item button:hover h1{
+    color: white;
+    transition: 0.2s ease;
 }
 
 .Navbar .side-bar .menu .item button i{

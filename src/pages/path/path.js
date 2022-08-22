@@ -1,9 +1,10 @@
-import './pathpage.css';
+import './path.css';
 import { useEffect, useState, useCallback } from 'react'
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import BackKey from '../global/backkey';
 
 function PathPage() {
-	const navigate = useNavigate();
+	const {pathID} = useParams();
 	const [userX, setUserX] = useState(0);
     const [userY, setUserY] = useState(0);
 	const [predictTime, setPredictTime] = useState(0);
@@ -17,11 +18,10 @@ function PathPage() {
         // {spotID: 7, x: 60, y: 100, name: "生科院", description: "叉叉!", distance: 0}, 
         // {spotID: 8, x: 120, y: 120, name: "葉子", description: "就是個葉子", distance: 0},
     ]);
-
-	const pathID = localStorage.getItem('pathID');
 	const [pathName, setPathName] = useState('');
 	const [pathFinished, setPathFinished] = useState(false);
-	
+	const [valid, setValid] = useState(true);
+
 	const setFinished = useCallback(async () => {
 		console.log("Set Finished");
 		if(!localStorage.getItem('token')){
@@ -55,6 +55,7 @@ function PathPage() {
 
 	const getPath = useCallback(async () => {
 		// Part I: Get Path
+		console.log(pathID);
         const response = await fetch('https://sdgs12.herokuapp.com/api/path', {
 			method: 'POST',
 			headers: {
@@ -66,12 +67,13 @@ function PathPage() {
         })
 		const data = await response.json();
 		if(data.status === 'fail'){
+			setValid(false);
 			console.log("Failed to Get Path");
 			return;
 		}
 
 		const pathData = data.pathData;
-		console.log(pathData);
+		console.log("hi" + pathData);
 		setPathName(pathData.name);
 
 		const spotPath = data.spotPath;
@@ -132,64 +134,46 @@ function PathPage() {
 		}
 	}, [spotList])
 
-	async function claim(spotID){
-		console.log("Claim: " + spotID);
-		if(!localStorage.getItem('token')){
-			console.log("User Not Logged In, Redirect to Auth");
-			alert("Login before claiming");
-			navigate('/');
-			// window.location.href = '/';
-			return;
-		}
-		// fetch API to post a new spot
-		const response = await fetch('https://sdgs12.herokuapp.com/api/claim', {
-			method: 'POST',
-			headers: {
-				'Content-type': 'application/json',
-				'x-access-token': localStorage.getItem('token')
-			},
-			body: JSON.stringify({
-				spotID: spotID,
-			}),
-        })
-		const data = await response.json();
-		if(data.status === 'fail'){
-			console.log("Failed to Claim");
-			return;
-		}
-		setSpotList(spotList => spotList.map((spot) => {
-            if(spot.spotID === spotID) return{...spot, finished: true};
-            else return spot; 
-        }))
-	}
-
 	return (
-		<div className="PathPage">
-			<div className="path">
-				<h1>{pathName}{pathFinished? "✅": ""}</h1>
-				<h2 className="predictedTime">預計完成時間: {predictTime}分鐘</h2>
-				<h2>路徑地點</h2>
-			</div>
-			<div className="pathSpots">
-				{spotList.map((spot) => {
-					return ( 
-						<div className="card" key={spot.spotID}>
-							<h3>{spot.name}{spot.finished? "✅": ""}</h3>
-							{(spot.distance <= 50 && !spot.finished) ? 
-							<button onClick={() => {claim(spot.spotID)}}>CLAIM</button> : <p>距離: {spot.distance}m</p>}
-							<p>{spot.description}</p>
-							<p>x: {spot.x} y: {spot.y}</p>
-						</div>
-					)
-				})}
-			</div>
-			<div>
-                <h3>User X: {userX}, User Y: {userY}</h3>
-                <button onClick={() => {setUserX(userX+10)}}>User X+</button>
-                <button onClick={() => {setUserX(userX-10)}}>User X-</button>
-                <button onClick={() => {setUserY(userY+10)}}>User Y+</button>
-                <button onClick={() => {setUserY(userY-10)}}>User Y-</button>
-            </div>
+		<div className="Path">
+			{valid? (
+				<>
+					<div>
+						<BackKey/>
+						<h1>{pathName}{pathFinished? "✅": ""}</h1>
+						<h2>所有建築預覽</h2>
+					</div>
+					<div className="pathSpots">
+						{spotList.map((spot) => {
+							return ( 
+								<button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID}}>
+									<h3>{spot.name}{spot.finished? "✅": ""}</h3>
+									<p>距離: {spot.distance}m</p>
+									{/* {(spot.distance <= 50 && !spot.finished) ? 
+										<button onClick={() => {claim(spot.spotID)}}>CLAIM</button> : 
+									} */}
+									{/* <p>{spot.description}</p> */}
+									{/* <p>x: {spot.x} y: {spot.y}</p> */}
+								</button>
+							)
+						})}
+					</div>
+					<h2 className="predictedTime">預計完成時間: {predictTime}分鐘</h2>
+					<button onClick={() => {window.location.href = '/path/map'}}>Map</button>
+					{/* <div>
+						<h3>User X: {userX}, User Y: {userY}</h3>
+						<button onClick={() => {setUserX(userX+10)}}>User X+</button>
+						<button onClick={() => {setUserX(userX-10)}}>User X-</button>
+						<button onClick={() => {setUserY(userY+10)}}>User Y+</button>
+						<button onClick={() => {setUserY(userY-10)}}>User Y-</button>
+					</div> */}
+				</>
+            ) : (
+                <div>
+                    <h3>Invalid or Expired URL</h3>
+                    <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
+                </div>
+            )}
 		</div>
 	)
 }
