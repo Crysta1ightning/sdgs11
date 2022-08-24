@@ -1,3 +1,4 @@
+import Load from '../global/load';
 import React, { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 import './pathmain.css';
@@ -5,17 +6,18 @@ import Navbar from '../global/navbar';
 
 
 function PathMainPage() {
+    const [loading, setLoading] = useState(true);
     const [pathList, setPathList] = useState([
         // {pathID: 1, name: "共同生活圈", finished: false},
         // {pathID: 2, name: "生科, 人社路徑", finished: false},
         // {pathID: 3, name: "科管院路徑", finished: false},
     ]);
     const imgList = [
-        {src: require('../../images/大門.png')},
-        {src: require('../../images/永續路徑.png')},
-        {src: require('../../images/台達館.png')},
-        {src: require('../../images/工一.png')},
-        {src: require('../../images/台積館.png')},
+        {src: require('../../images/path/大門.png')},
+        {src: require('../../images/path/永續路徑.png')},
+        {src: require('../../images/path/台達館.png')},
+        {src: require('../../images/path/工一.png')},
+        {src: require('../../images/path/台積館.png')},
     ];
  
     const GetPaths = useCallback(async () => {
@@ -97,7 +99,9 @@ function PathMainPage() {
 
     useEffect(() => {
         GetPaths().then(() => {
-            setFinishPath();
+            setFinishPath().then(() => {
+                setLoading(false);
+            });
         });
     }, [GetPaths, setFinishPath]);
 
@@ -105,7 +109,8 @@ function PathMainPage() {
         console.log("Choose Path");
         window.location.href = '/path/' + path.pathID;
     }
-
+    
+    if(loading) return <Load/>;
 	return (
 		<div className="PathMain">
             <Navbar/>

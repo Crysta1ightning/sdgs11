@@ -2,9 +2,11 @@ import React from 'react';
 import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import './auth.css';
+import Load from '../global/load';
 
 function VerifyMailPage() {
     const {token} = useParams();
+    const [loading, setLoading] = useState(true);
     const [valid, setValid] = useState(true);
 
     const verifyToken = useCallback(async () => {
@@ -21,12 +23,14 @@ function VerifyMailPage() {
             if(data.status === 'ok') return;
         }
         setValid(false);  
+        setLoading(false);
     }, [token]);
 
     useEffect(() => {
         verifyToken();
     }, [verifyToken])
 
+    if(loading) return <Load/>;
 	return (
         <div className='AuthPage'>
             <div className='decoration-box'>

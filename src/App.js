@@ -2,7 +2,6 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
-import Preface from './pages/auth/preface';
 import VerfifyMail from './pages/auth/verifymail'
 import ResetMail from './pages/auth/resetmail'
 import ResetPassword from './pages/auth/resetpassword'
@@ -14,6 +13,7 @@ import PathMap from './pages/path/pathmap';
 import About from './pages/others/about'
 import All from './pages/others/all';
 import Contact from './pages/others/contact'
+import Preface from './pages/others/preface';
 
 import Spot from './pages/global/spot';
 
@@ -33,7 +33,7 @@ function App() {
 					<Route path="/path/:pathID" element={<Path/>} />
           <Route path="/path/:pathID/map" element={<PathMap/>}/>
 
-          <Route path="/spot/:spotID" element={<Spot/>} />
+          <Route path="/spot/:spotID/:from" element={<Spot/>} />
 
           <Route path="/about" element={<About/>} />
           <Route path="/all" element={<All/>} />

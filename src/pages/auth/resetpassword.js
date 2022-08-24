@@ -2,10 +2,12 @@ import React from 'react';
 import { useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import './auth.css';
+import Load from '../global/load';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
 function ResetPasswordPage() {
+    const [loading, setLoading] = useState(true);
     const [password, setPassword] = useState('')
     const {token} = useParams();
     const [valid, setValid] = useState(true);
@@ -21,9 +23,13 @@ function ResetPasswordPage() {
                 },
             })
             const data = await response.json();
-            if(data.status === 'ok') return;
+            if(data.status === 'ok'){
+                setLoading(false)
+                return;
+            }
         }
         setValid(false);  
+        setLoading(false);
     }, [token]);
 
     useEffect(() => {
@@ -54,6 +60,7 @@ function ResetPasswordPage() {
         }
 	}
 
+    if(loading) return <Load/>;
 	return (
         <div className='AuthPage'>
             <div className='decoration-box'>

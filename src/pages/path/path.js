@@ -1,10 +1,12 @@
 import './path.css';
+import Load from '../global/load';
 import { useEffect, useState, useCallback } from 'react'
 import { useParams } from "react-router-dom";
 import BackKey from '../global/backkey';
 
 function PathPage() {
 	const {pathID} = useParams();
+	const [loading, setLoading] = useState(true);
 	const [userX, setUserX] = useState(0);
     const [userY, setUserY] = useState(0);
 	const [predictTime, setPredictTime] = useState(0);
@@ -105,7 +107,8 @@ function PathPage() {
 		setSpotList(spotData);
 		setUserX(70);
 		setUserY(70);
-		setFinished();
+		await setFinished();
+		setLoading(false);
     }, [pathID, setFinished]);
 
     useEffect(() => {
@@ -134,19 +137,20 @@ function PathPage() {
 		}
 	}, [spotList])
 
+	if(loading) return <Load/>;
 	return (
 		<div className="Path">
 			{valid? (
 				<>
 					<div>
-						<BackKey/> 
+						<BackKey from={200}/> 
 						<h1>{pathName}{pathFinished? "✅": ""}</h1>
 						<h2>所有建築預覽</h2>
 					</div>
 					<div className="pathSpots">
 						{spotList.map((spot) => {
 							return ( 
-								<button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID}}>
+								<button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/' + pathID}}>
 									<h3>{spot.name}{spot.finished? "✅": ""}</h3>
 									<p>距離: {spot.distance}m</p>
 								</button>

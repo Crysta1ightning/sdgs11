@@ -1,8 +1,8 @@
 .BackKey .menu-btn{
     position: absolute;
     color: black;
-    font-size: 30px;
-    margin: 25px;
+    font-size: 25px;
+    margin: 5%;
 }
 
 .BackKey .menu-btn:hover{

@@ -28,7 +28,6 @@ function ResetMailPage() {
 			setResend(false);
 			setCountdown(60);
 		}
-
 	}
 
 	const tick = useCallback(() => {
@@ -47,11 +46,10 @@ function ResetMailPage() {
 	}, [tick, resend]
 	)
 
-
 	return (
 		<div className='AuthPage'>
             <div className='decoration-box'>
-                <BackKey/> 
+                <BackKey from={400}/> 
                 <h1>忘記密碼</h1>
             </div>
             <div className="container">

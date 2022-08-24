@@ -1,0 +1,126 @@
+.PrefacePage *{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.PrefacePage .preface{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.PrefacePage .pages{
+    scroll-snap-align: start;
+    width: 100%;
+    height: 100vh;
+    place-content: center;
+    display:block;
+}
+
+.PrefacePage .pages:nth-child(odd){
+    /* background-color: #4158D0; */
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+
+.PrefacePage .pages:nth-child(even){
+    /* background-color: #4158D0; */
+    background-image: linear-gradient(133deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+
+.PrefacePage .pages:nth-child(n) .big-box{
+    position: relative;
+    background-color: white;
+    width: 95vw;
+    margin-left: 2.5vw;
+    top: 10vh;
+    height: 85vh;
+    border-radius: 40px;
+    box-shadow: 0px 25px 45px rgba(0,0,0,0.3);
+}
+
+@keyframes imganimation {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.PrefacePage img{
+    animation: 1s ease-out 1 imganimation;
+    display: block;
+    position: relative;
+    width:100%;
+    transform: scale(1.2, 0.9);
+    top: -10vh;
+}
+
+.PrefacePage h1{
+    position: relative;
+    color: white;
+    top: -35vh;
+    padding-bottom: 10px;
+    padding-left: 15%;
+}
+
+.PrefacePage hr{
+    position: relative;
+    left: 15%;
+    height: 7px;
+    width: 30%;
+    top: -35vh;
+    background-color: white;
+    border: none;
+}
+
+.PrefacePage p{
+    position: relative;
+    color: black;
+    top: -35vh;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 30px;
+}
+
+@keyframes pageanimation {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.PrefacePage .pages:nth-child(n) .box{
+    animation: 0.8s ease-out 1 pageanimation;
+    position: absolute;
+    bottom: 15vh;
+    left: 7.5vw;
+    width: 80vw;
+    height: 55vh;
+    background-color: rgba(255,255,255, 0.5);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0px 25px 45px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255, 0.5);
+}
+
+.PrefacePage .pages:nth-child(n) button{
+    width: 40vw;
+    height: 8vh;
+    background: none;
+    position: relative;
+    border-radius: 50px;
+    border-color: #4158D0;
+    color: #4158D0;
+    margin-left: 30vw;
+    top: -2vh;
+    font-size: 20px;
+    font-weight: bolder;
+}

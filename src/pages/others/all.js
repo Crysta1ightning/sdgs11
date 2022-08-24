@@ -1,9 +1,11 @@
 import React, { useCallback } from 'react';
 import './all.css';
 import Navbar from '../global/navbar';
+import Load from '../global/load';
 import { useEffect, useState } from 'react'
 
 function AllPage () {
+    const [loading, setLoading] = useState(true);
 	const [spotList, setSpotList] = useState([
 		// {spotID: 1, x: 50, y: 150, name: "人社院", description: "人社院是迷宮", distance: 0},
 		// {spotID: 2, x: 70, y: 60, name: "台達館", description: "資工電神所在地", distance: 0},
@@ -54,12 +56,14 @@ function AllPage () {
         }
         setSpotList(newList);
         setSearchList(newList);
+        setLoading(false);
     }, []);
 
     useEffect(() => {
         getSpots();
     }, [getSpots]);
 
+    if(loading) return <Load/>;
     return (
         <div className="AllPage">
             <Navbar/>
@@ -77,7 +81,7 @@ function AllPage () {
             <div className='card-container'>
                 {searchList.map((spot) => {
                     return ( 
-                        <button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID}}>
+                        <button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/0'}}>
                             <h3>{spot.name}</h3>
                         </button>
                     )
