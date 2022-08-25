@@ -10,6 +10,7 @@
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .PrefacePage .pages{
@@ -27,7 +28,16 @@
 
 .PrefacePage .pages:nth-child(even){
     /* background-color: #4158D0; */
-    background-image: linear-gradient(133deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    background-image: linear-gradient(137deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+
+@keyframes pageanimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .PrefacePage .pages:nth-child(n) .big-box{
@@ -41,17 +51,7 @@
     box-shadow: 0px 25px 45px rgba(0,0,0,0.3);
 }
 
-@keyframes imganimation {
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
-}
-
 .PrefacePage img{
-    animation: 1s ease-out 1 imganimation;
     display: block;
     position: relative;
     width:100%;
@@ -63,7 +63,7 @@
     position: relative;
     color: white;
     top: -35vh;
-    padding-bottom: 10px;
+    padding-bottom: 2vh;
     padding-left: 15%;
 }
 
@@ -71,7 +71,7 @@
     position: relative;
     left: 15%;
     height: 7px;
-    width: 30%;
+    width: 65px;
     top: -35vh;
     background-color: white;
     border: none;
@@ -83,22 +83,10 @@
     top: -35vh;
     padding-left: 15%;
     padding-right: 15%;
-    padding-top: 30px;
-}
-
-@keyframes pageanimation {
-    0% {
-        opacity: 0;
-        transform: translateY(100%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    padding-top: 5vh;
 }
 
 .PrefacePage .pages:nth-child(n) .box{
-    animation: 0.8s ease-out 1 pageanimation;
     position: absolute;
     bottom: 15vh;
     left: 7.5vw;
@@ -111,7 +99,7 @@
     border: 1px solid rgba(255,255,255, 0.5);
 }
 
-.PrefacePage .pages:nth-child(n) button{
+.PrefacePage .pages:nth-child(n):not(:last-child) button{
     width: 40vw;
     height: 8vh;
     background: none;
@@ -119,8 +107,31 @@
     border-radius: 50px;
     border-color: #4158D0;
     color: #4158D0;
-    margin-left: 30vw;
-    top: -2vh;
+    margin: 0 30vw;
+    bottom: 1vh;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.PrefacePage .pages:last-child button{
+    width: 40vw;
+    height: 8vh;
+    background: none;
+    position: relative;
+    border-radius: 50px;
+    border-color: #4158D0;
+    color: #4158D0;
     font-size: 20px;
     font-weight: bolder;
+}
+
+.inline{
+    display:flex;
+    place-content: center;
+}
+.inline-btn{
+    margin: 0 2vw;
+    bottom: 1vh;
+    display: inline;
 }
