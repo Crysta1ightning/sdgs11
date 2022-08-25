@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useCallback } from 'react';
 import './spot.css'
 import '../global/header.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 function SpotPage() {
 	const { spotID } = useParams();
@@ -81,7 +81,7 @@ function SpotPage() {
 			}
 		));
 		id = -1;
-		setTruncateText(data.spotData.description.substring(0, 120).split('\\n').map(
+		setTruncateText(data.spotData.description.substring(0, 130).split('\\n').map(
 			(str) => {
 				id++;
 				if(id === 0) return <p key={id}>&emsp;&emsp;{str}</p>
@@ -138,7 +138,7 @@ function SpotPage() {
         }));
 	}
 
-	if(loading) return <Load/>
+	if(loading) return <Load/>;
 	return (
 		<div className='SpotPage'>
 			{valid? 
@@ -153,16 +153,17 @@ function SpotPage() {
 					</div>
 					<div>
 						<div className='title'>
-							<h1>{spot.name}{spot.finished? 
+							<h1>{spot.name}
+								{/* {spot.finished? 
 								<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
 								: 
-								<div className='check'><FontAwesomeIcon icon={regular('square')} /></div>}
+								<div className='check'><FontAwesomeIcon icon={regular('square')} /></div>} */}
 							</h1>
 							<h2>距離: {spot.distance}m</h2>
 							{/* <img src={require('../../images/sdgsIcon/4.png')} alt="SDGS icon"></img>  */}
 						</div>
 						<div className='description'>
-							{spot.description && spot.description.length>120?
+							{spot.description && spot.description.length>130?
 								(<>{truncate? 
 									<div>{truncateText}<p>...</p><button onClick={() => {setTruncate(false)}}>顯示更多</button></div> 
 									: 
@@ -172,10 +173,14 @@ function SpotPage() {
 								<div>{text}</div>
 							}
 						</div>
-						{(spot.distance <= 50 && !spot.finished) ? 
-							<button className='claim' onClick={() => {claim(spot.spotID)}}>領取地點</button> 
+						{spot.finished?
+							<button className='claim'>已領取</button>
 							:
-							<button className='claim' onClick={() => {claim(spot.spotID)}}>領取地點</button> 
+							<>{spot.distance <= 50? 
+								<button className='claim active' onClick={() => {claim(spot.spotID)}}>領取地點</button> 
+								:
+								<button className='claim inactive'>再靠近一點點</button> 
+							}</>
 						}
 						{/* <div className='controller'>
 							<h3>User X: {userX}, User Y: {userY}</h3>

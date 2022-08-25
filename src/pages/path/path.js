@@ -70,6 +70,7 @@ function PathPage() {
 		const data = await response.json();
 		if(data.status === 'fail'){
 			setValid(false);
+			setLoading(false);
 			console.log("Failed to Get Path");
 			return;
 		}
@@ -100,6 +101,7 @@ function PathPage() {
 		const data2 = await response2.json();
 		if(data2.status === 'fail'){
 			console.log("Failed to Get Spots");
+			setLoading(false);
 			return;
 		}
 		const spotData = data2.spotData;
