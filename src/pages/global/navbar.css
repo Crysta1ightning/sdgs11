@@ -75,8 +75,8 @@
 .Navbar .menu-btn{
     position: absolute;
     color: black;
-    font-size: 25px;
-    margin: 5%;
+    font-size: 30px;
+    margin: 20px;
 }
 
 .Navbar .menu-btn:hover{
