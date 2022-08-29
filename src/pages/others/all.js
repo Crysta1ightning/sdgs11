@@ -2,7 +2,9 @@ import React, { useCallback } from 'react';
 import './all.css';
 import Navbar from '../global/navbar';
 import Load from '../global/load';
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function AllPage () {
     const [loading, setLoading] = useState(true);
@@ -63,12 +65,36 @@ function AllPage () {
         getSpots();
     }, [getSpots]);
 
+    const [active, setActive] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('scroll', pop);
+      
+        return () => window.removeEventListener('scroll', pop);
+    },[]);
+
+    const pop = () => {
+        if (window.pageYOffset > 0) {
+            setActive(true);
+        }
+                 
+        if (window.pageYOffset === 0) {
+            setActive(false);
+        }
+            
+        // setNavColor(null);
+    }
+
     if(loading) return <Load/>;
     return (
         <div className="AllPage">
-            <Navbar/>
-            <h1>新生導覽</h1>
-            <form onSubmit={search}>
+             <div className={active? 'top top-shadow': 'top'}>
+                <Navbar/>
+                <h1>地點總覽</h1>
+                <button className='map-btn' onClick={() => {window.location.href = '/path/:pathID/map'}}>
+                    <FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
+                </button>
+                <form onSubmit={search}>
                 <input
                     className="search-text"
                     type="text"
@@ -76,8 +102,12 @@ function AllPage () {
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}>
                 </input>
-                <input className="search-button" type="submit" value=""></input>
+                <div className="search-button" type="submit" value="">
+                    <FontAwesomeIcon icon={solid('magnifying-glass')}/>
+                </div>
             </form>
+            </div>
+            
             <div className='card-container'>
                 {searchList.map((spot) => {
                     return ( 
