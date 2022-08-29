@@ -122,11 +122,30 @@
 .SpotPage .BackKey .menu-btn{
     position: absolute;
     color: white;
-    font-size: 25px;
-    margin: 5%;
+    font-size: 30px;
+    left: 20px;
+    top: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .SpotPage .BackKey .menu-btn:hover{
     color:#E4D192;
+    transition: 0.05s;
+}
+
+.SpotPage .map-btn{
+    position: absolute;
+    padding: 0;
+    right: 20px;
+    top: 20px;
+    color: white;
+    font-size: 30px;
+    border: none;
+    background: none;
+}
+
+.SpotPage .map-btn:hover{
+    color:#731dd8;
     transition: 0.05s;
 }

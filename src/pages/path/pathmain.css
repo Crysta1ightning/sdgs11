@@ -1,8 +1,8 @@
 .PathMain {
     height: 800px;
     /* background-color: #ffffff; */
-    background-color: #f9fafb;
-    padding-bottom: 600px;
+    background-color: #eae9e9;
+    padding-bottom: 500px;
 }
 
 @keyframes boxanimation {
@@ -29,25 +29,26 @@
 
 .PathMain .card {
     /* background-image: linear-gradient(45deg, #f046ff, #731dd8); */
-    background: hsla(239, 100%, 67%, 1);
-    background: linear-gradient(45deg, hsla(187, 100%, 89%, 1) 0%, hsla(239, 100%, 67%, 1) 100%);
-
-
+    /* background: hsla(239, 100%, 67%, 1);
+    background: linear-gradient(45deg, hsla(187, 100%, 89%, 1) 0%, hsla(239, 100%, 67%, 1) 100%); */
+    /* background-color: #8b25ff; */
+    background-color: #cdb2fc;
+    
     animation: 0.6s ease-out 1 boxanimation;
     display: flex;
     border-radius: 33px;
     margin: 10% auto;
     width: 85%;
     height: 27%;
-    box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.15);
+    /* box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.15); */
     transition: 0.2s;
     overflow: hidden;
 }
 
 .PathMain .card:hover{
     transform: scale(1.05);
-    /* opacity: 0.9; */
-    box-shadow: 0px 4px 4px 4px rgba(0,0,0,0.15);
+    opacity: 0.9;
+    /* box-shadow: 0px 4px 4px 4px rgba(0,0,0,0.15); */
     transition: 0.2s;
 }
 
@@ -71,7 +72,7 @@
     font-size: 30px;
     font-family: 'Poppins';
     font-style: normal;
-    color: black;
+    color: #eae9e9;
     margin-block: 20px;
 }
 .PathMain h2 {
@@ -81,11 +82,12 @@
     padding-top: 20px;
     font-family: 'Poppins';
     font-size: 20px;
-    color: white; 
+    color: #eae9e9; 
 }
 
 .PathMain .map-btn{
     position: absolute;
+    padding: 0;
     right: 20px;
     top: 20px;
     color: black;
@@ -106,10 +108,14 @@
     position: fixed;
     width:100%;
     min-height: 0;
-    background: #f9fafb;
-    box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.15);
+    background: #731dd8; 
+    /* border-bottom: 2px solid #AA00FF; */
+}
+
+.PathMain .top-shadow{
+    box-shadow: 0px 4px 8px -4px rgba(0,0,0,0.5);
 }
 
 .PathMain .container{
-    padding-top: 60px;
+    padding-top: 70px;
 }

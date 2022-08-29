@@ -3,8 +3,8 @@ import React, { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 import './pathmain.css';
 import Navbar from '../global/navbar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 function PathMainPage() {
@@ -111,16 +111,33 @@ function PathMainPage() {
         console.log("Choose Path");
         window.location.href = '/path/' + path.pathID;
     }
-    
+
+    const [active, setActive] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('scroll', pop);
+      
+        return () => window.removeEventListener('scroll', pop);
+    },[]);
+
+    const pop = () => {
+        if (window.pageYOffset > 0) {
+            setActive(true);
+        }
+                 
+        if (window.pageYOffset === 0) {
+            setActive(false);
+        }
+            
+        // setNavColor(null);
+    }
+
     if(loading) return <Load/>;
 	return (
 		<div className="PathMain">
-            <div className='top'>
+            <div className={active? 'top top-shadow': 'top'}>
                 <Navbar/>
                 <h1>路徑導覽</h1>
-                <button className='map-btn' onClick={() => {window.location.href = '/path/:pathID/map'}}>
-                    <FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
-                </button>
             </div>
             <div className='container'>
                 {pathList.map((path) => {
