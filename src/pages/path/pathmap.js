@@ -3,9 +3,12 @@ import { DirectionsRenderer, GoogleMap, Marker, useJsApiLoader } from '@react-go
 import { useParams } from "react-router-dom";
 import './pathmap.css';
 import BackKey from '../global/backkey';
+import Load from '../global/load';
 
 function MyComponent() {
 	const { pathID } = useParams();
+	const [loading, setLoading] = useState(true);
+	const [valid, setValid] = useState(true);
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8",
@@ -25,57 +28,93 @@ function MyComponent() {
 	const [snake, setSnake] = useState({
 		active: false,
 		id: 0,
+		name: ""
 	})
 
-	useEffect(() => {
-		const arr = [
-			{spotID:0, name:'旺宏館',lat:24.795417173319372,lng:120.99469045958209},
-			{spotID:1, name:'成功湖',lat:24.793429,lng:120.994480},
-			{spotID:2, name:'荷塘',lat:24.790670, lng:120.992392},
-			{spotID:3, name:'奕園',lat:24.788057,lng:120.990741},
-			{spotID:4, name:'綠能大樓－李存敏館',lat:24.790936, lng:120.991469},
-			{spotID:5, name:'清華實驗室',lat:24.786139,  lng:120.989577},
-			{spotID:6, name:'創新育成中心',lat:24.786412, lng:120.989103},
-			{spotID:7, name:'台積館',lat:24.786749, lng:120.988344},
-			{spotID:8, name:'蝴蝶園',lat:24.790530,  lng:120.988455},
-			{spotID:9, name:'相思湖',lat:24.791497, lng:120.989957},
-			{spotID:10, name:'梅園',lat:24.792494, lng:120.990043},
-			{spotID:11, name:'校友體育館',lat:24.795108,lng:120.989808}
-		]
-		setPostitions(arr);
+	const onLoad = useCallback( async () => {
+		// Part I: Get Path
+		console.log(pathID);
+        const response = await fetch('https://sdgs12.herokuapp.com/api/path', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				pathID,
+			}),
+        })
+		const data = await response.json();
+		if(data.status === 'fail'){
+			setValid(false);
+			setLoading(false);
+			console.log("Failed to Get Path");
+			return;
+		}
+
+		const pathData = data.pathData;
+		console.log("hi" + pathData);
+		// setPathName(pathData.name);
+
+		const spotPath = data.spotPath;
+		console.log(spotPath);
+
+		// Part II: Get Spots
+		var spotIDList = [];
+		for(var i in spotPath){
+            spotIDList.push(spotPath[i].spotID);
+        };
+		console.log(spotIDList);
+
+		const response2 = await fetch('https://sdgs12.herokuapp.com/api/spotAll', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				spotIDList,
+			}),
+		})
+		const data2 = await response2.json();
+		if(data2.status === 'fail'){
+			console.log("Failed to Get Spots");
+			setValid(false);
+			setLoading(false);
+			return;
+		}
+		const spotData = data2.spotData;
+		console.log("SpotData: " + spotData[0].lat);
+		setPostitions(spotData);
 		var avgLat = 0;
 		var avgLng = 0;
-		for(var i in arr) {
-			avgLat += arr[i].lat;
-			avgLng += arr[i].lng;
+		for(i in spotData) {
+			avgLat += spotData[i].lat;
+			avgLng += spotData[i].lng;
 		}
-		avgLat /= arr.length;
-		avgLng /= arr.length;
+		avgLat /= spotData.length;
+		avgLng /= spotData.length;
 		setCenter({
 			lat: avgLat,
 			lng: avgLng
 		})
 
-	}, [])
-
-	const onLoad = useCallback( () => {
+		// Part III: SET PATH
 		if(pathID === '0') return;
 		const google = window.google;
 		const directionsService = new google.maps.DirectionsService();
 		var waypoints = [];
-		for (var i=0; i<positions.length; i++) {
-			if(i === 0 || i === positions.length-1){
+		for (i=0; i<spotData.length; i++) {
+			if(i === 0 || i === spotData.length-1){
 				continue;
 			}
 			waypoints.push({
-				location: {lat: positions[i].lat, lng: positions[i].lng},
-				// location: positions[i].name,
+				location: {lat: spotData[i].lat, lng: spotData[i].lng},
+				// location: spotData[i].name,
 				// stopover: false
 			})
 		}
 		var request = {
-			origin: {lat:24.795417173319372,lng:120.99469045958209},
-			destination: positions[positions.length-1].name,
+			origin: {lat: spotData[0].lat, lng:spotData[0].lng},
+			destination: {lat: spotData[spotData.length-1].lat, lng:spotData[spotData.length-1].lng},
 			waypoints: waypoints,
 			travelMode: 'WALKING',
 			optimizeWaypoints: true
@@ -90,11 +129,12 @@ function MyComponent() {
 				console.log(status);
 			}
 		});
+		setLoading(false);
 
 
 		// let destinations = [];
-		// for (i in positions) {
-		// 	destinations.push({lat: positions[i].lat, lng: positions[i].lng});
+		// for (i in spotData) {
+		// 	destinations.push({lat: spotData[i].lat, lng: spotData[i].lng});
 		// }
 		// if(navigator.geolocation){
 		// 	function error() {
@@ -114,7 +154,7 @@ function MyComponent() {
 		// 		var tempduration = [];
 		// 		var tempdistance = [];
 		// 	  	function callback(response, status){
-		// 			for(let i = 0; i < positions.length; i++){
+		// 			for(let i = 0; i < spotData.length; i++){
 		// 		  		tempduration.push(response.rows[0].elements[i].duration.text);
 		// 				tempdistance.push(response.rows[0].elements[i].distance.text);
 		// 			}
@@ -126,62 +166,70 @@ function MyComponent() {
 		// } else {
 		// 	alert('sorry')
 		// }
-	}, [positions, pathID])
+	}, [pathID])
+	
+	useEffect(() => {
+		onLoad();
+	}, [onLoad])
 
-	function showBox (e) {
-		console.log("clicked Lat: " + e.latLng.lat() + "Lng: " + e.latLng.lng());
-	}
-
-  	if(!isLoaded) return <div>Loading...</div>
+	if(loading || !isLoaded) return <Load/>;
 	return(
 		<div className='PathMap'>
-			{/* <h1>{pathID}</h1> */}
-			<BackKey from={pathID}/>
-			<div className='map'>
-				<GoogleMap
-					options={{disableDefaultUI: true}}
-					mapContainerStyle={containerStyle}
-					// defaultCenter={center}
-					// defaultZoom={15}
-					clickableIcons={false}
-					center={center}
-					zoom={15.5}
-					onLoad={onLoad}
-					onClick={(e) => {showBox(e)}}
-				>
-					{directions && 
-					<DirectionsRenderer 
-						directions={directions}
-						options={{
-							suppressInfoWindows: true,	
-							suppressMarkers: true,
-							preserveViewport: true
-						}}
-					/>}
-					{positions.map((spot) => {
-						return (
-						<Marker
-							key={spot.spotID}
-							// https://developers.google.com/maps/documentation/javascript/markers#maps_marker_simple-javascript
-							onClick={() => {setSnake({id: spot.spotID, active:true})}}
-							position={{lat:spot.lat, lng:spot.lng}}
-						/>
-						)
-					})}
-					
-				</GoogleMap>
-			</div>
-			{snake.active && 
-			<div className='snake' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>
-				<div className='goto'>看看{positions[snake.id].name}</div>
-				<div className='cancel' onClick={() => {setSnake({...{active: false}})}}>X</div>
-			</div>}
+			{valid? (
+				<>
+					{/* <h1>{pathID}</h1> */}
+					<BackKey from={pathID}/>
+					<div className='map'>
+						<GoogleMap
+							options={{disableDefaultUI: true}}
+							mapContainerStyle={containerStyle}
+							// defaultCenter={center}
+							// defaultZoom={15}
+							clickableIcons={false}
+							center={center}
+							zoom={15.5}
+						>
+							{directions && 
+							<DirectionsRenderer 
+								directions={directions}
+								options={{
+									suppressInfoWindows: true,	
+									suppressMarkers: true,
+									preserveViewport: true
+								}}
+							/>}
+							{positions.map((spot, index) => {
+								return (
+								<Marker
+									key={spot.spotID}
+									// https://developers.google.com/maps/documentation/javascript/markers#maps_marker_simple-javascript
+									onClick={() => {
+										setSnake({id: spot.spotID, name: positions[index].name, active:true})}
+									}
+									position={{lat:spot.lat, lng:spot.lng}}
+								/>
+								)
+							})}
+							
+						</GoogleMap>
+					</div>
+					{snake.active && 
+					<div className='snake' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>
+						<div className='goto'>看看{snake.name}</div>
+						<div className='cancel' onClick={() => {setSnake({...{active: false}})}}>X</div>
+					</div>}
+				</>
+			) : (
+				<div>
+                    <h3>Invalid or Expired URL</h3>
+                    <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
+                </div>
+			)}
 		</div>
-	
 		/* <div>Duration:{duration}</div>
 		<div>Distance:{distance}</div> */
   	)
-	
+
 }
 
 

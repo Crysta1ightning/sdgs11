@@ -7,6 +7,7 @@ import BackKey from '../global/backkey';
 function PathPage() {
 	const {pathID} = useParams();
 	const [loading, setLoading] = useState(true);
+	const [valid, setValid] = useState(true);
 	const [userX, setUserX] = useState(0);
     const [userY, setUserY] = useState(0);
 	const [predictTime, setPredictTime] = useState(0);
@@ -22,8 +23,7 @@ function PathPage() {
     ]);
 	const [pathName, setPathName] = useState('');
 	const [pathFinished, setPathFinished] = useState(false);
-	const [valid, setValid] = useState(true);
-
+	
 	const setFinished = useCallback(async () => {
 		console.log("Set Finished");
 		if(!localStorage.getItem('token')){
