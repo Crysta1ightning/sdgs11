@@ -101,6 +101,7 @@ function PathPage() {
 		const data2 = await response2.json();
 		if(data2.status === 'fail'){
 			console.log("Failed to Get Spots");
+			setValid(false);
 			setLoading(false);
 			return;
 		}
@@ -121,7 +122,7 @@ function PathPage() {
         console.log("Set New Distance");
         var newDistance;
         setSpotList(spotList => spotList.map((spot) => {
-            newDistance = Math.round(Math.sqrt(Math.pow(userX-spot.x, 2) + Math.pow(userY-spot.y, 2)));
+            newDistance = Math.round(Math.sqrt(Math.pow(userX-spot.lat, 2) + Math.pow(userY-spot.lng, 2)));
             return {...spot, distance: newDistance}; 
         }))
     }, [userX, userY]);

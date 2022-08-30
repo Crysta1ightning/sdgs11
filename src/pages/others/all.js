@@ -9,14 +9,14 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 function AllPage () {
     const [loading, setLoading] = useState(true);
 	const [spotList, setSpotList] = useState([
-		// {spotID: 1, x: 50, y: 150, name: "人社院", description: "人社院是迷宮", distance: 0},
-		// {spotID: 2, x: 70, y: 60, name: "台達館", description: "資工電神所在地", distance: 0},
-		// {spotID: 3, x: 80, y: 90, name: "小吃部", description: "小吃部只有麥當勞", distance: 0}, 
-		// {spotID: 4, x: 10, y: 10, name: "成功湖", description: "很大的一個湖", distance: 0},
-		// {spotID: 5, x: 20, y: 130, name: "教育館", description: "上通識課的地方", distance: 0},  
-        // {spotID: 6, x: 100, y: 100, name: "旺宏館", description: "這是旺宏館", distance: 0}, 
-        // {spotID: 7, x: 60, y: 100, name: "生科院", description: "叉叉!", distance: 0}, 
-        // {spotID: 8, x: 120, y: 120, name: "葉子", description: "就是個葉子", distance: 0},
+		// {spotID: 1, lat: 50, lng: 150, name: "人社院", description: "人社院是迷宮", distance: 0},
+		// {spotID: 2, lat: 70, lng: 60, name: "台達館", description: "資工電神所在地", distance: 0},
+		// {spotID: 3, lat: 80, lng: 90, name: "小吃部", description: "小吃部只有麥當勞", distance: 0}, 
+		// {spotID: 4, lat: 10, lng: 10, name: "成功湖", description: "很大的一個湖", distance: 0},
+		// {spotID: 5, lat: 20, lng: 130, name: "教育館", description: "上通識課的地方", distance: 0},  
+        // {spotID: 6, lat: 100, lng: 100, name: "旺宏館", description: "這是旺宏館", distance: 0}, 
+        // {spotID: 7, lat: 60, lng: 100, name: "生科院", description: "叉叉!", distance: 0}, 
+        // {spotID: 8, lat: 120, lng: 120, name: "葉子", description: "就是個葉子", distance: 0},
     ]);
 
     // const imgList = [
@@ -60,8 +60,6 @@ function AllPage () {
                 spotID: spotData[i].spotID, 
                 name: spotData[i].name, 
                 description: spotData[i].description,
-                x: spotData[i].x,
-                y: spotData[i].y,
             });
         }
         setSpotList(newList);

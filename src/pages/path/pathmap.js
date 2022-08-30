@@ -29,18 +29,18 @@ function MyComponent() {
 
 	useEffect(() => {
 		const arr = [
-			{id:0, label:'旺宏館',lat:24.795417173319372,lng:120.99469045958209},
-			{id:1, label:'成功湖',lat:24.793429,lng:120.994480},
-			{id:2, label:'荷塘',lat:24.790670, lng:120.992392},
-			{id:3, label:'奕園',lat:24.788057,lng:120.990741},
-			{id:4, label:'綠能大樓－李存敏館',lat:24.790936, lng:120.991469},
-			{id:5, label:'清華實驗室',lat:24.786139,  lng:120.989577},
-			{id:6, label:'創新育成中心',lat:24.786412, lng:120.989103},
-			{id:7, label:'台積館',lat:24.786749, lng:120.988344},
-			{id:8, label:'蝴蝶園',lat:24.790530,  lng:120.988455},
-			{id:9, label:'相思湖',lat:24.791497, lng:120.989957},
-			{id:10, label:'梅園',lat:24.792494, lng:120.990043},
-			{id:11, label:'校友體育館',lat:24.795108,lng:120.989808}
+			{spotID:0, name:'旺宏館',lat:24.795417173319372,lng:120.99469045958209},
+			{spotID:1, name:'成功湖',lat:24.793429,lng:120.994480},
+			{spotID:2, name:'荷塘',lat:24.790670, lng:120.992392},
+			{spotID:3, name:'奕園',lat:24.788057,lng:120.990741},
+			{spotID:4, name:'綠能大樓－李存敏館',lat:24.790936, lng:120.991469},
+			{spotID:5, name:'清華實驗室',lat:24.786139,  lng:120.989577},
+			{spotID:6, name:'創新育成中心',lat:24.786412, lng:120.989103},
+			{spotID:7, name:'台積館',lat:24.786749, lng:120.988344},
+			{spotID:8, name:'蝴蝶園',lat:24.790530,  lng:120.988455},
+			{spotID:9, name:'相思湖',lat:24.791497, lng:120.989957},
+			{spotID:10, name:'梅園',lat:24.792494, lng:120.990043},
+			{spotID:11, name:'校友體育館',lat:24.795108,lng:120.989808}
 		]
 		setPostitions(arr);
 		var avgLat = 0;
@@ -69,13 +69,13 @@ function MyComponent() {
 			}
 			waypoints.push({
 				location: {lat: positions[i].lat, lng: positions[i].lng},
-				// location: positions[i].label,
+				// location: positions[i].name,
 				// stopover: false
 			})
 		}
 		var request = {
 			origin: {lat:24.795417173319372,lng:120.99469045958209},
-			destination: positions[positions.length-1].label,
+			destination: positions[positions.length-1].name,
 			waypoints: waypoints,
 			travelMode: 'WALKING',
 			optimizeWaypoints: true
@@ -161,9 +161,9 @@ function MyComponent() {
 					{positions.map((spot) => {
 						return (
 						<Marker
-							key={spot.id}
+							key={spot.spotID}
 							// https://developers.google.com/maps/documentation/javascript/markers#maps_marker_simple-javascript
-							onClick={() => {setSnake({id: spot.id, active:true})}}
+							onClick={() => {setSnake({id: spot.spotID, active:true})}}
 							position={{lat:spot.lat, lng:spot.lng}}
 						/>
 						)
@@ -172,8 +172,8 @@ function MyComponent() {
 				</GoogleMap>
 			</div>
 			{snake.active && 
-			<div className='snake' onClick={() => {window.location.href='/spot/' + positions[snake.id].id + '/' + (parseInt(pathID, 10)+100)}}>
-				<div className='goto'>看看{positions[snake.id].label}</div>
+			<div className='snake' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>
+				<div className='goto'>看看{positions[snake.id].name}</div>
 				<div className='cancel' onClick={() => {setSnake({...{active: false}})}}>X</div>
 			</div>}
 		</div>

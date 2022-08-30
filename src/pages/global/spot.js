@@ -101,12 +101,12 @@ function SpotPage() {
 
 	useEffect(() => {
         console.log("Set New Distance");
-		const newDistance = Math.round(Math.sqrt(Math.pow(userX-spot.x, 2) + Math.pow(userY-spot.y, 2)));
+		const newDistance = Math.round(Math.sqrt(Math.pow(userX-spot.lat, 2) + Math.pow(userY-spot.lng, 2)));
 		setSpot(prev => ({
             ...prev,
             distance: newDistance
         }));
-    }, [userX, userY, spot.x, spot.y]);
+    }, [userX, userY, spot.lat, spot.lng]);
 
 	async function claim(){
 		console.log("Claim: " + spotID);
