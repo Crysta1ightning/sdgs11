@@ -1,10 +1,10 @@
 .AllPage {
     padding: 0;
     margin: 0;
-    background-color: #cdb2fc;
+    background-color: #ebd5ff;
     height: 1000px;
     overflow: hidden;
-    padding-bottom: 100px;
+    padding-bottom: 200px;
 }
 
 .AllPage h1 {
@@ -12,23 +12,40 @@
     text-align: center;
     font-size: 30px;
     font-family: 'Poppins';
-    color: black;
+    color: #ebd5ff;
 }
 
-.AllPage form{
+.AllPage .search{
+    position: fixed;
+    z-index: 2;
     display: block;
-    margin: auto;
-    margin-bottom: 10px;
-    background-color: #edeeef;
-    width: 85%;
+    background-color: lightgrey;
+    width: 85vw;
     height: 60px;
     border-radius: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: 95px;
+    margin-left: 7.5vw;
+    box-shadow: 0px 3px 5px -3px rgba(0,0,0,0.5);
+    /* disappearable */
+    transition-property: all; 
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
 }
+
+.AllPage .hide{
+    margin-top: -20px;
+}
+
+.AllPage .search:hover{
+    box-shadow: 0px 6px 12px -6px rgba(0,0,0,0.5);;
+    transition: 0.2s;
+}
+
 .AllPage .search-text{
-    all:unset;
+    all: unset;
     font: 17px 'Poppins';
     color: #8c9199;
     height: 100%;
@@ -44,25 +61,25 @@
 .AllPage .card-container{
     min-height: 650px;
     display: grid;
-    gap: 10px 10px;
+    gap: 15px 15px;
     grid-template-columns: 1fr 1fr;
-    margin-top: 160px;
+    margin-top: 175px;
     margin-inline: 10px;
 }
 .AllPage .card{
     all: unset;
-    background-color: #eae9e8;
-    border-radius: 5px;
-    box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.2);
+    background-color: #bb86fc;
+    border-radius: 15px;
+    box-shadow: 0px 2px 4px -2px rgba(0,0,0,0.2);
     transition: 0.2s;
     max-width: 45vh;
     height: 170px;
     text-align: center;
-    border-top-right-radius: 30px;
+    /* border: 2px solid black; */
 }
 .AllPage .card:hover{
-    opacity: 0.9;
-    box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.0.1);
+    box-shadow: 0px 3px 6px 3px rgba(0,0,0,0.2);
+    transition: 0.2s
 }
 
 .AllPage .map-btn{
@@ -70,24 +87,25 @@
     padding: 0;
     right: 20px;
     top: 20px;
-    color: black;
+    color: #ebd5ff;
     font-size: 30px;
     border: none;
     background: none;
 }
 
 .AllPage .map-btn:hover{
-    color:white;
+    color:lightgrey;
     transition: 0.05s;
 }
 
 .AllPage .top{
-    z-index: 2;
+    z-index: 3;
     top: 0;
     position: fixed;
     width:100%;
     min-height: 0;
-    background: #731dd8;
+    background: #6200ee;
+    /* border: 2px solid black; */
 }
 
 .AllPage .top-shadow{
@@ -96,4 +114,12 @@
 
 .AllPage .container{
     padding-top: 80px;
+}
+
+.AllPage .Navbar .menu-btn{
+    color: #ebd5ff;
+}
+
+.AllPage .Navbar .menu-btn:hover{
+    color: lightgrey;
 }

@@ -19,11 +19,11 @@ function SpotPage() {
 	const [text, setText] = useState('');
 	const [truncate, setTruncate] = useState(true);
 	const imgList = [
-        {src: require('../../images/spot/大門.png')},
-        {src: require('../../images/spot/永續路徑.png')},
-        {src: require('../../images/spot/台達館.png')},
-        {src: require('../../images/spot/工一.png')},
-        {src: require('../../images/spot/台積館.png')},
+        {src: require('../../images/spot/校門.jpg')},
+        {src: require('../../images/spot/大草坪.jpg')},
+        {src: require('../../images/spot/台達館.jpg')},
+        {src: require('../../images/spot/工程一館.jpg')},
+        {src: require('../../images/spot/台積館.jpg')},
     ];
 
 	const setFinished = useCallback(async () => {

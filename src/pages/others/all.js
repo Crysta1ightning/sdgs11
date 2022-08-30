@@ -18,6 +18,15 @@ function AllPage () {
         // {spotID: 7, x: 60, y: 100, name: "生科院", description: "叉叉!", distance: 0}, 
         // {spotID: 8, x: 120, y: 120, name: "葉子", description: "就是個葉子", distance: 0},
     ]);
+
+    // const imgList = [
+    //     {src: require('../../images/spot/人社院.jpg')},
+    //     {src: require('../../images/spot/台達館.jpg')},
+    //     {src: require('../../images/spot/小吃部.jpg')},
+    //     {src: require('../../images/spot/成功湖.jpg')},
+    //     {src: require('../../images/spot/教育館.jpg')},
+    // ];
+
     const [searchList, setSearchList] = useState([]);
     const [searchText, setSearchText] = useState('');
     function search(event){
@@ -65,6 +74,7 @@ function AllPage () {
         getSpots();
     }, [getSpots]);
 
+    //disappearable shadow
     const [active, setActive] = useState(false);
 
     useEffect(() => {
@@ -85,6 +95,25 @@ function AllPage () {
         // setNavColor(null);
     }
 
+    //disappearable searchbar
+    const [scrollDirection, setScrollDirection] = useState(null);
+
+    useEffect(() => {
+        let lastScrollY = window.pageYOffset;
+        const updateScrollDirection = () => {
+            const scrollY = window.pageYOffset;
+            const direction = scrollY > lastScrollY ? "down" : "up";
+            if (direction !== scrollDirection && (scrollY - lastScrollY > 5 || scrollY - lastScrollY < -5)) {
+                setScrollDirection(direction);
+            }
+            lastScrollY = scrollY > 0 ? scrollY : 0;
+        };
+        window.addEventListener("scroll", updateScrollDirection); // add event listener
+        return () => {
+            window.removeEventListener("scroll", updateScrollDirection); // clean up
+        }
+    }, [scrollDirection]);
+
     if(loading) return <Load/>;
     return (
         <div className="AllPage">
@@ -94,7 +123,8 @@ function AllPage () {
                 <button className='map-btn' onClick={() => {window.location.href = '/path/:pathID/map'}}>
                     <FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
                 </button>
-                <form onSubmit={search}>
+            </div>
+            <form onSubmit={search} className={(scrollDirection === 'down') ? 'search hide': 'search'}>
                 <input
                     className="search-text"
                     type="text"
@@ -106,12 +136,11 @@ function AllPage () {
                     <FontAwesomeIcon icon={solid('magnifying-glass')}/>
                 </div>
             </form>
-            </div>
-            
             <div className='card-container'>
                 {searchList.map((spot) => {
                     return ( 
                         <button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/0'}}>
+                            {/* <img src={imgList[spot.spotID-1].src} alt="圖片"></img> */}
                             <h3>{spot.name}</h3>
                         </button>
                     )
