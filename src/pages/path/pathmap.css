@@ -4,11 +4,7 @@
 }
 
 .PathMap .BackKey .menu-btn{
-    position: absolute;
     z-index: 1;
-    color: black;
-    font-size: 25px;
-    margin: 5%;
 }
 
 .PathMap .snake .goto {
