@@ -22,7 +22,7 @@ function MyComponent() {
 		lng: 120.99469045958209
 	});
 	const [positions, setPostitions] = useState([]);
-	const [directions, setDirections] = useState();
+	const [directions, setDirections] = useState(false);
 	// const [duration, setDuration] = useState([]);
 	// const [distance, setDistance] = useState([]);
 	const [snake, setSnake] = useState({
@@ -32,103 +32,121 @@ function MyComponent() {
 	})
 
 	const onLoad = useCallback( async () => {
-		// Part I: Get Path
-		console.log(pathID);
-        const response = await fetch('https://sdgs12.herokuapp.com/api/path', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				pathID,
-			}),
-        })
-		const data = await response.json();
-		if(data.status === 'fail'){
-			setValid(false);
-			setLoading(false);
-			console.log("Failed to Get Path");
-			return;
-		}
 
-		const pathData = data.pathData;
-		console.log("hi" + pathData);
-		// setPathName(pathData.name);
-
-		const spotPath = data.spotPath;
-		console.log(spotPath);
-
-		// Part II: Get Spots
-		var spotIDList = [];
-		for(var i in spotPath){
-            spotIDList.push(spotPath[i].spotID);
-        };
-		console.log(spotIDList);
-
-		const response2 = await fetch('https://sdgs12.herokuapp.com/api/spotAll', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				spotIDList,
-			}),
-		})
-		const data2 = await response2.json();
-		if(data2.status === 'fail'){
-			console.log("Failed to Get Spots");
-			setValid(false);
-			setLoading(false);
-			return;
-		}
-		const spotData = data2.spotData;
-		console.log("SpotData: " + spotData[0].lat);
-		setPostitions(spotData);
-		var avgLat = 0;
-		var avgLng = 0;
-		for(i in spotData) {
-			avgLat += spotData[i].lat;
-			avgLng += spotData[i].lng;
-		}
-		avgLat /= spotData.length;
-		avgLng /= spotData.length;
-		setCenter({
-			lat: avgLat,
-			lng: avgLng
-		})
-
-		// Part III: SET PATH
-		if(pathID === '0') return;
-		const google = window.google;
-		const directionsService = new google.maps.DirectionsService();
-		var waypoints = [];
-		for (i=0; i<spotData.length; i++) {
-			if(i === 0 || i === spotData.length-1){
-				continue;
-			}
-			waypoints.push({
-				location: {lat: spotData[i].lat, lng: spotData[i].lng},
-				// location: spotData[i].name,
-				// stopover: false
+		if(pathID === '0') {
+			// Part I: Get Spots
+			const response = await fetch('https://sdgs12.herokuapp.com/api/all', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+			const data = await response.json();
+			if(data.status === 'fail'){
+				setValid(false);
+				setLoading(false);
+				console.log("Failed to get spots");
+				return;
+			};
+			const spotData = data.spotData;
+			setPostitions(spotData);
+		} else {
+			// Part I: Get Path
+			const response = await fetch('https://sdgs12.herokuapp.com/api/path', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					pathID,
+				}),
 			})
-		}
-		var request = {
-			origin: {lat: spotData[0].lat, lng:spotData[0].lng},
-			destination: {lat: spotData[spotData.length-1].lat, lng:spotData[spotData.length-1].lng},
-			waypoints: waypoints,
-			travelMode: 'WALKING',
-			optimizeWaypoints: true
-		};
-
-		directionsService.route(request, function (result, status) {
-			if (status === 'OK') {
-				// console.log(result.routes[0].legs[0].steps);
-				// directionsDisplay.setDirections(result);
-				setDirections(result);
-			} else {
-				console.log(status);
+			const data = await response.json();
+			if(data.status === 'fail'){
+				setValid(false);
+				setLoading(false);
+				console.log("Failed to Get Path");
+				return;
 			}
-		});
+
+			const pathData = data.pathData;
+			console.log("hi" + pathData);
+			// setPathName(pathData.name);
+
+			const spotPath = data.spotPath;
+			console.log(spotPath);
+
+			// Part II: Get Spots
+			var spotIDList = [];
+			for(var i in spotPath){
+				spotIDList.push(spotPath[i].spotID);
+			};
+			console.log(spotIDList);
+
+			const response2 = await fetch('https://sdgs12.herokuapp.com/api/spotAll', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					spotIDList,
+				}),
+			})
+			const data2 = await response2.json();
+			if(data2.status === 'fail'){
+				console.log("Failed to Get Spots");
+				setValid(false);
+				setLoading(false);
+				return;
+			}
+			const spotData = data2.spotData;
+			console.log("SpotData: " + spotData[0].lat);
+			setPostitions(spotData);
+			var avgLat = 0;
+			var avgLng = 0;
+			for(i in spotData) {
+				avgLat += spotData[i].lat;
+				avgLng += spotData[i].lng;
+			}
+			avgLat /= spotData.length;
+			avgLng /= spotData.length;
+			setCenter({
+				lat: avgLat,
+				lng: avgLng
+			})
+
+			// Part III: SET PATH
+			const google = window.google;
+			const directionsService = new google.maps.DirectionsService();
+			var waypoints = [];
+			for (i=0; i<spotData.length; i++) {
+				if(i === 0 || i === spotData.length-1){
+					continue;
+				}
+				waypoints.push({
+					location: {lat: spotData[i].lat, lng: spotData[i].lng},
+					// location: spotData[i].name,
+					// stopover: false
+				})
+			}
+			var request = {
+				origin: {lat: spotData[0].lat, lng:spotData[0].lng},
+				destination: {lat: spotData[spotData.length-1].lat, lng:spotData[spotData.length-1].lng},
+				waypoints: waypoints,
+				travelMode: 'WALKING',
+				optimizeWaypoints: true
+			};
+
+			directionsService.route(request, function (result, status) {
+				if (status === 'OK') {
+					// console.log(result.routes[0].legs[0].steps);
+					// directionsDisplay.setDirections(result);
+					setDirections(result);
+				} else {
+					console.log(status);
+				}
+			});
+		}
 		setLoading(false);
 
 
