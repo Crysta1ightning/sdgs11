@@ -50,6 +50,18 @@ function MyComponent() {
 			};
 			const spotData = data.spotData;
 			setPostitions(spotData);
+			var avgLat = 0;
+			var avgLng = 0;
+			for(var i in spotData) {
+				avgLat += spotData[i].lat;
+				avgLng += spotData[i].lng;
+			}
+			avgLat /= spotData.length;
+			avgLng /= spotData.length;
+			setCenter({
+				lat: avgLat,
+				lng: avgLng
+			})
 		} else {
 			// Part I: Get Path
 			const response = await fetch('https://sdgs12.herokuapp.com/api/path', {
@@ -78,7 +90,7 @@ function MyComponent() {
 
 			// Part II: Get Spots
 			var spotIDList = [];
-			for(var i in spotPath){
+			for(i in spotPath){
 				spotIDList.push(spotPath[i].spotID);
 			};
 			console.log(spotIDList);
@@ -102,8 +114,8 @@ function MyComponent() {
 			const spotData = data2.spotData;
 			console.log("SpotData: " + spotData[0].lat);
 			setPostitions(spotData);
-			var avgLat = 0;
-			var avgLng = 0;
+			avgLat = 0;
+			avgLng = 0;
 			for(i in spotData) {
 				avgLat += spotData[i].lat;
 				avgLng += spotData[i].lng;
