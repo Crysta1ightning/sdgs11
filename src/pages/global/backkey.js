@@ -14,9 +14,11 @@ function BackKey(props){
         }else if(props.from === 400) {
             // resetmail -> login
             back = () => {window.location.replace('/login');};
-        }else{
+        }else if(parseInt(props.from, 10) < 100) {
             // spot -> path
-            back = () => {window.location.href = '/path/' + props.from;};
+            back = () => {window.location.href = '/path/' + props.from};
+        }else {
+            back = () => {window.location.href = '/path/' + (parseInt(props.from, 10)-100) + '/map'};
         }
     }else {
         back = () => {window.history.back();};

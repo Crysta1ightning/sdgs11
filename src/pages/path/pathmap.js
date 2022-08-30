@@ -1,11 +1,14 @@
-import { React, useState, useCallback,  useEffect } from 'react'
+import { React, useState, useCallback, useEffect } from 'react'
 import { DirectionsRenderer, GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import { useParams } from "react-router-dom";
 import './pathmap.css';
+import BackKey from '../global/backkey';
 
 function MyComponent() {
+	const { pathID } = useParams();
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
-		googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8"
+		googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8",
 	})
 	const containerStyle = {
 		width: '100%',
@@ -20,7 +23,7 @@ function MyComponent() {
 	// const [duration, setDuration] = useState([]);
 	// const [distance, setDistance] = useState([]);
 	const [snake, setSnake] = useState({
-		active: true,
+		active: false,
 		id: 0,
 	})
 
@@ -56,6 +59,7 @@ function MyComponent() {
 	}, [])
 
 	const onLoad = useCallback( () => {
+		if(pathID === '0') return;
 		const google = window.google;
 		const directionsService = new google.maps.DirectionsService();
 		var waypoints = [];
@@ -122,7 +126,7 @@ function MyComponent() {
 		// } else {
 		// 	alert('sorry')
 		// }
-	}, [positions])
+	}, [positions, pathID])
 
 	function showBox (e) {
 		console.log("clicked Lat: " + e.latLng.lat() + "Lng: " + e.latLng.lng());
@@ -131,6 +135,8 @@ function MyComponent() {
   	if(!isLoaded) return <div>Loading...</div>
 	return(
 		<div className='PathMap'>
+			{/* <h1>{pathID}</h1> */}
+			<BackKey from={pathID}/>
 			<div className='map'>
 				<GoogleMap
 					options={{disableDefaultUI: true}}
@@ -166,7 +172,7 @@ function MyComponent() {
 				</GoogleMap>
 			</div>
 			{snake.active && 
-			<div className='snake' onClick={() => {console.log("GO TO" + positions[snake.id].label)}}>
+			<div className='snake' onClick={() => {window.location.href='/spot/' + positions[snake.id].id + '/' + (parseInt(pathID, 10)+100)}}>
 				<div className='goto'>看看{positions[snake.id].label}</div>
 				<div className='cancel' onClick={() => {setSnake({...{active: false}})}}>X</div>
 			</div>}

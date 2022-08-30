@@ -29,8 +29,7 @@ function AllPage () {
 
     const [searchList, setSearchList] = useState([]);
     const [searchText, setSearchText] = useState('');
-    function search(event){
-        event.preventDefault();
+    function search(searchText){
         var newlist = [];
         for(var i in spotList){
             if(spotList[i].name.includes(searchText)){
@@ -86,12 +85,10 @@ function AllPage () {
     const pop = () => {
         if (window.pageYOffset > 0) {
             setActive(true);
-        }
-                 
+        }        
         if (window.pageYOffset === 0) {
             setActive(false);
         }
-            
         // setNavColor(null);
     }
 
@@ -120,17 +117,22 @@ function AllPage () {
              <div className={active? 'top top-shadow': 'top'}>
                 <Navbar/>
                 <h1>地點總覽</h1>
-                <button className='map-btn' onClick={() => {window.location.href = '/path/:pathID/map'}}>
+                <button className='map-btn' onClick={() => {window.location.href = '/path/0/map'}}>
                     <FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
                 </button>
             </div>
-            <form onSubmit={search} className={(scrollDirection === 'down') ? 'search hide': 'search'}>
+            <form onSubmit={()=>{}} className={(scrollDirection === 'down') ? 'search hide': 'search'}>
                 <input
                     className="search-text"
                     type="text"
                     placeholder="搜尋關鍵字 如: 小吃部"
                     value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}>
+                    onChange={(e) => {
+                        setSearchText(e.target.value);
+                        search(e.target.value);
+                    }
+
+                    }>
                 </input>
                 <div className="search-button" type="submit" value="">
                     <FontAwesomeIcon icon={solid('magnifying-glass')}/>
