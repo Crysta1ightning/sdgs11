@@ -1,6 +1,8 @@
 import { React, useState, useCallback, useEffect } from 'react'
 import { DirectionsRenderer, GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { useParams } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 import './pathmap.css';
 import BackKey from '../global/backkey';
 import Load from '../global/load';
@@ -208,7 +210,10 @@ function MyComponent() {
 			{valid? (
 				<>
 					{/* <h1>{pathID}</h1> */}
-					<BackKey from={pathID}/>
+					<div className='backkeybox'>
+						<BackKey from={pathID}/>
+					</div>
+					
 					<div className='map'>
 						<GoogleMap
 							options={{disableDefaultUI: true}}
@@ -244,9 +249,9 @@ function MyComponent() {
 						</GoogleMap>
 					</div>
 					{snake.active && 
-					<div className='snake' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>
-						<div className='goto'>看看{snake.name}</div>
-						<div className='cancel' onClick={() => {setSnake({...{active: false}})}}>X</div>
+					<div className='snake'>
+						<div className='goto' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>看看{snake.name}</div>
+						<div className='cancel' onClick={() => {setSnake({...{active: false}})}}><FontAwesomeIcon icon={solid('x')} /></div>
 					</div>}
 				</>
 			) : (

@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useCallback } from 'react';
 import './spot.css'
 import '../global/header.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 function SpotPage() {
 	const { spotID } = useParams();
@@ -146,9 +146,9 @@ function SpotPage() {
 					<div className='header'>
 						<BackKey from={from}/>
 						{/* <h1>建築介紹</h1> */}
-						<button className='map-btn' onClick={() => {window.location.href = '/path/:pathID/map'}}>
+						{/* <button className='map-btn' onClick={() => {window.location.href = '/path/:pathID/map'}}>
                     		<FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
-                		</button>
+                		</button> */}
 					</div>
 					<div className='container'>
 						<img src={imgList[0].src} alt="圖片"></img>

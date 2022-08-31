@@ -3,6 +3,8 @@ import Load from '../global/load';
 import { useEffect, useState, useCallback } from 'react'
 import { useParams } from "react-router-dom";
 import BackKey from '../global/backkey';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function PathPage() {
 	const {pathID} = useParams();
@@ -149,6 +151,9 @@ function PathPage() {
 						<BackKey from={200}/> 
 						<h1>{pathName}{pathFinished? "✅": ""}</h1>
 						<h2>所有建築預覽</h2>
+						<button className='map-btn' onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>
+                    		<FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
+                		</button> 
 					</div>
 					<div className="pathSpots">
 						{spotList.map((spot) => {
@@ -161,7 +166,7 @@ function PathPage() {
 						})}
 					</div>
 					<h2 className="predictedTime">預計完成時間: {predictTime}分鐘</h2>
-					<button onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>Map</button>
+					{/* <button onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>Map</button> */}
 				</>
             ) : (
                 <div>

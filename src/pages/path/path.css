@@ -5,7 +5,8 @@
   text-align: center;
 }
 .Path h1 {
-  padding-top: 4%;
+  margin: 0;
+  padding-top: 20px;
   font-size: 30px;
   font-family: 'Poppins';
   font-style: normal;
@@ -53,3 +54,18 @@
   font-size: 12px;
 }
 
+.Path .map-btn{
+  position: absolute;
+  padding: 0;
+  right: 20px;
+  top: 20px;
+  color: black;
+  font-size: 30px;
+  border: none;
+  background: none;
+}
+
+.Path .map-btn:hover{
+  color:#731dd8;
+  transition: 0.05s;
+}
