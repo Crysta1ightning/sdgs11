@@ -312,8 +312,8 @@ function MyComponent() {
                     <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
                 </div>
 			)}
-			<div>Duration:{duration}</div>
-			<div>Distance:{distance}</div> 
+			{/* <div>Duration:{duration}</div>
+			<div>Distance:{distance}</div>  */}
 		</div>
   	)
 
