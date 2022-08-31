@@ -142,18 +142,52 @@ function PathPage() {
 		}
 	}, [spotList])
 
+	//disappearable shadow
+    const [active, setActive] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('scroll', pop);
+      
+        return () => window.removeEventListener('scroll', pop);
+    },[]);
+
+    const pop = () => {
+        if (window.pageYOffset > 0) {
+            setActive(true);
+        }        
+        if (window.pageYOffset === 0) {
+            setActive(false);
+        }
+        // setNavColor(null);
+    }
+	
 	if(loading) return <Load/>;
 	return (
 		<div className="Path">
 			{valid? (
-				<>
-					<div>
-						<BackKey from={200}/> 
-						<h1>{pathName}{pathFinished? "✅": ""}</h1>
-						<h2>所有建築預覽</h2>
-						<button className='map-btn' onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>
-                    		<FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
-                		</button> 
+				<>	
+					<div className={active? 'top top-shadow': 'top'}>
+						<div className='top-top'>
+							<BackKey from={200}/> 
+							<h1>{pathName}{pathFinished? "✅": ""}</h1>
+							<button className='map-btn' onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>
+								<FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
+							</button> 
+						</div>
+						<div className='mid-top'>
+							{/* {pathList.map((path) => {
+								return(
+									<div className="box" key={path.pathID} onClick={() => {ChoosePath(path)}}>
+										<h2>{path.name}</h2>
+									</div>
+								)
+							})} */}
+						</div>
+						<div className='bot-top'>
+							<hr/>
+							<h2>路徑建築預覽</h2>
+							<hr/>
+						</div>
 					</div>
 					<div className="pathSpots">
 						{spotList.map((spot) => {
@@ -166,6 +200,7 @@ function PathPage() {
 						})}
 					</div>
 					<h2 className="predictedTime">預計完成時間: {predictTime}分鐘</h2>
+					<button className='start-btn' onClick={'#'}>開始</button>
 					{/* <button onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>Map</button> */}
 				</>
             ) : (

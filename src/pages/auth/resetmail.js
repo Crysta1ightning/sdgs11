@@ -39,12 +39,11 @@ function ResetMailPage() {
 		}
 	}, [countdown])
 
-	useEffect ( () => {
+	useEffect (() => {
 		let interval;
 		if(!resend) interval = setInterval(tick, 1000);
 		return () => clearInterval(interval);
-	}, [tick, resend]
-	)
+	}, [tick, resend])
 
 	return (
 		<div className='AuthPage'>
