@@ -174,15 +174,15 @@ function PathPage() {
 								<FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
 							</button> 
 						</div>
-						<div className='mid-top'>
-							{/* {pathList.map((path) => {
+						{/* <div className='mid-top'>
+							{pathList.map((path) => {
 								return(
 									<div className="box" key={path.pathID} onClick={() => {ChoosePath(path)}}>
 										<h2>{path.name}</h2>
 									</div>
 								)
-							})} */}
-						</div>
+							})}
+						</div> */}
 						<div className='bot-top'>
 							<hr/>
 							<h2>路徑建築預覽</h2>

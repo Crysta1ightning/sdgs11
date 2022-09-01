@@ -74,13 +74,13 @@
 
 .Navbar .menu-btn{
     position: absolute;
-    color: black;
+    color: #ececec;
     font-size: 30px;
     margin: 20px;
 }
 
 .Navbar .menu-btn:hover{
-    color:white;
+    color:black;
     transition: 0.05s;
 }
 

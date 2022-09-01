@@ -48,7 +48,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   white-space: nowrap;
-  margin-top: 220px;
+  margin-top: 140px;
   height: fit-content;
   scrollbar-width: none; /*remove scrollbar for firefox */
 }
@@ -64,13 +64,13 @@
   background-color: white;
   margin-block: 20px;
   border-radius: 25px;
-  box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.15);
+  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
   margin-left: 10vw;
   transition: 0.2s;
 }
 .Path .card:hover{
   opacity: 0.9;
-  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+  box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.15);
   transition: 0.2s;
 }
 .Path .card button {
@@ -112,10 +112,10 @@
   background-color: #731dd8;
   padding-bottom: 20px;
 }
-.Path .mid-top{
+/* .Path .mid-top{
   width: 100vw;
   height: 60px;
-}
+} */
 
 .Path .bot-top{
   margin-bottom: 10px;
