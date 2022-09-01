@@ -1,7 +1,7 @@
 .PathMain {
     height: 800px;
     /* background-color: #ffffff; */
-    background-color: #eae9e9;
+    background-color: #fafafa;
     padding-bottom: 500px;
 }
 
@@ -32,7 +32,7 @@
     /* background: hsla(239, 100%, 67%, 1);
     background: linear-gradient(45deg, hsla(187, 100%, 89%, 1) 0%, hsla(239, 100%, 67%, 1) 100%); */
     /* background-color: #8b25ff; */
-    background-color: #cdb2fc;
+    background-color: #ececec;
     
     animation: 0.6s ease-out 1 boxanimation;
     display: flex;
@@ -82,7 +82,7 @@
     padding-top: 20px;
     font-family: 'Poppins';
     font-size: 20px;
-    color: #eae9e9; 
+    color: black; 
 }
 
 .PathMain .map-btn{

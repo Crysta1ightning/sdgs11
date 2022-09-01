@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
 .SpotPage {
     /* background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); */
-    background-color: #80558C;
+    background-color: #cdb2fc;
     height: 100vh;
 }
 
 .SpotPage .container{
-    background-color: white;
+    /* background-color: white; */
     border-radius: 25px;
-    box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
+    box-shadow: 0px 5px 20px -5px #731dd8;
     margin: 5% 5vw;
     overflow-y: scroll;
     height: 30vh;
@@ -30,7 +30,7 @@
     height: 10%;
 }
 .SpotPage .title h1 {
-    color: white;
+    color: #731dd8;
     font-size: 25px;
     margin: 5% 0 0 0;
 }
@@ -42,7 +42,7 @@
 }
 .SpotPage .title h2 {
     font-size: 20px;
-    color: lightgray;
+    color: #666666;
     /* color: gray; */
     margin: 0;
 }
@@ -62,7 +62,7 @@
     overflow-y: scroll;
 }
 .SpotPage .description p {
-    color: white;
+    color: #731dd8;
     display: inline;
     /* color: white; */
     font-size: 18px;
@@ -75,7 +75,7 @@
 .SpotPage .description button {
     all: unset;
     font-size: 18px;
-    color: lightgray;
+    color: #666666;
 }
 
 .SpotPage .claim {
@@ -89,7 +89,7 @@
     bottom: 2.5%;
     left: calc((100% - var(--width))/2);
     font-size: 20px;
-    color: #80558C;
+    color: #cdb2fc;
     background-color: #E4D192;
     font-family: 'Noto Sans TC', sans-serif;
     letter-spacing: 1.5px;
@@ -121,7 +121,7 @@
 
 .SpotPage .BackKey .menu-btn{
     position: absolute;
-    color: white;
+    color: #731dd8;
     font-size: 30px;
     left: 20px;
     top: 20px;
@@ -139,10 +139,11 @@
     padding: 0;
     right: 20px;
     top: 20px;
-    color: white;
+    color: #731dd8;
     font-size: 30px;
     border: none;
     background: none;
+    transition: 0.05s;
 }
 
 .SpotPage .map-btn:hover{

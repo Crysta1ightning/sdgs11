@@ -11,6 +11,9 @@
     overflow-y: scroll;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    background: hsla(235, 100%, 78%, 1);
+    background: linear-gradient(45deg, rgb(88, 102, 255) 0%, rgb(10, 43, 122) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#919BFF", endColorstr="#133A94", GradientType=1 );
 }
 
 .PrefacePage .pages{
@@ -21,15 +24,13 @@
     display:block;
 }
 
-.PrefacePage .pages:nth-child(odd){
-    /* background-color: #4158D0; */
+/* .PrefacePage .pages:nth-child(odd){
     background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
 }
 
 .PrefacePage .pages:nth-child(even){
-    /* background-color: #4158D0; */
     background-image: linear-gradient(137deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-}
+} */
 
 @keyframes pageanimation {
     0% {
@@ -62,8 +63,8 @@
 .PrefacePage h1{
     position: relative;
     color: white;
-    top: -35vh;
-    padding-bottom: 2vh;
+    top:-60vw;
+    padding-bottom: 4vw;
     padding-left: 15%;
 }
 
@@ -72,7 +73,7 @@
     left: 15%;
     height: 7px;
     width: 65px;
-    top: -35vh;
+    top: -60vw;
     background-color: white;
     border: none;
 }
@@ -80,10 +81,11 @@
 .PrefacePage p{
     position: relative;
     color: black;
-    top: -35vh;
+    font-weight: bold;
+    top: -60vw;
     padding-left: 15%;
     padding-right: 15%;
-    padding-top: 5vh;
+    padding-top: 10vw;
 }
 
 .PrefacePage .pages:nth-child(n) .box{
