@@ -11,6 +11,7 @@ function MyComponent() {
 	const { pathID } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [valid, setValid] = useState(true);
+	const [debug, setDebug] = useState(true);
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8",
@@ -208,10 +209,13 @@ function MyComponent() {
 		// Dummy Fetch
 		navigator.geolocation.getCurrentPosition(()=>{}, ()=>{}, {});
 		const success = (position) => {
-			// setUserLat(position.coords.latitude);
-			// setUserLng(position.coords.longitude);
-			setUserLat(u => u-0.00004);
-			setUserLng(u => u-0.00004)
+			if(debug === false) {
+				setUserLat(position.coords.latitude);
+				setUserLng(position.coords.longitude);
+			}else {
+				setUserLat(u => u-0.00004);
+				setUserLng(u => u-0.00004);
+			}
 			// setUserLat(24.79581727332000);
 			// setUserLng(120.99469045958209);
 		}
@@ -224,7 +228,7 @@ function MyComponent() {
 				timeout:10000
 			}
 		);
-	}, [])
+	}, [debug])
 
 	useEffect (() => {
 		let interval;
@@ -245,7 +249,23 @@ function MyComponent() {
 					<div className='backkeybox'>
 						<BackKey from={pathID}/>
 					</div>
-					
+					<div className='debugbox'>
+						<button onClick={() => {
+							if(!debug){
+								setUserLat(24.79581727332000);
+								setUserLng(120.99469045958209);	
+							}
+							setDebug(!debug);
+						}}>Debug: {debug? "on" : "off"}</button>
+					</div>
+					<div className='centerbox'>
+						<button onClick={() => {
+							setCenter({
+								lat: userLat,
+								lng: userLng,
+							})
+						}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></button>
+					</div>
 					<div className='map'>
 						<GoogleMap
 							options={{disableDefaultUI: true}}
@@ -296,6 +316,7 @@ function MyComponent() {
 									strokeColor: "white",
 									strokeWeight: 2,
 								}}
+								zIndex={999}
 							/>
 							
 						</GoogleMap>
