@@ -268,13 +268,23 @@ function MyComponent() {
 					</div>
 					<div className='map'>
 						<GoogleMap
-							options={{disableDefaultUI: true}}
+							options={{
+								fullscreenControl: false,
+								panControl: true,
+								zoomControl: false,
+								mapTypeControl: false,
+								scaleControl: true,
+								streetViewControl: false,
+								overviewMapControl: true,
+								rotateControl: true
+							}}
 							mapContainerStyle={containerStyle}
 							// defaultCenter={center}
 							// defaultZoom={15}
 							clickableIcons={false}
 							center={center}
 							zoom={15.5}
+							
 						>
 							{directions && 
 							<DirectionsRenderer 
