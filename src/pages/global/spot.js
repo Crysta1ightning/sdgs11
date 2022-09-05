@@ -146,10 +146,8 @@ function SpotPage() {
 		// Dummy Fetch
 		navigator.geolocation.getCurrentPosition(()=>{}, ()=>{}, {});
 		const success = (position) => {
-			// setUserLat(position.coords.latitude);
-			// setUserLng(position.coords.longitude);
-			setUserLat(24.79581727332000);
-			setUserLng(120.99469045958209);
+			setUserLat(position.coords.latitude);
+			setUserLng(position.coords.longitude);
 		}
 		const fail = () => {};
 		navigator.geolocation.getCurrentPosition(

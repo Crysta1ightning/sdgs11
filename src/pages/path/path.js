@@ -200,7 +200,7 @@ function PathPage() {
 						})}
 					</div>
 					<h2 className="predictedTime">預計完成時間: {predictTime}分鐘</h2>
-					<button className='start-btn' onClick={'#'}>開始</button>
+					<button className='start-btn' onClick={() => {}}>開始</button>
 					{/* <button onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>Map</button> */}
 				</>
             ) : (

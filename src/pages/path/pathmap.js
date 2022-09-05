@@ -154,15 +154,23 @@ function MyComponent() {
 			};
 
 			directionsService.route(request, function (result, status) {
+				var tempDuration = 0;
 				if (status === 'OK') {
-					// console.log(result.routes[0].legs[0].steps);
+					for(var i in result.routes[0].legs) {
+						for(var j in result.routes[0].legs[i].steps) {
+							console.log(result.routes[0].legs[i].steps[j].duration);
+							tempDuration += result.routes[0].legs[i].steps[j].duration.value;
+						}
+					}
 					// directionsDisplay.setDirections(result);
 					setDirections(result);
+					setDuration(tempDuration);
 				} else {
 					console.log(status);
 				}
 			});
 
+			// PART IV: SET DISTANCE & DURATION
 			let destinations = [];
 			for (i in spotData) {
 				destinations.push({lat: spotData[i].lat, lng: spotData[i].lng});
@@ -182,14 +190,12 @@ function MyComponent() {
 						avoidHighways: true, // 是否避開高速公路
 						avoidTolls: true // 是否避開收費路線
 					}, callback);  
-					var tempduration = [];
-					var tempdistance = [];
+					
 					function callback(response, status){
+						var tempdistance = [];
 						for(let i = 0; i < spotData.length; i++){
-							tempduration.push(response.rows[0].elements[i].duration.text);
 							tempdistance.push(response.rows[0].elements[i].distance.text);
 						}
-						setDuration(tempduration);
 						setDistance(tempdistance);
 					}
 				}
@@ -336,8 +342,8 @@ function MyComponent() {
                     <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
                 </div>
 			)}
-			{/* <div>Duration:{duration}</div>
-			<div>Distance:{distance}</div>  */}
+			<div>Duration:{duration}</div>
+			<div>Distance:{distance}</div> 
 		</div>
   	)
 
