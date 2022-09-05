@@ -171,10 +171,10 @@ function MyComponent() {
 				function error() {
 					alert('無法取得你的位置');
 				}
-				function success(position) {
+				async function success(position) {
 					let originPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 					const service = new google.maps.DistanceMatrixService();
-					service.getDistanceMatrix({
+					await service.getDistanceMatrix({
 						origins: [originPosition],
 						destinations: destinations,
 						travelMode: 'WALKING', // 交通方式：BICYCLING(自行車)、DRIVING(開車，預設)、TRANSIT(大眾運輸)、WALKING(走路)
@@ -219,9 +219,7 @@ function MyComponent() {
 			// setUserLat(24.79581727332000);
 			// setUserLng(120.99469045958209);
 		}
-		const fail = () => {
-
-		}
+		const fail = () => {};
 		navigator.geolocation.getCurrentPosition(
 			success, fail, {
 				enableHighAccuracy: true, 
@@ -235,10 +233,6 @@ function MyComponent() {
 		interval = setInterval(getUserLatLng, 1000);
 		return () => clearInterval(interval);
 	}, [getUserLatLng])
-
-	useEffect(() => {
-
-	})
 
 	if(loading || !isLoaded) return <Load/>;
 	return(
@@ -284,7 +278,6 @@ function MyComponent() {
 							clickableIcons={false}
 							center={center}
 							zoom={15.5}
-							
 						>
 							{directions && 
 							<DirectionsRenderer 

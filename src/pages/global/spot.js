@@ -2,6 +2,7 @@ import BackKey from '../global/backkey';
 import Load from '../global/load';
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useCallback } from 'react';
+import { useJsApiLoader } from '@react-google-maps/api';
 import './spot.css'
 import '../global/header.css'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,8 +14,8 @@ function SpotPage() {
 	const [loading, setLoading] = useState(true);
 	const [valid, setValid] = useState(true);
 	const [spot, setSpot] = useState({});
-	const [userX, setUserX] = useState(0);
-    const [userY, setUserY] = useState(0);
+	const [userLat, setUserLat] = useState(0);
+	const [userLng, setUserLng] = useState(0);
 	const [truncateText, setTruncateText] = useState('');
 	const [text, setText] = useState('');
 	const [truncate, setTruncate] = useState(true);
@@ -25,6 +26,10 @@ function SpotPage() {
         {src: require('../../images/spot/工程一館.jpg')},
         {src: require('../../images/spot/台積館.jpg')},
     ];
+	const { isLoaded } = useJsApiLoader({
+		id: 'google-map-script',
+		googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8",
+	})
 
 	const setFinished = useCallback(async () => {
 		console.log("Set Finished");
@@ -89,10 +94,7 @@ function SpotPage() {
 			}
 		));
 		setSpot(data.spotData);
-		setUserX(70);
-		setUserY(70);
 		await setFinished();
-		setLoading(false);
     }, [spotID, setFinished]);
 
 	useEffect(() => {
@@ -100,13 +102,70 @@ function SpotPage() {
     }, [getSpot]);
 
 	useEffect(() => {
-        console.log("Set New Distance");
-		const newDistance = Math.round(Math.sqrt(Math.pow(userX-spot.lat, 2) + Math.pow(userY-spot.lng, 2)));
-		setSpot(prev => ({
-            ...prev,
-            distance: newDistance
-        }));
-    }, [userX, userY, spot.lat, spot.lng]);
+		if(navigator.geolocation){
+			if(userLat === 0) return;
+			function error() {
+				alert('無法取得你的位置');
+				setSpot(prev => ({
+					...prev,
+					distance: "?"
+				}));
+				setLoading(false);
+			}
+			async function success(position) {
+				const service = new window.google.maps.DistanceMatrixService();
+				await service.getDistanceMatrix({
+					origins: [{lat: userLat, lng: userLng}],
+					destinations: [{lat: spot.lat, lng: spot.lng}],
+					travelMode: 'WALKING', // 交通方式：BICYCLING(自行車)、DRIVING(開車，預設)、TRANSIT(大眾運輸)、WALKING(走路)
+					unitSystem: window.google.maps.UnitSystem.METRIC, // 單位 METRIC(公里，預設)、IMPERIAL(哩)
+					avoidHighways: true, // 是否避開高速公路
+					avoidTolls: true // 是否避開收費路線
+				}, callback);  
+				function callback(response, status){
+					setSpot(prev => ({
+						...prev,
+						distance: response.rows[0].elements[0].distance.value
+					}));
+					console.log(response.rows[0].elements[0].distance.value);
+				}
+				setLoading(false);
+			}
+			navigator.geolocation.getCurrentPosition(success, error);
+		} else {
+			setSpot(prev => ({
+				...prev,
+				distance: "?"
+			}));
+			setLoading(false);
+		}
+    }, [userLat, userLng, spot.lat, spot.lng]);
+
+	
+	const getUserLatLng = useCallback(() => {
+		// Dummy Fetch
+		navigator.geolocation.getCurrentPosition(()=>{}, ()=>{}, {});
+		const success = (position) => {
+			// setUserLat(position.coords.latitude);
+			// setUserLng(position.coords.longitude);
+			setUserLat(24.79581727332000);
+			setUserLng(120.99469045958209);
+		}
+		const fail = () => {};
+		navigator.geolocation.getCurrentPosition(
+			success, fail, {
+				enableHighAccuracy: true, 
+				timeout:10000
+			}
+		);
+	}, [])
+
+	useEffect (() => {
+		let interval;
+		getUserLatLng();
+		interval = setInterval(getUserLatLng, 1000);
+		return () => clearInterval(interval);
+	}, [getUserLatLng])
 
 	async function claim(){
 		console.log("Claim: " + spotID);
@@ -138,14 +197,13 @@ function SpotPage() {
         }));
 	}
 
-	if(loading) return <Load/>;
+	if(loading ||  !isLoaded) return <Load/>;
 	return (
 		<div className='SpotPage'>
 			{valid? 
-				<div>
+				<>
 					<div className='header'>
 						<BackKey from={from}/>
-						{/* <h1>建築介紹</h1> */}
 						{/* <button className='map-btn' onClick={() => {window.location.href = '/path/:pathID/map'}}>
                     		<FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
                 		</button> */}
@@ -161,7 +219,16 @@ function SpotPage() {
 								: 
 								<div className='check'><FontAwesomeIcon icon={regular('square')} /></div>} */}
 							</h1>
-							<h2>距離: {spot.distance}m</h2>
+							<h2>距離: {
+								spot.distance === '?' ? 
+								'?'
+								: 
+								<>{spot.distance >= 1000 ?
+									<>{Math.round(spot.distance/100)/10}公里</> 
+									:
+									<>{spot.distance}公尺</>}
+								</>}
+							</h2>
 							{/* <img src={require('../../images/sdgsIcon/4.png')} alt="SDGS icon"></img>  */}
 						</div>
 						<div className='description'>
@@ -184,15 +251,8 @@ function SpotPage() {
 								<button className='claim inactive'>再靠近一點點</button> 
 							}</>
 						}
-						{/* <div className='controller'>
-							<h3>User X: {userX}, User Y: {userY}</h3>
-							<button onClick={() => {setUserX(userX+10)}}>User X+</button>
-							<button onClick={() => {setUserX(userX-10)}}>User X-</button>
-							<button onClick={() => {setUserY(userY+10)}}>User Y+</button>
-							<button onClick={() => {setUserY(userY-10)}}>User Y-</button>
-						</div> */}
 					</div>
-				</div>
+				</>
 			: (
 				<div>
                     <h3>Invalid or Expired URL</h3>
