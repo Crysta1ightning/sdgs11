@@ -62,7 +62,7 @@
     position: absolute;
     margin: 10px 5%;
     padding: 8px;
-    max-height: 30%;
+    height: 30%;
     overflow-y: scroll;
 }
 .SpotPage .description p {
