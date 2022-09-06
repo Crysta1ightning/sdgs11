@@ -13,7 +13,7 @@ function SpotPage() {
 	const { from } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [valid, setValid] = useState(true);
-	const [spot, setSpot] = useState({});
+	const [spot, setSpot] = useState({lat: 0, lng: 0});
 	const [userLat, setUserLat] = useState(0);
 	const [userLng, setUserLng] = useState(0);
 	const [truncateText, setTruncateText] = useState('');
@@ -117,6 +117,7 @@ function SpotPage() {
 				setLoading(false);
 			}
 			async function success(position) {
+				if(spot.lat === 0) return;
 				const service = new window.google.maps.DistanceMatrixService();
 				await service.getDistanceMatrix({
 					origins: [{lat: userLat, lng: userLng}],
