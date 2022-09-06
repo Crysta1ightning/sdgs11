@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
 .SpotPage {
-    /* background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); */
     background-color: #F6FFF8;
     height: 100vh;
 }
@@ -58,6 +57,7 @@
 
 /* DESCRIPTION */
 .SpotPage .description {
+    font-family: 'Noto Sans TC', sans-serif;
     background-color: #A4C3B2;
     position: absolute;
     margin: 10px 5vw;
@@ -70,11 +70,10 @@
     display: inline;
     font-size: 17px;
     letter-spacing: 1.5px;
-    font-family: 'Noto Sans TC', sans-serif;
 }
 .SpotPage .description button {
     all: unset;
-    font-size: 18px;
+    font-size: 17px;
     color: #040415;
     opacity: 0.5;
 }

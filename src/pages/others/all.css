@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
 .AllPage {
     background-color: #F6FFF8;
-    overflow: hidden;
     min-height: 100vh;
-    font-family: 'Noto Sans TC', sans-serif;
 }
 
 /* HEADER */
 .AllPage .header {
     margin: 0;
+    top: 0;
     position: fixed;
     background-color: #6B9080;
     width: 100%;
@@ -20,13 +19,13 @@
     box-shadow: 0px 4px 8px -4px rgba(0,0,0,0.5);
 }
 .AllPage .header h1 {
-    /* position: relative; */
     margin: 0;
     padding: 10px;
     color: #F4F4F4;
     font-size: 18px;
 }
 .AllPage .map-btn {
+    top: 0;
     font-size: 18px;
     z-index: 3;
     position: fixed;
@@ -35,6 +34,7 @@
     padding: 10px;
 }
 .AllPage .menu-btn {
+    top: 0;
     z-index: 3;
     position: fixed;
     padding: 10px;
@@ -43,6 +43,7 @@
 /* SEARCH */
 .AllPage .search{
     position: fixed;
+    top: 0;
     z-index: 2;
     background-color: #CCE3DE;
     color: #6B9080;
@@ -99,6 +100,7 @@
 }
 .AllPage .card h3 {
     all: unset;
+    font-family: 'Noto Sans TC', sans-serif;
     color: #FFFFFF;
     font-size: 14px;
 }

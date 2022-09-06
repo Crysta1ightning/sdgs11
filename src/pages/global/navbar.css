@@ -43,7 +43,6 @@
     transition: 0.2s ease;
 }
 .Navbar .side-bar .menu .item button h1{
-    color: black;
     display: inline-block;
     font-size: 20px;
     padding-left: 20px;

@@ -1,10 +1,65 @@
 .PathMain {
-    height: 800px;
-    /* background-color: #ffffff; */
-    background-color: #fafafa;
-    padding-bottom: 500px;
+    background-color: #F6FFF8;
+    min-height: 100vh;
 }
 
+/* HEADER */
+.PathMain .header {
+    margin: 0;
+    top: 0;
+    position: fixed;
+    background-color: #6B9080;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    z-index: 3;
+}
+.PathMain .header-shadow{
+    box-shadow: 0px 4px 8px -4px rgba(0,0,0,0.5);
+}
+.PathMain .header h1 {
+    margin: 0;
+    padding: 10px;
+    color: #F4F4F4;
+    font-size: 18px;
+}
+.PathMain .menu-btn {
+    top: 0;
+    z-index: 3;
+    position: fixed;
+    padding: 10px;
+}
+
+/* CARD CONTAINER */
+.PathMain .container{
+    margin-top: 70px;
+}
+.PathMain .card {
+    background-color: #CCE3DE;
+    animation: 0.6s ease-out 1 boxanimation;
+    display: flex;
+    border-radius: 16px;
+    margin: 35px auto;
+    width: 85%;
+    height: 200px;
+    box-shadow: 0px 35px 25px -24px rgba(0, 0, 0, 0.19);
+    /* transition: 0.2s; */
+    overflow: hidden;
+}
+.PathMain .card img {
+    animation: 0.6s ease-out 1 imganimation;
+    width: 100%;
+    height: 100%;
+    /* transition: 0.2s; */
+}
+.PathMain .card h2 {
+    z-index: 1;
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #5B7B6D; 
+}
 @keyframes boxanimation {
     0% {
       transform: translateX(-100%);
@@ -15,7 +70,6 @@
       opacity: 1;
     }
 }
-
 @keyframes imganimation {
     0% {
       transform: translateX(-30%);
@@ -26,96 +80,14 @@
       opacity: 1;
     }
 }
-
-.PathMain .card {
-    /* background-image: linear-gradient(45deg, #f046ff, #731dd8); */
-    /* background: hsla(239, 100%, 67%, 1);
-    background: linear-gradient(45deg, hsla(187, 100%, 89%, 1) 0%, hsla(239, 100%, 67%, 1) 100%); */
-    /* background-color: #8b25ff; */
-    background-color: #ececec;
-    
-    animation: 0.6s ease-out 1 boxanimation;
-    display: flex;
-    border-radius: 33px;
-    margin: 10% auto;
-    width: 85%;
-    height: 27%;
-    /* box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.15); */
-    transition: 0.2s;
-    overflow: hidden;
-}
-
+/* 
 .PathMain .card:hover{
     transform: scale(1.05);
     opacity: 0.9;
-    /* box-shadow: 0px 4px 4px 4px rgba(0,0,0,0.15); */
+    box-shadow: 0px 4px 4px 4px rgba(0,0,0,0.15);
     transition: 0.2s;
-}
-
-.PathMain img {
-    animation: 0.6s ease-out 0.1s 1 imganimation;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    /* transition: 0.1s; */
-    transition: 0.5s;
-}
-
+} 
 .PathMain .card:hover img{
     transform: scale(1.15);
-    /* transition: 0.1s; */
     transition: 0.3s;
-}
-
-.PathMain h1 {
-    text-align: center;
-    font-size: 30px;
-    font-family: 'Poppins';
-    font-style: normal;
-    color: #eae9e9;
-    margin-block: 20px;
-}
-.PathMain h2 {
-    z-index: 1;
-    position: absolute;
-    padding-left: 30px;
-    padding-top: 20px;
-    font-family: 'Poppins';
-    font-size: 20px;
-    color: black; 
-}
-
-.PathMain .map-btn{
-    position: absolute;
-    padding: 0;
-    right: 20px;
-    top: 20px;
-    color: black;
-    font-size: 30px;
-    border: none;
-    background: none;
-
-}
-
-.PathMain .map-btn:hover{
-    color:#731dd8;
-    transition: 0.05s;
-}
-
-.PathMain .top{
-    z-index: 2;
-    top: 0;
-    position: fixed;
-    width:100%;
-    min-height: 0;
-    background: #731dd8; 
-    /* border-bottom: 2px solid #AA00FF; */
-}
-
-.PathMain .top-shadow{
-    box-shadow: 0px 4px 8px -4px rgba(0,0,0,0.5);
-}
-
-.PathMain .container{
-    padding-top: 70px;
-}
+} */

@@ -135,10 +135,10 @@ function PathMainPage() {
     if(loading) return <Load/>;
 	return (
 		<div className="PathMain">
-            <div className={active? 'top top-shadow': 'top'}>
-                <Navbar/>
+            <div className={active? 'header header-shadow': 'header'}>
                 <h1>路徑導覽</h1>
             </div>
+            <Navbar/>
             <div className='container'>
                 {pathList.map((path) => {
                     return(
