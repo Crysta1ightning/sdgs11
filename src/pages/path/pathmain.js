@@ -3,8 +3,8 @@ import React, { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 import './pathmain.css';
 import Navbar from '../global/navbar';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 function PathMainPage() {
@@ -143,7 +143,13 @@ function PathMainPage() {
                 {pathList.map((path) => {
                     return(
                         <div className="card" style={{animationDelay: `${(path.pathID-1)*150}ms`}} key={path.pathID} onClick={() => {ChoosePath(path)}}>
-                            <h2>{path.name}{path.finished ? "✅": ""}</h2>
+                            <h2>{path.name}
+                                {path.finished? 
+                                <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+                                : 
+                                // <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
+                                ""}
+						    </h2>
                             <img src={imgList[path.pathID-1].src} alt="圖片"></img>
                         </div>
                     )
