@@ -19,13 +19,17 @@ function AllPage () {
         // {spotID: 8, lat: 120, lng: 120, name: "葉子", description: "就是個葉子", distance: 0},
     ]);
 
-    // const imgList = [
-    //     {src: require('../../images/spot/人社院.jpg')},
-    //     {src: require('../../images/spot/台達館.jpg')},
-    //     {src: require('../../images/spot/小吃部.jpg')},
-    //     {src: require('../../images/spot/成功湖.jpg')},
-    //     {src: require('../../images/spot/教育館.jpg')},
-    // ];
+    const imgList = [
+        {src: require('../../images/spot/人社院.jpg')},
+        {src: require('../../images/spot/台達館.jpg')},
+        {src: require('../../images/spot/小吃部.jpg')},
+        {src: require('../../images/spot/成功湖.jpg')},
+        {src: require('../../images/spot/教育館.jpg')},
+        {src: require('../../images/spot/旺宏館.jpg')},
+        {src: require('../../images/spot/生科二館.jpg')},
+        {src: require('../../images/spot/葉子.jpg')},
+        {src: require('../../images/spot/台積館.jpg')},
+    ];
 
     const [searchList, setSearchList] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -112,14 +116,16 @@ function AllPage () {
     if(loading) return <Load/>;
     return (
         <div className="AllPage">
-             <div className={active? 'top top-shadow': 'top'}>
-                <Navbar/>
+            <div className={active? 'header header-shadow': 'header'}>
                 <h1>地點總覽</h1>
-                <button className='map-btn' onClick={() => {window.location.href = '/path/0/map'}}>
-                    <FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
-                </button>
             </div>
-            <form onSubmit={()=>{}} className={(scrollDirection === 'down') ? 'search hide': 'search'}>
+            <>
+                <Navbar/>
+                <div className='map-btn' onClick={() => {window.location.href = '/path/0/map'}}>
+                    <FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
+                </div>
+            </>
+            <div className={(scrollDirection === 'down') ? 'search hide': 'search'}>
                 <input
                     className="search-text"
                     type="text"
@@ -132,27 +138,20 @@ function AllPage () {
 
                     }>
                 </input>
-                <div className="search-button" type="submit" value="">
+                <div className="search-button">
                     <FontAwesomeIcon icon={solid('magnifying-glass')}/>
                 </div>
-            </form>
+            </div>
             <div className='card-container'>
                 {searchList.map((spot) => {
                     return ( 
-                        <button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/0'}}>
-                            {/* <img src={imgList[spot.spotID-1].src} alt="圖片"></img> */}
+                        <div className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/0'}}>
+                            <img src={imgList[spot.spotID-1].src} alt="圖片"></img>
                             <h3>{spot.name}</h3>
-                        </button>
+                        </div>
                     )
                 })}
             </div>
-            {/* <div>
-                <h3>User X: {userX}, User Y: {userY}</h3>
-                <button onClick={() => {setUserX(userX+1)}}>User X+</button>
-                <button onClick={() => {setUserX(userX-1)}}>User X-</button>
-                <button onClick={() => {setUserY(userY+1)}}>User Y+</button>
-                <button onClick={() => {setUserY(userY-1)}}>User Y-</button>
-            </div> */}
         </div>
     )
 }

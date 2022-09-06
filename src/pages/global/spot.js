@@ -19,11 +19,15 @@ function SpotPage() {
 	const [truncateText, setTruncateText] = useState('');
 	const [text, setText] = useState('');
 	const [truncate, setTruncate] = useState(true);
-	const imgList = [
-        {src: require('../../images/spot/校門.jpg')},
-        {src: require('../../images/spot/大草坪.jpg')},
+    const imgList = [
+        {src: require('../../images/spot/人社院.jpg')},
         {src: require('../../images/spot/台達館.jpg')},
-        {src: require('../../images/spot/工程一館.jpg')},
+        {src: require('../../images/spot/小吃部.jpg')},
+        {src: require('../../images/spot/成功湖.jpg')},
+        {src: require('../../images/spot/教育館.jpg')},
+        {src: require('../../images/spot/旺宏館.jpg')},
+        {src: require('../../images/spot/生科二館.jpg')},
+        {src: require('../../images/spot/葉子.jpg')},
         {src: require('../../images/spot/台積館.jpg')},
     ];
 	const { isLoaded } = useJsApiLoader({
@@ -205,50 +209,48 @@ function SpotPage() {
 						<h1>建築介紹</h1>
 					</div>
 					<div className='container'>
-						<img src={imgList[0].src} alt="圖片"></img>
+						<img src={imgList[spotID-1].src} alt="圖片"></img>
 					</div>
-					<div>
-						<div className='title'>
-							<h1>{spot.name}
-								{spot.finished? 
-								<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
-								: 
-								// <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
-								""}
-							</h1>
-							<h2>距離: {
-								spot.distance === '?' ? 
-								'?'
-								: 
-								<>{spot.distance >= 1000 ?
-									<>{Math.round(spot.distance/100)/10}公里</> 
-									:
-									<>{spot.distance}公尺</>}
-								</>}
-							</h2>
-							{/* <img src={require('../../images/sdgsIcon/4.png')} alt="SDGS icon"></img>  */}
-						</div>
-						<div className='description'>
-							{spot.description && spot.description.length>130?
-								(<>{truncate? 
-									<div>{truncateText}<p>...</p><button onClick={() => {setTruncate(false)}}>顯示更多</button></div> 
-									: 
-									<div>{text}<button onClick={() => {setTruncate(true)}}>顯示較少</button></div>
-								}</>) 
+					<div className='title'>
+						<h1>{spot.name}
+							{spot.finished? 
+							<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+							: 
+							// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
+							""}
+						</h1>
+						<h2>距離: {
+							spot.distance === '?' ? 
+							'?'
+							: 
+							<>{spot.distance >= 1000 ?
+								<>{Math.round(spot.distance/100)/10}公里</> 
 								:
-								<div>{text}</div>
-							}
-						</div>
-						{spot.finished?
-							<button className='claim'>已領取</button>
+								<>{spot.distance}公尺</>}
+							</>}
+						</h2>
+						{/* <img src={require('../../images/sdgsIcon/4.png')} alt="SDGS icon"></img>  */}
+					</div>
+					<div className='description'>
+						{spot.description && spot.description.length>130?
+							(<>{truncate? 
+								<>{truncateText}<p>...</p><button onClick={() => {setTruncate(false)}}>顯示更多</button></> 
+								: 
+								<>{text}<button onClick={() => {setTruncate(true)}}>顯示較少</button></>
+							}</>) 
 							:
-							<>{spot.distance <= 50? 
-								<button className='claim active' onClick={() => {claim(spot.spotID)}}>領取地點</button> 
-								:
-								<button className='claim inactive'>再靠近一點點</button> 
-							}</>
+							<>{text}</>
 						}
 					</div>
+					{spot.finished?
+						<button className='claim'>已領取</button>
+						:
+						<>{spot.distance <= 50? 
+							<button className='claim active' onClick={() => {claim(spot.spotID)}}>領取地點</button> 
+							:
+							<button className='claim inactive'>再靠近一點點</button> 
+						}</>
+					}
 				</>
 			: (
 				<div>

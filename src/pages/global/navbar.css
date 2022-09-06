@@ -12,21 +12,17 @@
     transition: 0.4s ease-in;
     transition-property: left;
 }
-
 .Navbar .side-bar.active{
     left: 0;
     transition: 0.4s ease-in;
 }
-
 .Navbar .side-bar .menu{
     width: 100%;
     margin-top: 10vh;
 }
-
 .Navbar .side-bar .menu .item{
     position: relative;
 }
-
 .Navbar .side-bar .menu .item button{
     width:100%;
     color: black;
@@ -41,25 +37,17 @@
     transition: 0.2s ease;
     text-align: center;
 }
-
 .Navbar .side-bar .menu .item button:hover{
-    background: #731dd8;
+    background-color: #6B9080;
     color: white;
     transition: 0.2s ease;
 }
-
 .Navbar .side-bar .menu .item button h1{
     color: black;
     display: inline-block;
     font-size: 20px;
     padding-left: 20px;
 }
-
-.Navbar .side-bar .menu .item button:hover h1{
-    color: white;
-    transition: 0.2s ease;
-}
-
 .Navbar .side-bar .menu .item button i{
     display: inline-block;
 }
@@ -74,17 +62,8 @@
 
 .Navbar .menu-btn{
     position: absolute;
-    color: #ececec;
-    font-size: 30px;
-    margin: 20px;
+    color: #F4F4F4;
+    font-size: 18px;
+    margin: 0;
 }
 
-.Navbar .menu-btn:hover{
-    color:black;
-    transition: 0.05s;
-}
-
-.Navbar .close-btn:hover{
-    color: red;
-    transition: 0.05s;
-}
