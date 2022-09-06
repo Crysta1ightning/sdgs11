@@ -5,7 +5,7 @@ import { useJsApiLoader } from '@react-google-maps/api';
 import { useParams } from "react-router-dom";
 import BackKey from '../global/backkey';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { regular} from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function PathPage() {
 	const {pathID} = useParams();
@@ -31,7 +31,18 @@ function PathPage() {
 	const [distanceList, setDistanceList] = useState([])
 	const [pathName, setPathName] = useState('');
 	const [pathFinished, setPathFinished] = useState(false);
-	
+	const imgList = [
+        {src: require('../../images/spot/人社院.jpg')},
+        {src: require('../../images/spot/台達館.jpg')},
+        {src: require('../../images/spot/小吃部.jpg')},
+        {src: require('../../images/spot/成功湖.jpg')},
+        {src: require('../../images/spot/教育館.jpg')},
+        {src: require('../../images/spot/旺宏館.jpg')},
+        {src: require('../../images/spot/生科二館.jpg')},
+        {src: require('../../images/spot/葉子.jpg')},
+        {src: require('../../images/spot/台積館.jpg')},
+    ];
+
 	const getUserLatLng = useCallback(() => {
 		// Dummy Fetch
 		navigator.geolocation.getCurrentPosition(()=>{}, ()=>{}, {});
@@ -224,57 +235,38 @@ function PathPage() {
 		if(finished) setPathFinished(true);
 	}, [spotList])
 
-	//disappearable shadow
-    const [active, setActive] = useState(false);
-    useEffect(() => {
-        window.addEventListener('scroll', pop);
-      
-        return () => window.removeEventListener('scroll', pop);
-    },[]);
-
-    const pop = () => {
-        if (window.pageYOffset > 0) {
-            setActive(true);
-        }        
-        if (window.pageYOffset === 0) {
-            setActive(false);
-        }
-        // setNavColor(null);
-    }
-	
 	if(loading || !isLoaded) return <Load/>;
 	return (
 		<div className="Path">
 			{valid? (
 				<>	
-					<div className={active? 'top top-shadow': 'top'}>
-						<div className='top-top'>
-							<BackKey from={200}/> 
-							<h1>{pathName}{pathFinished? "✅": ""}</h1>
-							<button className='map-btn' onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>
-								<FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
-							</button> 
-						</div>
-						{/* <div className='mid-top'>
-							{pathList.map((path) => {
-								return(
-									<div className="box" key={path.pathID} onClick={() => {ChoosePath(path)}}>
-										<h2>{path.name}</h2>
-									</div>
-								)
-							})}
-						</div> */}
-						<div className='bot-top'>
-							<hr/>
-							<h2>路徑建築預覽</h2>
-							<hr/>
-						</div>
+					<div className='header'>
+						<BackKey from={200}/>
+						<h1>{pathName}</h1>
+						{pathFinished? 
+						<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+						: 
+						// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
+						""}
+			
 					</div>
+					<div className='line-text'>
+						<p>路徑建築預覽</p>
+					</div>
+					
 					<div className="pathSpots">
 						{spotList.map((spot, id) => {
 							return ( 
-								<button className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/' + pathID}}>
-									<h3>{spot.name}{spot.finished? "✅": ""}</h3>
+								<div className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/' + pathID}}>
+									<div className='container'>
+										<img src={imgList[spot.spotID-1].src} alt="圖片"></img>
+									</div>
+									<h1>{spot.name}{spot.finished? 
+										<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+										: 
+										// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
+										""}
+									</h1>
 									<p>距離: {
 										!distanceList[id]? 
 										'?'
@@ -285,11 +277,11 @@ function PathPage() {
 											<>{distanceList[id]}公尺</>}
 										</>}
 									</p>
-								</button>
+								</div>
 							)
 						})}
 					</div>
-					<h2 className="predictedTime">預計完成時間: {predictTime>=60? 
+					<div className='line-text'><p>預計完成時間: {predictTime>=60? 
 						<>{Math.round(predictTime/60)}分鐘</>
 						: 
 						<>{predictTime===0? 
@@ -297,10 +289,9 @@ function PathPage() {
 							:
 							<>{"<"}1分鐘</>
 						}</>
-						}
-					</h2>
-					<button className='start-btn' onClick={() => {}}>開始</button>
-					{/* <button onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>Map</button> */}
+						}</p>
+					</div>
+					<div className='start-btn' onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>開始導覽</div>
 				</>
             ) : (
                 <div>

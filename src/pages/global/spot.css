@@ -20,7 +20,6 @@
 /* IMG CONTAINER */
 .SpotPage .container{
     margin: 20px 5vw;
-    overflow-y: scroll;
     height: 30vh;
     width: 90vw;
     overflow: hidden;
@@ -74,8 +73,7 @@
 .SpotPage .description button {
     all: unset;
     font-size: 17px;
-    color: #040415;
-    opacity: 0.5;
+    color:#365145;
 }
 
 .SpotPage .claim {

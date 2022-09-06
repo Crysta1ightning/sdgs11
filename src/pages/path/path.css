@@ -1,143 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
 .Path {
-  height: 1000px;
-  background-color: #f9fafb;
-  overflow-y: hidden;
-  text-align: center;
-  place-content: center;
-}
-.Path h1 {
-  margin: 0;
-  padding-top: 20px;
-  font-size: 30px;
-  font-family: 'Poppins';
-  font-style: normal;
-  color: #f9fafb;
+    background-color: #F6FFF8;
+    height: 100vh;
 }
 
-.Path h2 {
-  margin: 0;
-  padding-block: 20px;
-  font-size: 24px;
-  font-family: 'Poppins';
-  font-style: normal;
-  color: black;
-  display: inline-block;
+/* HEADER */
+.Path .header {
+    background-color: #6B9080;
+    height: auto;
+    text-align: center;
+    padding: 10px;
+}
+.Path .header h1 {
+    margin: 0;
+    color: #F4F4F4;
+    font-size: 18px;
+}
+.Path .header .check {
+    position: absolute;
+    left: 65%;
+    top: 10px;
+    color: #F4F4F4;
+    font-size: 18px;
 }
 
-.Path hr {
-  width: 20px;
-  display: inline-block;
-  background-color: black;
+/* LINE TEXT */
+.Path .line-text {
+    text-align: center;
+}
+.Path .line-text::before {
+    display: inline-block;
+    content: '';
+    min-width: 50px;
+    margin: 5px 20px;
+    border: 1px black solid;
+}
+.Path .line-text p{
+    display: inline-block;
+    font-size: 18px;
+}
+.Path .line-text::after {
+    display: inline-block;
+    content: '';
+    min-width: 50px;
+    margin: 5px 20px;
+    border: 1px black solid;
 }
 
-.Path hr:nth-child(1){
-  width: 25px;
-  margin-right: 10vw;
-}
-.Path hr:nth-child(3){
-  width: 25px;
-  margin-left: 10vw;
-}
-
-.Path .predictedTime {
-  color: gray;
-}
-
+/* SPOTS */
 .Path .pathSpots {
-  text-align: center;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  white-space: nowrap;
-  margin-top: 140px;
-  height: fit-content;
-  scrollbar-width: none; /*remove scrollbar for firefox */
+    height: 65%;
+    overflow-y: scroll;
+    margin: 0px;
 }
-.Path .pathSpots::-webkit-scrollbar {
-  display: none; /*remove scrollbar for chrome */
+.Path .pathSpots .card {
+    display: block;
+    width: 80vw;
+    height: 110px;
+    background-color: #CCE3DE;
+    color: #365145;
+    border-radius: 16px;
+    box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+    margin: 0 10vw 30px 10vw;
+    overflow: hidden;
+    position: relative;
 }
-
-.Path .card {
-  all: unset;
-  display: block;
-  width: 80vw;
-  height: 30vw;
-  background-color: white;
-  margin-block: 20px;
-  border-radius: 25px;
-  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
-  margin-left: 10vw;
-  transition: 0.2s;
+.Path .pathSpots .card .container {
+    position: absolute;
+    left: 0;
+    width: 120px;
+    height: 100%;
 }
-.Path .card:hover{
-  opacity: 0.9;
-  box-shadow: 0px 3px 3px 3px rgba(0,0,0,0.15);
-  transition: 0.2s;
-}
-.Path .card button {
-  width: 60px;
-  height: 20px;
-  font-size: 12px;
-}
-
-.Path .map-btn{
-  position: absolute;
-  padding: 0;
-  right: 20px;
-  top: 20px;
-  color: #f9fafb;
-  font-size: 30px;
-  border: none;
-  background: none;
-}
-
-.Path .map-btn:hover{
-  color: black;
-  transition: 0.05s;
-}
-
-.Path .top{
-  z-index: 3;
-  top: 0;
-  position: fixed;
-  width:100%;
-  min-height: 0;
-  background-color: #f9fafb;
-}
-
-.Path .top-shadow{
-  box-shadow: 0px 4px 8px -4px rgba(0,0,0,0.5);
-}
-
-.Path .top-top{
-  background-color: #731dd8;
-  padding-bottom: 20px;
-}
-/* .Path .mid-top{
-  width: 100vw;
-  height: 60px;
+/* .Path .pathSpots .card .container {
+    top: 10px;
+    left: 15px;
+    width: 100px;
+    height: 90px;
+    border-radius: 16px;
+    overflow: hidden;
 } */
-
-.Path .bot-top{
-  margin-bottom: 10px;
+.Path .pathSpots .card .container img {
+    width: 100%;
+    height: 100%;
+}
+.Path .pathSpots .card h1 {
+    position: absolute;
+    left: 140px;
+    top: 15px;
+    font-size: 16px;
+    display: inline;
+    margin: 0;
+}
+.Path .pathSpots .card .check {
+    font-size: 16px;
+    display: inline;
+    margin: 0 0 0 10px;
+}
+.Path .pathSpots .card p{
+    position: absolute;
+    left: 140px;
+    top: 25px;
+    font-size: 14px;
 }
 
-.Path .BackKey .menu-btn{
-  color:#f9fafb;
-}
-.Path .BackKey .menu-btn:hover{
-  color:black;
-}
-
-.Path .predictedTime{
-  display: block;
-}
 
 .Path .start-btn{
-  background-color: #3800a5;
-  color:#f9fafb;
-  font-size: 20px;
-  width: 30vw;
-  height: 10vw;
-  border: none;
-  border-radius: 5px;
+    width: 80vw;
+    padding: 15px 0;
+    margin: 0 10vw;
+    font-family: 'Noto Sans TC', sans-serif;
+    text-align: center;
+    background-color:#365145;
+    color:#ffffff;
+    font-size: 18px;
+    border-radius: 16px;
+    box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
 }
