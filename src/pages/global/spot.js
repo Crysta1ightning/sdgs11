@@ -5,8 +5,8 @@ import { useEffect, useState, useCallback } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
 import './spot.css'
 import '../global/header.css'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 function SpotPage() {
 	const { spotID } = useParams();
@@ -202,9 +202,7 @@ function SpotPage() {
 				<>
 					<div className='header'>
 						<BackKey from={from}/>
-						{/* <button className='map-btn' onClick={() => {window.location.href = '/path/:pathID/map'}}>
-                    		<FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
-                		</button> */}
+						<h1>建築介紹</h1>
 					</div>
 					<div className='container'>
 						<img src={imgList[0].src} alt="圖片"></img>
@@ -212,10 +210,11 @@ function SpotPage() {
 					<div>
 						<div className='title'>
 							<h1>{spot.name}
-								{/* {spot.finished? 
+								{spot.finished? 
 								<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
 								: 
-								<div className='check'><FontAwesomeIcon icon={regular('square')} /></div>} */}
+								// <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+								""}
 							</h1>
 							<h2>距離: {
 								spot.distance === '?' ? 
