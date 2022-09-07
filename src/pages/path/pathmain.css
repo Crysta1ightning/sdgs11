@@ -32,7 +32,7 @@
 
 /* CARD CONTAINER */
 .PathMain .container{
-    margin-top: 70px;
+    padding: 40px 0 20px 0;
 }
 .PathMain .card {
     background-color: #CCE3DE;
