@@ -9,7 +9,7 @@
 }
 /* BACKKEY */
 .PathMap .backkeybox {
-    position: absolute;
+    position: fixed;
     left:0;
     top:0;
     margin: 12.5px;
