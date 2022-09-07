@@ -1,5 +1,6 @@
 .PathMap .map{
-    height: 100vh; 
+    max-height: 100vh;
+    overflow: hidden;
 }
 
 /* BACKKEY */
@@ -88,7 +89,7 @@
     border: #6B9080 solid;
     color: #365145;
     border-radius: 16px;
-    font-weight: bold;  
+    font-weight: 600;  
 }
 .PathMap .snake .navigate {
     position: absolute;
@@ -103,7 +104,7 @@
     border: #6B9080 solid;
     color: #FFFFFF;
     border-radius: 16px;
-    font-weight: bold;   
+    font-weight: 600;   
 }
 .PathMap .snake .cancel {
     position: absolute;
