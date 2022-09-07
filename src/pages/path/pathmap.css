@@ -29,7 +29,7 @@
 
 /* CENTER */
 .PathMap .centerbox {
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     margin: 12.5px;
@@ -63,9 +63,8 @@
     width: 90vw;
     height: 80px;
     padding: 10px 5vw;
-    /* background-color: #365145; */
     background-color: #FFFFFF;
-    border-radius: 16px 16px 0 0 ;
+    border-radius: 16px 16px 0 0;
     font-family: 'Noto Sans TC', sans-serif;
 }
 .PathMap .hide {
