@@ -18,8 +18,8 @@ function MyComponent() {
 	})
 	// const [map, setMap] = useState(null);
 	const containerStyle = {
-		width: '100%',
-		height: '100%'
+		width: '100vw',
+		height: '100vh'
 	};  
 	const [center, setCenter] = useState({
 		lat: 24.795417173319372,
