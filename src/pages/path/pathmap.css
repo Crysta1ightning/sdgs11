@@ -1,60 +1,174 @@
 .PathMap .map{
     height: 100vh; 
-    width: 100%; 
 }
 
+/* BACKKEY */
 .PathMap .backkeybox {
     position: absolute;
+    left:0;
+    top:0;
     margin: 12.5px;
-    width: 50px;
-    height: 50px;
-
-    /* background-color: hsla(239, 100%, 67%, 0.8); */
+    padding: 10px;
+    width: 25px;
+    height: 25px;
     background-color: #365145;
-    opacity: 0.8;
+    opacity: 80%;
     border-radius: 20%;
-    /* opacity: 80%; */
     z-index: 1;
     text-align: center;
 }
 .PathMap .BackKey .menu-btn{
-    color: white;
     position: relative;
-    margin: 0;
-    padding: 10px 0;
+    text-align: center;
     z-index: 1;
 }
 
-.PathMap .snake .goto {
-    all: unset;
+/* CENTER */
+.PathMap .centerbox {
     position: absolute;
-    font-size: 18px;
+    right: 0;
     bottom: 0;
-    width: 100%;
-    height: 40px;
-    text-align: center;
-    padding-top: 11px;
-    background-color: hsla(239, 100%, 67%, 0.8);
+    margin: 12.5px;
+    padding: 10px;
+    width: 25px;
+    height: 25px;
     background-color: #365145;
-    opacity: 0.8;
-    color: white;
-}
-
-.PathMap .snake .cancel {
-    all: unset;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    bottom: 0;
-    padding-top: 11px;
-    font-size: 18px;
-    right: 2px;
+    opacity: 80%;
+    border-radius: 20%;
+    z-index: 1;
     text-align: center;
-    /* border: 1px solid; */
-    color: white;
+}
+.PathMap .centerbox-active {
+    animation: 0.4s ease-in-out 1 highCenter;
+    margin-bottom: 112.5px;
+}
+.PathMap .centerbox-inactive {
+    animation: 0.4s ease-in-out 1 lowCenter;
+}
+.PathMap .centerbox div{
+    color: #FFFFFF;
+    font-size: 18px;
+    z-index: 1;
 }
 
-.PathMap .debugbox {
+
+/* SNAKE */
+.PathMap .snake {
+    animation: 0.4s  ease-in-out 1 showSnake;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 90vw;
+    height: 80px;
+    padding: 10px 5vw;
+    /* background-color: #365145; */
+    background-color: #FFFFFF;
+    border-radius: 16px 16px 0 0 ;
+}
+.PathMap .hide {
+    animation: 0.4s  ease-in-out 1 closeSnake;
+    opacity: 0; 
+    z-index: -1; 
+}
+.PathMap .snake .title {
+    position: absolute;
+    margin: 0;
+    font-size: 22px;
+    left: 5vw; 
+    color: #365145;
+    font-weight: bold;
+}
+.PathMap .snake .detail {
+    position: absolute;
+    font-size: 18px;
+    width: 25vw;
+    top: 50px;
+    left: 5vw;
+    padding: 7.5px 0;
+    text-align: center;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    border: #6B9080 solid;
+    color: #365145;
+    border-radius: 16px;
+    font-weight: bold;  
+}
+.PathMap .snake .navigate {
+    position: absolute;
+    font-size: 18px;
+    top: 50px;
+    left: 35vw;
+    padding: 7.5px 0;
+    width: 25vw;
+    text-align: center;
+    background-color: #365145;
+    box-sizing: border-box;
+    border: #6B9080 solid;
+    color: #FFFFFF;
+    border-radius: 16px;
+    font-weight: bold;   
+}
+.PathMap .snake .cancel {
+    position: absolute;
+    margin: 0;
+    display: inline-block;
+    font-size: 22px;
+    right: 5vw; 
+    color: #365145;
+}
+
+
+@keyframes showSnake {
+    0% {
+        z-index: -1;
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    1% {
+        z-index: 0;
+        opacity: 1;
+    }
+    100% {
+        z-index: 0;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes closeSnake {
+    0% {
+        z-index: 0;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    99% {
+        z-index: 0;
+        opacity: 1;
+    }
+    100% {
+        z-index: -1;
+        opacity: 0;
+        transform: translateY(100%);
+    }
+}
+
+@keyframes highCenter {
+    0% {
+        transform: translateY(100px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes lowCenter {
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* .PathMap .debugbox {
     position: absolute;
     right: 0;
     top: 0;
@@ -64,35 +178,8 @@
     opacity: 0.8;
     padding: 5px;
 }
-
 .PathMap .debugbox button{
     all: unset;
     color: white;
-}
+} */
 
-.PathMap .centerbox {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin: 12.5px;
-    margin-bottom: 62.5px;
-    width: 50px;
-    height: 50px;
-    background-color: hsla(239, 100%, 67%, 0.8);
-    background-color: #365145;
-    opacity: 0.8;
-    border-radius: 20%;
-    /* opacity: 80%; */
-    z-index: 1;
-    text-align: center;
-}
-
-.PathMap .centerbox button{
-    all: unset;
-    color: white;
-    position: relative;
-    margin: 0;
-    padding: 10px 0;
-    font-size: 25px;
-    z-index: 1;
-}

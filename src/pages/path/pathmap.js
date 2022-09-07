@@ -16,6 +16,7 @@ function MyComponent() {
 		id: 'google-map-script',
 		googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8",
 	})
+	// const [map, setMap] = useState(null);
 	const containerStyle = {
 		width: '100%',
 		height: '100%'
@@ -28,8 +29,10 @@ function MyComponent() {
 	const [directions, setDirections] = useState(false);
 	const [snake, setSnake] = useState({
 		active: false,
-		id: 0,
-		name: ""
+		id: -1,
+		name: "",
+		lat: 0,
+		lng: 0,
 	})
 	const [userLat, setUserLat] = useState(0);
 	const [userLng, setUserLng] = useState(0);
@@ -217,14 +220,25 @@ function MyComponent() {
 							setDebug(!debug);
 						}}>Debug: {debug? "on" : "off"}</button>
 					</div> */}
-					<div className='centerbox'>
-						<button onClick={() => {
+					{snake.id !== -1?
+						<div className={snake.active? 'centerbox centerbox-active': 'centerbox centerbox-inactive'}>
+						<div onClick={() => {
 							setCenter({
 								lat: userLat,
 								lng: userLng,
 							})
-						}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></button>
-					</div>
+							}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
+						</div>
+						:
+						<div className='centerbox'>
+						<div onClick={() => {
+							setCenter({
+								lat: userLat,
+								lng: userLng,
+							})
+							}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
+						</div>
+					}
 					<div className='map'>
 						<GoogleMap
 							options={{
@@ -259,7 +273,7 @@ function MyComponent() {
 									key={spot.spotID}
 									// https://developers.google.com/maps/documentation/javascript/markers#maps_marker_simple-javascript
 									onClick={() => {
-										setSnake({id: spot.spotID, name: positions[index].name, active:true})}
+										setSnake({id: spot.spotID, name: positions[index].name, active:true, lat:spot.lat, lng:spot.lng})}
 									}
 									position={{lat:spot.lat, lng:spot.lng}}
 									icon={{
@@ -279,7 +293,7 @@ function MyComponent() {
 								icon={{
 									path: "M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z",
 									fillColor: "#365145",
-									fillOpacity: 0.9,
+									fillOpacity: 0.8,
 									scale: 2,
 									strokeColor: "white",
 									strokeWeight: 2,
@@ -289,11 +303,19 @@ function MyComponent() {
 							
 						</GoogleMap>
 					</div>
-					{snake.active && 
-					<div className='snake'>
-						<div className='goto' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>看看{snake.name}</div>
-						<div className='cancel' onClick={() => {setSnake({...{active: false}})}}><FontAwesomeIcon icon={solid('x')} /></div>
-					</div>}
+					{snake.id !== -1?
+						<div className={snake.active? 'snake' : 'snake hide'}>
+							<div className='title'>{snake.name}</div>
+							<div className='detail' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>導覽</div>
+							<div className='navigate' onClick={() => {window.location.href='https://maps.google.com/?q='+snake.lat+','+snake.lng}}>導航</div>
+							<div className='cancel' onClick={() => {
+								setSnake({id: snake.id, name: snake.name, active:false, lat:snake.lat, lng:snake.lng});
+							}}><FontAwesomeIcon icon={solid('x')} /></div>
+						</div> 
+						:
+						<></>
+					}
+
 				</>
 			) : (
 				<div>
