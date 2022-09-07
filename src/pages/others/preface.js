@@ -4,6 +4,12 @@ import './preface.css';
 function PrefacePage () {
 	return (
 		<div className="PrefacePage">
+			<div className='header'>
+				<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
+				<div className='vertical-line'></div>
+				<h1>清華永續步道</h1>
+				<h2>NTHU<br/>Sustainability Trail</h2>
+			</div>
 			<div className='content'>
 				<h1>為什麼要做校園永續步道計畫？</h1>
 				<p>新竹市政府與清華大學攜手光復路綠門戶計畫，於今年１月正式開工。將開放圍牆共享校園、綠化與重劃空間，提供民眾舒適的生活環境。<br/>
