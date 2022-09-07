@@ -8,7 +8,10 @@
     margin: 12.5px;
     width: 50px;
     height: 50px;
-    background-color: hsla(239, 100%, 67%, 0.8);
+
+    /* background-color: hsla(239, 100%, 67%, 0.8); */
+    background-color: #365145;
+    opacity: 0.8;
     border-radius: 20%;
     /* opacity: 80%; */
     z-index: 1;
@@ -32,6 +35,8 @@
     text-align: center;
     padding-top: 11px;
     background-color: hsla(239, 100%, 67%, 0.8);
+    background-color: #365145;
+    opacity: 0.8;
     color: white;
 }
 
@@ -55,6 +60,8 @@
     top: 0;
     z-index: 1;
     background-color: hsla(239, 100%, 67%, 0.8);
+    background-color: #365145;
+    opacity: 0.8;
     padding: 5px;
 }
 
@@ -72,6 +79,8 @@
     width: 50px;
     height: 50px;
     background-color: hsla(239, 100%, 67%, 0.8);
+    background-color: #365145;
+    opacity: 0.8;
     border-radius: 20%;
     /* opacity: 80%; */
     z-index: 1;

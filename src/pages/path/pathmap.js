@@ -11,7 +11,7 @@ function MyComponent() {
 	const { pathID } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [valid, setValid] = useState(true);
-	const [debug, setDebug] = useState(true);
+	// const [debug, setDebug] = useState(true);
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8",
@@ -26,15 +26,13 @@ function MyComponent() {
 	});
 	const [positions, setPostitions] = useState([]);
 	const [directions, setDirections] = useState(false);
-	const [duration, setDuration] = useState([]);
-	const [distance, setDistance] = useState([]);
 	const [snake, setSnake] = useState({
 		active: false,
 		id: 0,
 		name: ""
 	})
-	const [userLat, setUserLat] = useState(24.79581727332000);
-	const [userLng, setUserLng] = useState(120.99469045958209);
+	const [userLat, setUserLat] = useState(0);
+	const [userLng, setUserLng] = useState(0);
 
 	const onLoad = useCallback( async () => {
 		if(pathID === '0') {
@@ -154,55 +152,13 @@ function MyComponent() {
 			};
 
 			directionsService.route(request, function (result, status) {
-				var tempDuration = 0;
 				if (status === 'OK') {
-					for(var i in result.routes[0].legs) {
-						for(var j in result.routes[0].legs[i].steps) {
-							console.log(result.routes[0].legs[i].steps[j].duration);
-							tempDuration += result.routes[0].legs[i].steps[j].duration.value;
-						}
-					}
 					// directionsDisplay.setDirections(result);
 					setDirections(result);
-					setDuration(tempDuration);
 				} else {
 					console.log(status);
 				}
 			});
-
-			// PART IV: SET DISTANCE & DURATION
-			let destinations = [];
-			for (i in spotData) {
-				destinations.push({lat: spotData[i].lat, lng: spotData[i].lng});
-			}
-			if(navigator.geolocation){
-				function error() {
-					alert('無法取得你的位置');
-				}
-				async function success(position) {
-					let originPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-					const service = new google.maps.DistanceMatrixService();
-					await service.getDistanceMatrix({
-						origins: [originPosition],
-						destinations: destinations,
-						travelMode: 'WALKING', // 交通方式：BICYCLING(自行車)、DRIVING(開車，預設)、TRANSIT(大眾運輸)、WALKING(走路)
-						unitSystem: google.maps.UnitSystem.METRIC, // 單位 METRIC(公里，預設)、IMPERIAL(哩)
-						avoidHighways: true, // 是否避開高速公路
-						avoidTolls: true // 是否避開收費路線
-					}, callback);  
-					
-					function callback(response, status){
-						var tempdistance = [];
-						for(let i = 0; i < spotData.length; i++){
-							tempdistance.push(response.rows[0].elements[i].distance.text);
-						}
-						setDistance(tempdistance);
-					}
-				}
-				navigator.geolocation.getCurrentPosition(success, error);
-			} else {
-				alert('sorry')
-			}
 		}
 		setLoading(false);
 	}, [pathID])
@@ -215,13 +171,15 @@ function MyComponent() {
 		// Dummy Fetch
 		navigator.geolocation.getCurrentPosition(()=>{}, ()=>{}, {});
 		const success = (position) => {
-			if(debug === false) {
-				setUserLat(position.coords.latitude);
-				setUserLng(position.coords.longitude);
-			}else {
-				setUserLat(u => u-0.00004);
-				setUserLng(u => u-0.00004);
-			}
+			setUserLat(position.coords.latitude);
+			setUserLng(position.coords.longitude);
+			// if(debug === false) {
+			// 	setUserLat(position.coords.latitude);
+			// 	setUserLng(position.coords.longitude);
+			// }else {
+			// 	setUserLat(u => u-0.00004);
+			// 	setUserLng(u => u-0.00004);
+			// }
 			// setUserLat(24.79581727332000);
 			// setUserLng(120.99469045958209);
 		}
@@ -232,7 +190,8 @@ function MyComponent() {
 				timeout:10000
 			}
 		);
-	}, [debug])
+	// }, [debug])
+	}, []) 
 
 	useEffect (() => {
 		let interval;
@@ -249,7 +208,7 @@ function MyComponent() {
 					<div className='backkeybox'>
 						<BackKey from={pathID}/>
 					</div>
-					<div className='debugbox'>
+					{/* <div className='debugbox'>
 						<button onClick={() => {
 							if(!debug){
 								setUserLat(24.79581727332000);
@@ -257,7 +216,7 @@ function MyComponent() {
 							}
 							setDebug(!debug);
 						}}>Debug: {debug? "on" : "off"}</button>
-					</div>
+					</div> */}
 					<div className='centerbox'>
 						<button onClick={() => {
 							setCenter({
@@ -305,8 +264,8 @@ function MyComponent() {
 									position={{lat:spot.lat, lng:spot.lng}}
 									icon={{
 										path: "M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z",
-										fillColor: "hsla(0, 100%, 50%, 0.8)",
-										fillOpacity: 1,
+										fillColor: "#6B9080",
+										fillOpacity: 0.7,
 										scale: 2,
 										strokeColor: "white",
 										strokeWeight: 2,
@@ -319,8 +278,8 @@ function MyComponent() {
 								// position={{lat: 24.79581727332000, lng: 120.99469045958209}}
 								icon={{
 									path: "M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z",
-									fillColor: "hsla(239, 100%, 67%, 0.8)",
-									fillOpacity: 1,
+									fillColor: "#365145",
+									fillOpacity: 0.9,
 									scale: 2,
 									strokeColor: "white",
 									strokeWeight: 2,
@@ -342,8 +301,6 @@ function MyComponent() {
                     <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
                 </div>
 			)}
-			<div>Duration:{duration}</div>
-			<div>Distance:{distance}</div> 
 		</div>
   	)
 
