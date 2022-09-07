@@ -59,11 +59,19 @@
     margin-left: 30px;
     margin-top: 20px;
     font-size: inherit;
-    color: #365145;
+    /* color: #365145; */
+    color: #ffffff;
+    
+}
+.PathMain .card .name {
+    background-color: #365145;
+    display: inline;
+    font-size: inherit;
 }
 .PathMain .card .check {
     /* background-color: white; */
-    color: #365145;
+    /* color: #365145; */
+    background-color: #365145;
     display: inline;
     font-size: inherit;
     margin: 0 0 0 10px;

@@ -14,11 +14,11 @@ function PathMainPage() {
         // {pathID: 3, name: "科管院路徑", finished: false},
     ]);
     const imgList = [
-        {src: require('../../images/path/大門.png')},
-        {src: require('../../images/path/永續路徑.png')},
-        {src: require('../../images/path/台達館.png')},
-        {src: require('../../images/path/工一.png')},
-        {src: require('../../images/path/台積館.png')},
+        {src: require('../../images/path/建築線.jpg')},
+        {src: require('../../images/path/生態線.jpg')},
+        {src: require('../../images/path/藝文線.jpg')},
+        {src: require('../../images/path/科技線.jpg')},
+        {src: require('../../images/path/文史線.jpg')},
     ];
  
     const GetPaths = useCallback(async () => {
@@ -139,7 +139,8 @@ function PathMainPage() {
                 {pathList.map((path) => {
                     return(
                         <div className="card" style={{animationDelay: `${(path.pathID-1)*150}ms`}} key={path.pathID} onClick={() => {ChoosePath(path)}}>
-                            <h2>{path.name}
+                            <h2>
+                                <div className='name'>{path.name}</div>
                                 {path.finished? 
                                 <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
                                 : 
