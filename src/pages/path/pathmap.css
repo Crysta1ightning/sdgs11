@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300&display=swap');
 .PathMap {
     height: 100vh;
-    overflow: hidden;
+    background-color: #FFFFFF;
 }
-
-.PathMap .map{
-    height: 100vh;
+.PathMap .map {
+    height: 100%;
+    background-color: #FFFFFF;
 }
-
 /* BACKKEY */
 .PathMap .backkeybox {
     position: absolute;
