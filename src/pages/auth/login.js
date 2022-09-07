@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './auth.css';
 import jwtDecode from 'jwt-decode'
-import { useEffect, useState } from 'react'
 import Navbar from '../global/navbar';
 import Load from '../global/load';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

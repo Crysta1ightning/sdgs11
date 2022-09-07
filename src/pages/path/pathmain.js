@@ -1,6 +1,5 @@
 import Load from '../global/load';
-import React, { useCallback } from 'react';
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './pathmain.css';
 import Navbar from '../global/navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -124,12 +123,9 @@ function PathMainPage() {
         if (window.pageYOffset > 0) {
             setActive(true);
         }
-                 
         if (window.pageYOffset === 0) {
             setActive(false);
         }
-            
-        // setNavColor(null);
     }
 
     if(loading) return <Load/>;

@@ -1,7 +1,7 @@
 import BackKey from '../global/backkey';
 import Load from '../global/load';
 import { useParams } from "react-router-dom";
-import { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
 import './spot.css'
 import '../global/header.css'
@@ -19,17 +19,7 @@ function SpotPage() {
 	const [truncateText, setTruncateText] = useState('');
 	const [text, setText] = useState('');
 	const [truncate, setTruncate] = useState(true);
-    const imgList = [
-        {src: require('../../images/spot/人社院.jpg')},
-        {src: require('../../images/spot/台達館.jpg')},
-        {src: require('../../images/spot/小吃部.jpg')},
-        {src: require('../../images/spot/成功湖.jpg')},
-        {src: require('../../images/spot/教育館.jpg')},
-        {src: require('../../images/spot/旺宏館.jpg')},
-        {src: require('../../images/spot/生科二館.jpg')},
-        {src: require('../../images/spot/葉子.jpg')},
-        {src: require('../../images/spot/台積館.jpg')},
-    ];
+	const [img, setImg] = useState();
 	const { isLoaded } = useJsApiLoader({
 		id: 'google-map-script',
 		googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8",
@@ -98,6 +88,12 @@ function SpotPage() {
 			}
 		));
 		setSpot(data.spotData);
+		try {
+			setImg(require('../../images/spot/'+data.spotData.name+'.jpg'));
+		} catch (err) {
+			setImg(require('../../images/spot/image-not-found.jpg'));
+		}
+
 		await setFinished();
     }, [spotID, setFinished]);
 
@@ -210,7 +206,7 @@ function SpotPage() {
 						<h1>建築介紹</h1>
 					</div>
 					<div className='container'>
-						<img src={imgList[spotID-1].src} alt="圖片"></img>
+						<img src={img} alt="圖片"></img>
 					</div>
 					<div className='title'>
 						<h1>{spot.name}

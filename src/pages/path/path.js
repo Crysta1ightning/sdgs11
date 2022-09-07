@@ -1,6 +1,6 @@
 import './path.css';
 import Load from '../global/load';
-import { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { useJsApiLoader } from '@react-google-maps/api';
 import { useParams } from "react-router-dom";
 import BackKey from '../global/backkey';
@@ -31,17 +31,17 @@ function PathPage() {
 	const [distanceList, setDistanceList] = useState([])
 	const [pathName, setPathName] = useState('');
 	const [pathFinished, setPathFinished] = useState(false);
-	const imgList = [
-        {src: require('../../images/spot/人社院.jpg')},
-        {src: require('../../images/spot/台達館.jpg')},
-        {src: require('../../images/spot/小吃部.jpg')},
-        {src: require('../../images/spot/成功湖.jpg')},
-        {src: require('../../images/spot/教育館.jpg')},
-        {src: require('../../images/spot/旺宏館.jpg')},
-        {src: require('../../images/spot/生科二館.jpg')},
-        {src: require('../../images/spot/葉子.jpg')},
-        {src: require('../../images/spot/台積館.jpg')},
-    ];
+    const [imgList, setImgList] = useState([
+        // {src: require('../../images/spot/人社院.jpg')},
+        // {src: require('../../images/spot/台達館.jpg')},
+        // {src: require('../../images/spot/小吃部.jpg')},
+        // {src: require('../../images/spot/成功湖.jpg')},
+        // {src: require('../../images/spot/教育館.jpg')},
+        // {src: require('../../images/spot/旺宏館.jpg')},
+        // {src: require('../../images/spot/生科二館.jpg')},
+        // {src: require('../../images/spot/葉子.jpg')},
+        // {src: require('../../images/spot/台積館.jpg')},
+    ]);
 
 	const getUserLatLng = useCallback(() => {
 		// Dummy Fetch
@@ -137,6 +137,15 @@ function PathPage() {
 			return;
 		}
 		const spotData = data2.spotData;
+		var newImgList = [];
+		for(i in spotData){
+            try{
+                newImgList.push({src: require('../../images/spot/'+spotData[i].name+'.jpg')})
+            } catch (err) {
+                newImgList.push({src: require('../../images/spot/image-not-found.jpg')})
+            }
+        }
+        setImgList(newImgList);
 		setSpotList(spotData);
 		await setFinished();
 
@@ -259,7 +268,7 @@ function PathPage() {
 							return ( 
 								<div className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/' + pathID}}>
 									<div className='container'>
-										<img src={imgList[spot.spotID-1].src} alt="圖片"></img>
+										<img src={imgList[id].src} alt="圖片"></img>
 									</div>
 									<h1>{spot.name}{spot.finished? 
 										<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>

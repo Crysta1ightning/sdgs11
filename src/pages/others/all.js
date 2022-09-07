@@ -1,8 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './all.css';
 import Navbar from '../global/navbar';
 import Load from '../global/load';
-import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -19,17 +18,17 @@ function AllPage () {
         // {spotID: 8, lat: 120, lng: 120, name: "葉子", description: "就是個葉子", distance: 0},
     ]);
 
-    const imgList = [
-        {src: require('../../images/spot/人社院.jpg')},
-        {src: require('../../images/spot/台達館.jpg')},
-        {src: require('../../images/spot/小吃部.jpg')},
-        {src: require('../../images/spot/成功湖.jpg')},
-        {src: require('../../images/spot/教育館.jpg')},
-        {src: require('../../images/spot/旺宏館.jpg')},
-        {src: require('../../images/spot/生科二館.jpg')},
-        {src: require('../../images/spot/葉子.jpg')},
-        {src: require('../../images/spot/台積館.jpg')},
-    ];
+    const [imgList, setImgList] = useState([
+        // {src: require('../../images/spot/人社院.jpg')},
+        // {src: require('../../images/spot/台達館.jpg')},
+        // {src: require('../../images/spot/小吃部.jpg')},
+        // {src: require('../../images/spot/成功湖.jpg')},
+        // {src: require('../../images/spot/教育館.jpg')},
+        // {src: require('../../images/spot/旺宏館.jpg')},
+        // {src: require('../../images/spot/生科二館.jpg')},
+        // {src: require('../../images/spot/葉子.jpg')},
+        // {src: require('../../images/spot/台積館.jpg')},
+    ]);
 
     const [searchList, setSearchList] = useState([]);
     const [searchText, setSearchText] = useState('');
@@ -58,14 +57,21 @@ function AllPage () {
         };
         const spotData = data.spotData;
         
-        var newList = []
+        var newList = [];
+        var newImgList = [];
         for(var i in spotData){
             newList.push({
                 spotID: spotData[i].spotID, 
                 name: spotData[i].name, 
                 description: spotData[i].description,
             });
+            try{
+                newImgList.push({src: require('../../images/spot/'+spotData[i].name+'.jpg')})
+            } catch (err) {
+                newImgList.push({src: require('../../images/spot/image-not-found.jpg')})
+            }
         }
+        setImgList(newImgList);
         setSpotList(newList);
         setSearchList(newList);
         setLoading(false);

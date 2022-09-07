@@ -1,6 +1,5 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './auth.css';
-import { useState } from 'react'
 import Navbar from '../global/navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
