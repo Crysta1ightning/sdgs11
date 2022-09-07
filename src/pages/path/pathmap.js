@@ -243,13 +243,13 @@ function MyComponent() {
 						<GoogleMap
 							options={{
 								fullscreenControl: false,
-								panControl: true,
+								// panControl: true,
 								zoomControl: false,
 								mapTypeControl: false,
-								scaleControl: true,
+								scaleControl: false,
 								streetViewControl: false,
-								overviewMapControl: true,
-								rotateControl: true
+								// overviewMapControl: true,
+								// rotateControl: true
 							}}
 							mapContainerStyle={containerStyle}
 							// defaultCenter={center}

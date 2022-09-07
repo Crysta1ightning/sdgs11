@@ -59,7 +59,7 @@
 /* SNAKE */
 .PathMap .snake {
     animation: 0.4s  ease-in-out 1 showSnake;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 90vw;
     height: 80px;
