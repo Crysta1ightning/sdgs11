@@ -207,7 +207,7 @@ function PathMap() {
 		<div className='PathMap'>
 			{true? (
 				<>
-					PathMap v5
+					PathMap v6
 					{/* <h1>{pathID}</h1> */}
 					<div className='backkeybox'>
 						{/* <BackKey from={pathID}/> */}
