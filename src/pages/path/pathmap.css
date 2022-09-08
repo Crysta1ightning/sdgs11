@@ -15,7 +15,7 @@
     padding: 10px 8px; 
     width: 25px; 
     background-color: #365145;
-    opacity: 80%;
+    /* opacity: 80%; */
     border-radius: 16px;
     /* z-index: 1; */
     text-align: center;
@@ -35,8 +35,8 @@
     padding: 10px 8px;
     width: 25px;
     background-color: #365145;
-    opacity: 80%;
-    border-radius: 16px;
+    /* opacity: 80%; */
+    /* border-radius: 16px; */
     z-index: 1;
     text-align: center;
 }
