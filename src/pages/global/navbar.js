@@ -14,8 +14,8 @@ function Navbar(){
                 <div className="menu">
                     <div className="item">
                         <button onClick={() => {window.location.href = '/all'}}>
-                            <i><FontAwesomeIcon icon={solid("house")}></FontAwesomeIcon></i>
-                            <h1>回到首頁</h1>
+                            <i><FontAwesomeIcon icon={solid("globe")}></FontAwesomeIcon></i>
+                            <h1>地點總覽</h1>
                         </button>
                     </div>
                     <div className="item">
@@ -31,13 +31,13 @@ function Navbar(){
                         </button>
                     </div>
                     <div className="item">
-                        <button onClick={() => {window.location.href = '/'}}>
+                        <button onClick={() => {window.location.href = '/about'}}>
                             <i><FontAwesomeIcon icon={solid("compass")}></FontAwesomeIcon></i>
                             <h1>使用指南</h1>
                         </button>
                     </div>
                     <div className="item">
-                        <button onClick={() => {window.location.href = '/about'}}>
+                        <button onClick={() => {window.location.href = '/'}}>
                             <i><FontAwesomeIcon icon={solid("info-circle")}></FontAwesomeIcon></i>
                             <h1>關於計畫</h1>
                         </button>

@@ -1,10 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './preface.css';
+import Navbar from '../global/navbar';
 
 function PrefacePage () {
+	//disappearable shadow
+    const [active, setActive] = useState(false);
+	useEffect(() => {
+		if(typeof(window) === 'undefined') return;
+        window.addEventListener('scroll', pop);
+      
+        return () => window.removeEventListener('scroll', pop);
+    },[]);
+
+    const pop = () => {
+		if(typeof(window) === 'undefined') return;
+        if (window.pageYOffset > 0) {
+            setActive(true);
+        }        
+        if (window.pageYOffset === 0) {
+            setActive(false);
+        }
+    }
+
 	return (
 		<div className="PrefacePage">
-			<div className='header'>
+			<div className={active? 'header header-shadow': 'header'}>
+                <h1>地點總覽</h1>
+            </div>
+			<Navbar/>
+			<div className='title'>
 				<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
 				<div className='vertical-line'></div>
 				<h1>清華永續步道</h1>

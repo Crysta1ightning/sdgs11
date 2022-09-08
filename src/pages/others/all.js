@@ -85,12 +85,14 @@ function AllPage () {
     const [active, setActive] = useState(false);
 
     useEffect(() => {
+        if(typeof(window) === 'undefined') return;
         window.addEventListener('scroll', pop);
       
         return () => window.removeEventListener('scroll', pop);
     },[]);
 
     const pop = () => {
+        if(typeof(window) === 'undefined') return;
         if (window.pageYOffset > 0) {
             setActive(true);
         }        
@@ -104,6 +106,7 @@ function AllPage () {
     const [scrollDirection, setScrollDirection] = useState(null);
 
     useEffect(() => {
+        if(typeof(window) === 'undefined') return;
         let lastScrollY = window.pageYOffset;
         const updateScrollDirection = () => {
             const scrollY = window.pageYOffset;

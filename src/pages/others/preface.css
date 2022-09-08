@@ -6,12 +6,39 @@
 
 /* HEADER */
 .PrefacePage .header {
-    padding-top: 20px;
+    margin: 0;
+    top: 0;
+    position: fixed;
+    background-color: #6B9080;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    z-index: 3;
+}
+.PrefacePage .header-shadow{
+    box-shadow: 0px 4px 8px -4px rgba(0,0,0,0.5);
+}
+.PrefacePage .header h1 {
+    margin: 0;
+    padding: 10px;
+    color: #F4F4F4;
+    font-size: 18px;
+}
+.PrefacePage .menu-btn {
+    top: 0;
+    z-index: 3;
+    position: fixed;
+    padding: 10px;
+}
+
+/* TITLE */
+.PrefacePage .title {
+    padding-top: 70px;
     height: 110px;
     position: relative;
 }
 
-.PrefacePage .header img {
+.PrefacePage .title img {
     position: absolute;
     left: 5vw;
     /* width: 35vw; */
@@ -26,7 +53,7 @@
     height: 110px;
     background-color: #365145;
 }
-.PrefacePage .header h2 {
+.PrefacePage .title h2 {
     margin: 0;
     position: absolute;
     left: 45vw;
@@ -37,7 +64,7 @@
     display: inline-block;
     
 }
-.PrefacePage .header h1 {
+.PrefacePage .title h1 {
     margin: 0;
     position: absolute;
     left: 45vw;
