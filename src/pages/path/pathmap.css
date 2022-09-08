@@ -15,8 +15,8 @@
     padding: 10px 8px; */
     width: 25px; 
     background-color: #365145;
-    opacity: 80%;
-    border-radius: 20%;
+    /* opacity: 80%; */
+    /* border-radius: 20%; */
     /* z-index: 1; */
     text-align: center;
 }
@@ -35,8 +35,8 @@
     padding: 10px 8px;
     width: 25px;
     background-color: #365145;
-    opacity: 80%;
-    border-radius: 20%;
+    /* opacity: 80%; */
+    /* border-radius: 20%; */
     /* z-index: 1; */
     text-align: center;
 }
