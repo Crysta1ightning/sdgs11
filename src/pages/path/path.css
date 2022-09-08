@@ -18,7 +18,7 @@
 }
 .Path .header .check {
     position: absolute;
-    left: 65%;
+    left: 60%;
     top: 10px;
     color: #FFFFFF;
     font-size: 18px;
@@ -71,7 +71,7 @@
 .Path .pathSpots .card .container {
     position: absolute;
     left: 0;
-    width: 120px;
+    width: 140px;
     height: 100%;
 }
 /* .Path .pathSpots .card .container {
@@ -88,7 +88,7 @@
 }
 .Path .pathSpots .card h1 {
     position: absolute;
-    left: 140px;
+    left: 160px;
     top: 15px;
     font-size: 16px;
     display: inline;
@@ -101,7 +101,7 @@
 }
 .Path .pathSpots .card p{
     position: absolute;
-    left: 140px;
+    left: 160px;
     top: 25px;
     font-size: 14px;
 }

@@ -35,46 +35,42 @@
     padding: 40px 0 20px 0;
 }
 .PathMain .card {
-    background-color: #CCE3DE;
+    background-color: #365145;
     animation: 0.6s ease-out 1 boxanimation;
-    display: flex;
     border-radius: 16px;
     margin: 35px auto;
     width: 85%;
-    height: 200px;
+    height: 230px;
     box-shadow: 0px 35px 25px -24px rgba(0, 0, 0, 0.19);
     /* transition: 0.2s; */
     overflow: hidden;
     font-size: 20px;
+    text-align: center;
 }
 .PathMain .card img {
     animation: 0.6s ease-out 1 imganimation;
     width: 100%;
-    height: 100%;
+    height: 90%;
     /* transition: 0.2s; */
 }
-.PathMain .card h2 {
-    z-index: 1;
-    position: absolute;
-    margin-left: 30px;
-    margin-top: 20px;
+.PathMain .card .text {
+    margin: 0;
+    width: 100%;
+    height: 10%;
     font-size: inherit;
-    /* color: #365145; */
     color: #ffffff;
-    
+    font-weight: 700;
+    position: relative;
 }
 .PathMain .card .name {
-    background-color: #365145;
-    display: inline;
     font-size: inherit;
 }
 .PathMain .card .check {
-    /* background-color: white; */
-    /* color: #365145; */
-    background-color: #365145;
-    display: inline;
+    position: absolute;
+    top: 0;
+    left: 62.5%;
     font-size: inherit;
-    margin: 0 0 0 10px;
+    /* margin: 0 0 0 10px; */
 }
 @keyframes boxanimation {
     0% {
