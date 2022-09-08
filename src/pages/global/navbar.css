@@ -18,7 +18,7 @@
 }
 .Navbar .side-bar .menu{
     width: 100%;
-    margin-top: 10vh;
+    margin-top: 40px;
 }
 .Navbar .side-bar .menu .item{
     position: relative;
@@ -31,9 +31,7 @@
     font-size: 20px;
     text-decoration: none;
     display: block;
-    padding: 13% 0;
-    padding-right: 10%;
-    line-height: 25%;
+    padding: 8% 0;
     transition: 0.2s ease;
     text-align: center;
 }
@@ -45,24 +43,22 @@
 .Navbar .side-bar .menu .item button h1{
     display: inline-block;
     font-size: 20px;
-    padding-left: 20px;
-}
-.Navbar .side-bar .menu .item button i{
-    display: inline-block;
+    padding: 0 10px;
 }
 
 .Navbar .close-btn{
     position: absolute;
     color: black;
-    font-size: 30px;
+    font-size: 25px;
     right: 0;
-    margin: 25px;
+    padding: 10px;
+    margin: 0 25px;
 }
 
 .Navbar .menu-btn{
     position: absolute;
     color: #F4F4F4;
-    font-size: 18px;
+    font-size: 25px;
     margin: 0;
 }
 

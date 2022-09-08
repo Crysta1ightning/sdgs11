@@ -25,7 +25,7 @@ function PrefacePage () {
 	return (
 		<div className="PrefacePage">
 			<div className={active? 'header header-shadow': 'header'}>
-                <h1>地點總覽</h1>
+                <h1>關於計畫</h1>
             </div>
 			<Navbar/>
 			<div className='title'>

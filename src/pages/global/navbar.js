@@ -14,37 +14,37 @@ function Navbar(){
                 <div className="menu">
                     <div className="item">
                         <button onClick={() => {window.location.href = '/all'}}>
-                            <i><FontAwesomeIcon icon={solid("globe")}></FontAwesomeIcon></i>
+                            <FontAwesomeIcon icon={solid("globe")}></FontAwesomeIcon>
                             <h1>地點總覽</h1>
                         </button>
                     </div>
                     <div className="item">
                         <button onClick={() => {window.location.href = '/path'}}>
-                            <i><FontAwesomeIcon icon={solid("shoe-prints")}></FontAwesomeIcon></i>
+                            <FontAwesomeIcon icon={solid("shoe-prints")}></FontAwesomeIcon>
                             <h1>路徑導覽</h1>
                         </button>
                     </div>
                     <div className="item">
                         <button onClick={() => {window.location.href = '/login'}}>
-                            <i><FontAwesomeIcon icon={solid("user")}></FontAwesomeIcon></i>
+                            <FontAwesomeIcon icon={solid("user")}></FontAwesomeIcon>
                             <h1>會員資料</h1>
                         </button>
                     </div>
                     <div className="item">
                         <button onClick={() => {window.location.href = '/about'}}>
-                            <i><FontAwesomeIcon icon={solid("compass")}></FontAwesomeIcon></i>
+                            <FontAwesomeIcon icon={solid("compass")}></FontAwesomeIcon>
                             <h1>使用指南</h1>
                         </button>
                     </div>
                     <div className="item">
                         <button onClick={() => {window.location.href = '/'}}>
-                            <i><FontAwesomeIcon icon={solid("info-circle")}></FontAwesomeIcon></i>
+                            <FontAwesomeIcon icon={solid("info-circle")}></FontAwesomeIcon>
                             <h1>關於計畫</h1>
                         </button>
                     </div>
                     <div className="item">
                         <button onClick={() => {window.location.href = '/contact'}}>
-                            <i><FontAwesomeIcon icon={solid("address-book")}></FontAwesomeIcon></i>
+                            <FontAwesomeIcon icon={solid("address-book")}></FontAwesomeIcon>
                             <h1>聯絡我們</h1>
                         </button>
                     </div>
