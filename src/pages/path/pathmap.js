@@ -207,7 +207,6 @@ function PathMap() {
 		<div className='PathMap'>
 			{true? (
 				<>
-					PathMap v11
 					{/* <h1>{pathID}</h1> */}
 					<div className='backkeybox'>
 						<BackKey from={pathID}/>
@@ -240,7 +239,7 @@ function PathMap() {
 							}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
 						</div>
 					}
-					{/* <div className='map'>
+					<div className='map'>
 						<GoogleMap
 							options={{
 								fullscreenControl: false,
@@ -303,8 +302,8 @@ function PathMap() {
 							/>
 							
 						</GoogleMap>
-					</div> */}
-					{/* {snake.id !== -1?
+					</div>
+					{snake.id !== -1?
 						<div className={snake.active? 'snake' : 'snake hide'}>
 							<div className='title'>{snake.name}</div>
 							<div className='detail' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>導覽</div>
@@ -315,7 +314,7 @@ function PathMap() {
 						</div> 
 						:
 						<></>
-					} */}
+					}
 
 				</>
 			) : (
