@@ -209,7 +209,7 @@ function MyComponent() {
 				<>
 					{/* <h1>{pathID}</h1> */}
 					<div className='backkeybox'>
-						<BackKey from={pathID}/>
+						{/* <BackKey from={pathID}/> */}
 					</div>
 					{/* <div className='debugbox'>
 						<button onClick={() => {
@@ -220,7 +220,7 @@ function MyComponent() {
 							setDebug(!debug);
 						}}>Debug: {debug? "on" : "off"}</button>
 					</div> */}
-					{snake.id !== -1?
+					{/* {snake.id !== -1?
 						<div className={snake.active? 'centerbox centerbox-active': 'centerbox centerbox-inactive'}>
 						<div onClick={() => {
 							setCenter({
@@ -238,7 +238,10 @@ function MyComponent() {
 							})
 							}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
 						</div>
-					}
+					} */}
+					<div className='centerbox'>
+
+					</div>
 					{/* <div className='map'>
 						<GoogleMap
 							options={{
