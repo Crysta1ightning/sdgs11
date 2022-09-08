@@ -7,7 +7,7 @@ import './pathmap.css';
 import BackKey from '../global/backkey';
 import Load from '../global/load';
 
-function MyComponent() {
+function PathMap() {
 	// const { pathID } = useParams();
 	// const [loading, setLoading] = useState(true);
 	// const [valid, setValid] = useState(true);
@@ -207,11 +207,13 @@ function MyComponent() {
 		<div className='PathMap'>
 			{true? (
 				<>
-					PathMap
+					PathMap v1
 					{/* <h1>{pathID}</h1> */}
 					<div className='backkeybox'>
 						{/* <BackKey from={pathID}/> */}
+						BackKey
 					</div>
+					<div>Hello World</div>
 					{/* <div className='debugbox'>
 						<button onClick={() => {
 							if(!debug){
@@ -334,4 +336,4 @@ function MyComponent() {
 
 
 
-export default MyComponent
+export default PathMap
