@@ -18,7 +18,7 @@
     background-color: #365145;
     opacity: 80%;
     border-radius: 20%;
-    z-index: 1;
+    z-index: 998;
     text-align: center;
 }
 .PathMap .BackKey .menu-btn{
@@ -38,7 +38,7 @@
     background-color: #365145;
     opacity: 80%;
     border-radius: 20%;
-    z-index: 1;
+    z-index: 998;
     text-align: center;
 }
 .PathMap .centerbox-active {
