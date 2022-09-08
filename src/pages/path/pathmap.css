@@ -9,7 +9,7 @@
 }
 /* BACKKEY */
 .PathMap .backkeybox {
-    position: fixed;
+    position: absolute;
     left:0;
     top:0;
     margin: 12.5px;
@@ -18,7 +18,7 @@
     background-color: #365145;
     opacity: 80%;
     border-radius: 20%;
-    z-index: 998;
+    z-index: 1;
     text-align: center;
 }
 .PathMap .BackKey .menu-btn{
@@ -38,7 +38,7 @@
     background-color: #365145;
     opacity: 80%;
     border-radius: 20%;
-    z-index: 998;
+    z-index: 1;
     text-align: center;
 }
 .PathMap .centerbox-active {
@@ -88,12 +88,13 @@
     left: 5vw;
     padding: 7.5px 0;
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: #365145;
     box-sizing: border-box;
     border: #6B9080 solid;
-    color: #365145;
+    color: #FFFFFF;
     border-radius: 16px;
     font-weight: 600;  
+    
 }
 .PathMap .snake .navigate {
     position: absolute;
@@ -103,12 +104,12 @@
     padding: 7.5px 0;
     width: 25vw;
     text-align: center;
-    background-color: #365145;
+    background-color: #FFFFFF;
     box-sizing: border-box;
     border: #6B9080 solid;
-    color: #FFFFFF;
+    color: #365145;
     border-radius: 16px;
-    font-weight: 600;   
+    font-weight: 600;  
 }
 .PathMap .snake .cancel {
     position: absolute;
