@@ -8,17 +8,17 @@
 }
 /* BACKKEY */
 .PathMap .backkeybox {
-    position: absolute;
+    /* position: absolute;
     left:0;
     top:0;
     margin: 12.5px;
     padding: 10px 8px;
-    width: 25px;
+    width: 25px; */
     background-color: #365145;
-    opacity: 80%;
-    border-radius: 20%;
+    /* opacity: 80%;
+    border-radius: 20%; */
     /* z-index: 1; */
-    text-align: center;
+    /* text-align: center; */
 }
 .PathMap .BackKey .menu-btn{
     position: relative;
