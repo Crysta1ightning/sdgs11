@@ -239,7 +239,7 @@ function MyComponent() {
 							}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
 						</div>
 					}
-					<div className='map'>
+					{/* <div className='map'>
 						<GoogleMap
 							options={{
 								fullscreenControl: false,
@@ -302,7 +302,7 @@ function MyComponent() {
 							/>
 							
 						</GoogleMap>
-					</div>
+					</div> */}
 					{snake.id !== -1?
 						<div className={snake.active? 'snake' : 'snake hide'}>
 							<div className='title'>{snake.name}</div>
