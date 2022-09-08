@@ -207,7 +207,7 @@ function PathMap() {
 		<div className='PathMap'>
 			{true? (
 				<>
-					PathMap v2
+					PathMap v3
 					{/* <h1>{pathID}</h1> */}
 					<div className='backkeybox'>
 						{/* <BackKey from={pathID}/> */}
@@ -243,7 +243,7 @@ function PathMap() {
 						</div>
 					} */}
 					<div className='centerbox'>
-
+						center
 					</div>
 					{/* <div className='map'>
 						<GoogleMap
