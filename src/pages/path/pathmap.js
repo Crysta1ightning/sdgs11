@@ -205,7 +205,7 @@ function PathMap() {
 	if(loading || !isLoaded) return <Load/>;
 	return(
 		<div className='PathMap'>
-			{true? (
+			{valid? (
 				<>
 					{/* <h1>{pathID}</h1> */}
 					<div className='backkeybox'>

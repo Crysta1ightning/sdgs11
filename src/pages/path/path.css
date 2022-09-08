@@ -27,13 +27,15 @@
 /* LINE TEXT */
 .Path .line-text {
     text-align: center;
+    position: relative;
 }
 .Path .line-text::before {
     display: inline-block;
     content: '';
     min-width: 50px;
     margin: 5px 20px;
-    border: 1px black solid;
+    height: 1px;
+    background-color: black;
 }
 .Path .line-text p{
     display: inline-block;
@@ -44,7 +46,8 @@
     content: '';
     min-width: 50px;
     margin: 5px 20px;
-    border: 1px black solid;
+    height: 1px;
+    background-color: black;
 }
 
 /* SPOTS */

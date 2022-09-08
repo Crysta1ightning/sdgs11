@@ -199,6 +199,10 @@ function PathPage() {
     useEffect(() => {
 		let destinations = [];
 		for (var i in spotList) {
+			if(i > 24) {
+				// console.log(spotList[i])
+				continue;
+			}
 			destinations.push({lat: spotList[i].lat, lng: spotList[i].lng});
 		}
 		if(navigator.geolocation){
@@ -222,6 +226,7 @@ function PathPage() {
 						tempList.push(response.rows[0].elements[i].distance.value);
 					}
 					setDistanceList(tempList);
+					console.log(status);
 				}
 				setLoading(false);
 			}
