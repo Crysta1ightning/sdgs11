@@ -8,210 +8,209 @@ import BackKey from '../global/backkey';
 import Load from '../global/load';
 
 function PathMap() {
-	// const { pathID } = useParams();
-	// const [loading, setLoading] = useState(true);
-	// const [valid, setValid] = useState(true);
-	// // const [debug, setDebug] = useState(true);
-	// const { isLoaded } = useJsApiLoader({
-	// 	id: 'google-map-script',
-	// 	googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8",
-	// })
-	// // const [map, setMap] = useState(null);
-	// const containerStyle = {
-	// 	width: '100vw',
-	// 	height: '100%'
-	// };  
-	// const [center, setCenter] = useState({
-	// 	lat: 24.795417173319372,
-	// 	lng: 120.99469045958209
-	// });
-	// const [positions, setPostitions] = useState([]);
-	// const [directions, setDirections] = useState(false);
-	// const [snake, setSnake] = useState({
-	// 	active: false,
-	// 	id: -1,
-	// 	name: "",
-	// 	lat: 0,
-	// 	lng: 0,
-	// })
-	// const [userLat, setUserLat] = useState(0);
-	// const [userLng, setUserLng] = useState(0);
+	const { pathID } = useParams();
+	const [loading, setLoading] = useState(true);
+	const [valid, setValid] = useState(true);
+	// const [debug, setDebug] = useState(true);
+	const { isLoaded } = useJsApiLoader({
+		id: 'google-map-script',
+		googleMapsApiKey: "AIzaSyAWGySAUlZ2lcu2S9zt5B852RD6ghn3th8",
+	})
+	// const [map, setMap] = useState(null);
+	const containerStyle = {
+		width: '100vw',
+		height: '100%'
+	};  
+	const [center, setCenter] = useState({
+		lat: 24.795417173319372,
+		lng: 120.99469045958209
+	});
+	const [positions, setPostitions] = useState([]);
+	const [directions, setDirections] = useState(false);
+	const [snake, setSnake] = useState({
+		active: false,
+		id: -1,
+		name: "",
+		lat: 0,
+		lng: 0,
+	})
+	const [userLat, setUserLat] = useState(0);
+	const [userLng, setUserLng] = useState(0);
 
-	// const onLoad = useCallback( async () => {
-	// 	if(pathID === '0') {
-	// 		// Part I: Get Spots
-	// 		const response = await fetch('https://sdgs12.herokuapp.com/api/all', {
-	// 			method: 'GET',
-	// 			headers: {
-	// 				'Content-Type': 'application/json'
-	// 			}
-	// 		});
-	// 		const data = await response.json();
-	// 		if(data.status === 'fail'){
-	// 			setValid(false);
-	// 			setLoading(false);
-	// 			console.log("Failed to get spots");
-	// 			return;
-	// 		};
-	// 		const spotData = data.spotData;
-	// 		setPostitions(spotData);
-	// 		var avgLat = 0;
-	// 		var avgLng = 0;
-	// 		for(var i in spotData) {
-	// 			avgLat += spotData[i].lat;
-	// 			avgLng += spotData[i].lng;
-	// 		}
-	// 		avgLat /= spotData.length;
-	// 		avgLng /= spotData.length;
-	// 		setCenter({
-	// 			lat: avgLat,
-	// 			lng: avgLng
-	// 		})
-	// 	} else {
-	// 		// Part I: Get Path
-	// 		const response = await fetch('https://sdgs12.herokuapp.com/api/path', {
-	// 			method: 'POST',
-	// 			headers: {
-	// 				'Content-Type': 'application/json'
-	// 			},
-	// 			body: JSON.stringify({
-	// 				pathID,
-	// 			}),
-	// 		})
-	// 		const data = await response.json();
-	// 		if(data.status === 'fail'){
-	// 			setValid(false);
-	// 			setLoading(false);
-	// 			console.log("Failed to Get Path");
-	// 			return;
-	// 		}
+	const onLoad = useCallback( async () => {
+		if(pathID === '0') {
+			// Part I: Get Spots
+			const response = await fetch('https://sdgs12.herokuapp.com/api/all', {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+			const data = await response.json();
+			if(data.status === 'fail'){
+				setValid(false);
+				setLoading(false);
+				console.log("Failed to get spots");
+				return;
+			};
+			const spotData = data.spotData;
+			setPostitions(spotData);
+			var avgLat = 0;
+			var avgLng = 0;
+			for(var i in spotData) {
+				avgLat += spotData[i].lat;
+				avgLng += spotData[i].lng;
+			}
+			avgLat /= spotData.length;
+			avgLng /= spotData.length;
+			setCenter({
+				lat: avgLat,
+				lng: avgLng
+			})
+		} else {
+			// Part I: Get Path
+			const response = await fetch('https://sdgs12.herokuapp.com/api/path', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					pathID,
+				}),
+			})
+			const data = await response.json();
+			if(data.status === 'fail'){
+				setValid(false);
+				setLoading(false);
+				console.log("Failed to Get Path");
+				return;
+			}
 
-	// 		const pathData = data.pathData;
-	// 		console.log("hi" + pathData);
-	// 		// setPathName(pathData.name);
+			const pathData = data.pathData;
+			console.log("hi" + pathData);
+			// setPathName(pathData.name);
 
-	// 		const spotPath = data.spotPath;
-	// 		console.log(spotPath);
+			const spotPath = data.spotPath;
+			console.log(spotPath);
 
-	// 		// Part II: Get Spots
-	// 		var spotIDList = [];
-	// 		for(i in spotPath){
-	// 			spotIDList.push(spotPath[i].spotID);
-	// 		};
-	// 		console.log(spotIDList);
+			// Part II: Get Spots
+			var spotIDList = [];
+			for(i in spotPath){
+				spotIDList.push(spotPath[i].spotID);
+			};
+			console.log(spotIDList);
 
-	// 		const response2 = await fetch('https://sdgs12.herokuapp.com/api/spotAll', {
-	// 			method: 'POST',
-	// 			headers: {
-	// 				'Content-Type': 'application/json'
-	// 			},
-	// 			body: JSON.stringify({
-	// 				spotIDList,
-	// 			}),
-	// 		})
-	// 		const data2 = await response2.json();
-	// 		if(data2.status === 'fail'){
-	// 			console.log("Failed to Get Spots");
-	// 			setValid(false);
-	// 			setLoading(false);
-	// 			return;
-	// 		}
-	// 		const spotData = data2.spotData;
-	// 		console.log("SpotData: " + spotData[0].lat);
-	// 		setPostitions(spotData);
-	// 		avgLat = 0;
-	// 		avgLng = 0;
-	// 		for(i in spotData) {
-	// 			avgLat += spotData[i].lat;
-	// 			avgLng += spotData[i].lng;
-	// 		}
-	// 		avgLat /= spotData.length;
-	// 		avgLng /= spotData.length;
-	// 		setCenter({
-	// 			lat: avgLat,
-	// 			lng: avgLng
-	// 		})
+			const response2 = await fetch('https://sdgs12.herokuapp.com/api/spotAll', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					spotIDList,
+				}),
+			})
+			const data2 = await response2.json();
+			if(data2.status === 'fail'){
+				console.log("Failed to Get Spots");
+				setValid(false);
+				setLoading(false);
+				return;
+			}
+			const spotData = data2.spotData;
+			console.log("SpotData: " + spotData[0].lat);
+			setPostitions(spotData);
+			avgLat = 0;
+			avgLng = 0;
+			for(i in spotData) {
+				avgLat += spotData[i].lat;
+				avgLng += spotData[i].lng;
+			}
+			avgLat /= spotData.length;
+			avgLng /= spotData.length;
+			setCenter({
+				lat: avgLat,
+				lng: avgLng
+			})
 
-	// 		// Part III: SET PATH
-	// 		const google = window.google;
-	// 		const directionsService = new google.maps.DirectionsService();
-	// 		var waypoints = [];
-	// 		for (i=0; i<spotData.length; i++) {
-	// 			if(i === 0 || i === spotData.length-1){
-	// 				continue;
-	// 			}
-	// 			waypoints.push({
-	// 				location: {lat: spotData[i].lat, lng: spotData[i].lng},
-	// 				// location: spotData[i].name,
-	// 				// stopover: false
-	// 			})
-	// 		}
-	// 		var request = {
-	// 			origin: {lat: spotData[0].lat, lng:spotData[0].lng},
-	// 			destination: {lat: spotData[spotData.length-1].lat, lng:spotData[spotData.length-1].lng},
-	// 			waypoints: waypoints,
-	// 			travelMode: 'WALKING',
-	// 			optimizeWaypoints: true
-	// 		};
+			// Part III: SET PATH
+			const google = window.google;
+			const directionsService = new google.maps.DirectionsService();
+			var waypoints = [];
+			for (i=0; i<spotData.length; i++) {
+				if(i === 0 || i === spotData.length-1){
+					continue;
+				}
+				waypoints.push({
+					location: {lat: spotData[i].lat, lng: spotData[i].lng},
+					// location: spotData[i].name,
+					// stopover: false
+				})
+			}
+			var request = {
+				origin: {lat: spotData[0].lat, lng:spotData[0].lng},
+				destination: {lat: spotData[spotData.length-1].lat, lng:spotData[spotData.length-1].lng},
+				waypoints: waypoints,
+				travelMode: 'WALKING',
+				optimizeWaypoints: true
+			};
 
-	// 		directionsService.route(request, function (result, status) {
-	// 			if (status === 'OK') {
-	// 				// directionsDisplay.setDirections(result);
-	// 				setDirections(result);
-	// 			} else {
-	// 				console.log(status);
-	// 			}
-	// 		});
-	// 	}
-	// 	setLoading(false);
-	// }, [pathID])
+			directionsService.route(request, function (result, status) {
+				if (status === 'OK') {
+					// directionsDisplay.setDirections(result);
+					setDirections(result);
+				} else {
+					console.log(status);
+				}
+			});
+		}
+		setLoading(false);
+	}, [pathID])
 	
-	// useEffect(() => {
-	// 	onLoad();
-	// }, [onLoad])
+	useEffect(() => {
+		onLoad();
+	}, [onLoad])
 
-	// const getUserLatLng = useCallback(() => {
-	// 	// Dummy Fetch
-	// 	navigator.geolocation.getCurrentPosition(()=>{}, ()=>{}, {});
-	// 	const success = (position) => {
-	// 		setUserLat(position.coords.latitude);
-	// 		setUserLng(position.coords.longitude);
-	// 		// if(debug === false) {
-	// 		// 	setUserLat(position.coords.latitude);
-	// 		// 	setUserLng(position.coords.longitude);
-	// 		// }else {
-	// 		// 	setUserLat(u => u-0.00004);
-	// 		// 	setUserLng(u => u-0.00004);
-	// 		// }
-	// 		// setUserLat(24.79581727332000);
-	// 		// setUserLng(120.99469045958209);
-	// 	}
-	// 	const fail = () => {};
-	// 	navigator.geolocation.getCurrentPosition(
-	// 		success, fail, {
-	// 			enableHighAccuracy: true, 
-	// 			timeout:10000
-	// 		}
-	// 	);
-	// // }, [debug])
-	// }, []) 
+	const getUserLatLng = useCallback(() => {
+		// Dummy Fetch
+		navigator.geolocation.getCurrentPosition(()=>{}, ()=>{}, {});
+		const success = (position) => {
+			setUserLat(position.coords.latitude);
+			setUserLng(position.coords.longitude);
+			// if(debug === false) {
+			// 	setUserLat(position.coords.latitude);
+			// 	setUserLng(position.coords.longitude);
+			// }else {
+			// 	setUserLat(u => u-0.00004);
+			// 	setUserLng(u => u-0.00004);
+			// }
+			// setUserLat(24.79581727332000);
+			// setUserLng(120.99469045958209);
+		}
+		const fail = () => {};
+		navigator.geolocation.getCurrentPosition(
+			success, fail, {
+				enableHighAccuracy: true, 
+				timeout:10000
+			}
+		);
+	// }, [debug])
+	}, []) 
 
-	// useEffect (() => {
-	// 	let interval;
-	// 	interval = setInterval(getUserLatLng, 1000);
-	// 	return () => clearInterval(interval);
-	// }, [getUserLatLng])
+	useEffect (() => {
+		let interval;
+		interval = setInterval(getUserLatLng, 1000);
+		return () => clearInterval(interval);
+	}, [getUserLatLng])
 
-	// if(loading || !isLoaded) return <Load/>;
+	if(loading || !isLoaded) return <Load/>;
 	return(
 		<div className='PathMap'>
 			{true? (
 				<>
-					PathMap v10
+					PathMap v11
 					{/* <h1>{pathID}</h1> */}
 					<div className='backkeybox'>
-						{/* <BackKey from={pathID}/> */}
-						<BackKey />
+						<BackKey from={pathID}/>
 					</div>
 					{/* <div className='debugbox'>
 						<button onClick={() => {
@@ -222,7 +221,7 @@ function PathMap() {
 							setDebug(!debug);
 						}}>Debug: {debug? "on" : "off"}</button>
 					</div> */}
-					{/* {snake.id !== -1?
+					{snake.id !== -1?
 						<div className={snake.active? 'centerbox centerbox-active': 'centerbox centerbox-inactive'}>
 						<div onClick={() => {
 							setCenter({
@@ -240,10 +239,7 @@ function PathMap() {
 							})
 							}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
 						</div>
-					} */}
-					<div className='centerbox'>
-						center
-					</div>
+					}
 					{/* <div className='map'>
 						<GoogleMap
 							options={{
