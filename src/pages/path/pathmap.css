@@ -6,25 +6,29 @@
     height: 100%;
     background-color: #FFFFFF;
 }
-/* BACKKEY */
-.PathMap .backkeybox {
+
+/* HEADER */
+/* HEADER */
+.PathMap .header {
+    margin: 0;
+    top: 0;
     position: fixed;
-    left:0;
-    top:0;
-    margin: 12.5px;
-    padding: 10px 8px; 
-    width: 25px; 
-    background-color: #365145;
-    opacity: 0.8;
-    border-radius: 16px;
-    z-index: 1;
+    background-color: #6B9080;
+    width: 90vw;
+    height: auto;
     text-align: center;
+    padding: 10px 5vw;
+    z-index: 3;
 }
-.PathMap .BackKey .menu-btn{
-    position: relative;
-    text-align: center;
-    z-index: 1;
+.PathMap .header-shadow{
+    box-shadow: 0px 4px 8px -4px rgba(0,0,0,0.5);
 }
+.PathMap .header h1 {
+    margin: 0;
+    color: #F4F4F4;
+    font-size: 20px;
+}
+
 
 /* CENTER */
 .PathMap .centerbox {

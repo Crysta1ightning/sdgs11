@@ -3,7 +3,7 @@ import './all.css';
 import Navbar from '../global/navbar';
 import Load from '../global/load';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function AllPage () {
     const [loading, setLoading] = useState(true);
@@ -43,6 +43,7 @@ function AllPage () {
     }
 
     const getSpots = useCallback(async () => {
+        // SPOT DATA
         console.log("Fetch SpotData");
         const response = await fetch('https://sdgs12.herokuapp.com/api/all', {
             method: 'GET',
@@ -56,15 +57,47 @@ function AllPage () {
             return;
         };
         const spotData = data.spotData;
-        
+
+        // FINISHED DATA
+        var finishedSpots = [];
+        var i;
+        // if(!localStorage.getItem('token')){
+		// 	console.log("User Not Logged In, No Need to Set Finished");
+		// } else {
+        //     // fetch API for finished Spots
+        //     const response2 = await fetch('https://sdgs12.herokuapp.com/api/finished', {
+        //         method: 'GET',
+        //         headers: {
+        //             'x-access-token': localStorage.getItem('token')
+        //         }
+        //     });
+        //     const data2 = await response2.json();
+        //     if(data2.status === 'fail') {
+        //         console.log("Failed to Set Finished");
+        //     } else {
+        //         const finishedData = data2.finishedData; // all the spots you visited
+        //         for(i in finishedData) finishedSpots.push(finishedData[i].spotID);
+        //     }
+        // }
+
         var newList = [];
         var newImgList = [];
-        for(var i in spotData){
-            newList.push({
-                spotID: spotData[i].spotID, 
-                name: spotData[i].name, 
-                description: spotData[i].description,
-            });
+        for(i in spotData){
+            if(finishedSpots.includes(spotData[i].spotID)) {
+                newList.push({
+                    spotID: spotData[i].spotID, 
+                    name: spotData[i].name, 
+                    description: spotData[i].description,
+                    finished: true,
+                })
+            } else {
+                newList.push({
+                    spotID: spotData[i].spotID, 
+                    name: spotData[i].name, 
+                    description: spotData[i].description,
+                    finished: false,
+                })
+            }
             try{
                 newImgList.push({src: require('../../images/spot/'+spotData[i].name+'.jpg')})
             } catch (err) {
@@ -74,6 +107,22 @@ function AllPage () {
         setImgList(newImgList);
         setSpotList(newList);
         setSearchList(newList);
+
+        // SET FINSHED
+		
+		console.log(finishedSpots);
+		setSpotList(spotList => spotList.map((spot) => {
+			if(finishedSpots.includes(spot.spotID)){
+				return {...spot, finished: true};
+			}
+			else return {...spot, finished: false};
+		}))
+        setSearchList(searchList => searchList.map((spot) => {
+			if(finishedSpots.includes(spot.spotID)){
+				return {...spot, finished: true};
+			}
+			else return {...spot, finished: false};
+		}));
         setLoading(false);
     }, []);
 
@@ -106,7 +155,7 @@ function AllPage () {
     const [scrollDirection, setScrollDirection] = useState(null);
 
     useEffect(() => {
-        if(typeof(window) === 'undefined') console.log("undefined");
+        if(typeof window === 'undefined') console.log("undefined");
         let lastScrollY = window.pageYOffset;
         const updateScrollDirection = () => {
             const scrollY = window.pageYOffset;
@@ -154,7 +203,16 @@ function AllPage () {
                     return ( 
                         <div className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/0'}}>
                             <img src={imgList[spot.spotID-1].src} alt="圖片"></img>
-                            <h3>{spot.name}</h3>
+                            {spot.finished? 
+                                <div className='text finished'>
+                                    {spot.name}
+                                    <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+                                </div>
+                                :
+                                <div className='text'>
+                                    {spot.name}
+                                </div>
+                            }
                         </div>
                     )
                 })}

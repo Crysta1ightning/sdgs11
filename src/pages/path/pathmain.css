@@ -49,7 +49,6 @@
 }
 .PathMain .card .text {
     position: absolute;
-    background-color: #365145;
     background-color: rgba(54, 81, 69, 0.75);
     width: 100%;
     padding: 5px 0;
@@ -65,8 +64,11 @@
     position: absolute;
     top: 0;
     left: 62.5%;
-    font-size: inherit;
-    /* margin: 0 0 0 10px; */
+    padding: 5px 0;
+    height: auto;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 700;
 }
 @keyframes boxanimation {
     0% {

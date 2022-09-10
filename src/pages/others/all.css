@@ -94,9 +94,15 @@
     width: 100%;
     height: 80%;
 }
-.AllPage .card h3 {
-    all: unset;
+.AllPage .card .text {
     font-family: 'Noto Sans TC', sans-serif;
     color: #FFFFFF;
     font-size: 14px;
+}
+.AllPage .card .finished {
+    padding-left: 24px;
+}
+.AllPage .card .check {
+    display: inline;
+    padding-left: 10px;
 }

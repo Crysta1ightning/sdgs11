@@ -207,10 +207,11 @@ function PathMap() {
 		<div className='PathMap'>
 			{valid? (
 				<>
-					{/* <h1>{pathID}</h1> */}
-					<div className='backkeybox'>
-						<BackKey from={pathID}/>
+					<div className='header'>
+						<h1>地圖導覽</h1>
 					</div>
+					<BackKey from={pathID}/>
+	
 					{/* <div className='debugbox'>
 						<button onClick={() => {
 							if(!debug){

@@ -24,7 +24,7 @@ function Navbar(){
     return (
         <div className="Navbar">
             <div className='navbar-header'>
-            <div className="menu-btn" style={active? {'visibility':"hidden"} : {"visibility": 'visible'}} onClick={() => {setActive(true)}}><FontAwesomeIcon icon={solid('bars')} /></div>
+                <div className="menu-btn" style={active? {'visibility':"hidden"} : {"visibility": 'visible'}} onClick={() => {setActive(true)}}><FontAwesomeIcon icon={solid('bars')} /></div>
             </div>
             <div className={active ? "side-bar active": "side-bar"}>
                 <div className="close-btn" onClick={() => {setActive(false)}}><FontAwesomeIcon icon={solid("times")}/></div>
