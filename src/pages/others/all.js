@@ -106,7 +106,7 @@ function AllPage () {
     const [scrollDirection, setScrollDirection] = useState(null);
 
     useEffect(() => {
-        if(typeof(window) === 'undefined') return;
+        if(typeof(window) === 'undefined') console.log("undefined");
         let lastScrollY = window.pageYOffset;
         const updateScrollDirection = () => {
             const scrollY = window.pageYOffset;
@@ -128,12 +128,10 @@ function AllPage () {
             <div className={active? 'header header-shadow': 'header'}>
                 <h1>地點總覽</h1>
             </div>
-            <>
-                <Navbar/>
-                <div className='map-btn' onClick={() => {window.location.href = '/path/0/map'}}>
-                    <FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
-                </div>
-            </>
+            <Navbar/>
+            <div className='map-btn' onClick={() => {window.location.href = '/path/0/map'}}>
+                <FontAwesomeIcon icon={solid("map-location-dot")}></FontAwesomeIcon>
+            </div>
             <div className={(scrollDirection === 'down') ? 'search hide': 'search'}>
                 <input
                     className="search-text"

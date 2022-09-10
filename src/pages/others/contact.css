@@ -24,9 +24,3 @@
     color: #F4F4F4;
     font-size: 20px;
 }
-.ContactPage .menu-btn {
-    top: 0;
-    z-index: 3;
-    position: fixed;
-    padding: 10px;
-}

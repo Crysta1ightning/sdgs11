@@ -14,14 +14,14 @@
 .Path .header h1 {
     margin: 0;
     color: #FFFFFF;
-    font-size: 18px;
+    font-size: 20px;
 }
 .Path .header .check {
     position: absolute;
     left: 60%;
     top: 10px;
     color: #FFFFFF;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /* LINE TEXT */

@@ -22,13 +22,7 @@
 .PrefacePage .header h1 {
     margin: 0;
     color: #F4F4F4;
-    font-size: 18px;
-}
-.PrefacePage .menu-btn {
-    top: 0;
-    z-index: 3;
-    position: fixed;
-    padding: 10px;
+    font-size: 20px;
 }
 
 /* TITLE */

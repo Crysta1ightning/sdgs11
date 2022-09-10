@@ -1,5 +1,13 @@
+.BackKey {
+    margin: 0;
+    top: 0;
+    position: fixed;
+    background-color: #6B9080;
+    height: auto;
+    z-index: 3;
+    padding: 10px 5vw;
+}
 .BackKey .menu-btn{
-    position: absolute;
     color: #FFFFFF;
     font-size: 20px;
     margin: 0;

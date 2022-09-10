@@ -25,7 +25,7 @@
 }
 .Navbar .side-bar .menu .item button{
     width:100%;
-    color: black;
+    color: #040415;
     border: none;
     background: none;
     font-size: 20px;
@@ -49,14 +49,13 @@
 /* BTNS */
 .Navbar .close-btn{
     position: absolute;
-    color: black;
-    font-size: 25px;
+    color: #040415;
+    font-size: 20px;
     right: 0;
-    padding: 10px;
+    padding: 10px 5vw;
 }
 .Navbar .menu-btn{
-    position: absolute;
-    color: #F4F4F4;
+    color: #FFFFFF;
     font-size: 20px;
     margin: 0;
 }
@@ -68,11 +67,24 @@
     font-weight: 700;
 }
 
+/* HEADER */
+.Navbar .navbar-header {
+    margin: 0;
+    top: 0;
+    position: fixed;
+    background-color: #6B9080;
+    height: auto;
+    z-index: 3;
+    padding: 10px 5vw;
+}
+
 /* FOOTER */
 .Navbar .footer {
     position: absolute;
     width: 100%;
     bottom: 10px;
     text-align: center;
+    color: #040415;
+    opacity: 0.5;
 }
 

@@ -23,7 +23,9 @@ function Navbar(){
 
     return (
         <div className="Navbar">
+            <div className='navbar-header'>
             <div className="menu-btn" style={active? {'visibility':"hidden"} : {"visibility": 'visible'}} onClick={() => {setActive(true)}}><FontAwesomeIcon icon={solid('bars')} /></div>
+            </div>
             <div className={active ? "side-bar active": "side-bar"}>
                 <div className="close-btn" onClick={() => {setActive(false)}}><FontAwesomeIcon icon={solid("times")}/></div>
                 <div className="menu">
@@ -69,7 +71,7 @@ function Navbar(){
                     :
                     <div className='login-btn' onClick={() => window.location.href = '/login'}>登入</div>
                 }
-                <div className='footer'>Copyright © 2022 NTHU<br/>All rights reserved.</div>
+                <div className='footer'>Copyright © 2022 NTHU<br/>All rights reserved</div>
             </div>
         </div>
     );   

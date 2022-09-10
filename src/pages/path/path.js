@@ -255,15 +255,14 @@ function PathPage() {
 			{valid? (
 				<>	
 					<div className='header'>
-						<BackKey from={200}/>
 						<h1>{pathName}</h1>
 						{pathFinished? 
 						<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
 						: 
 						// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
 						""}
-			
 					</div>
+					<BackKey from={200}/>
 					<div className='line-text'>
 						<p>路徑建築預覽</p>
 					</div>

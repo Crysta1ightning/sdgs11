@@ -214,9 +214,9 @@ function SpotPage() {
 			{valid? 
 				<>
 					<div className='header'>
-						<BackKey from={from}/>
 						<h1>建築介紹</h1>
 					</div>
+					<BackKey from={from}/>
 					<div className='container'>
 						<img src={img} alt="圖片"></img>
 					</div>
