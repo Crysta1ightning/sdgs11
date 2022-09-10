@@ -36,7 +36,6 @@ function LoginPage() {
 			  alert("Token Invalid")
 			  localStorage.removeItem('token');  
 			}else{
-			  console.log("You are a logged in User");
 			  setSignIn(true);
 			  getUser();
 			}
@@ -60,8 +59,6 @@ function LoginPage() {
 		const data = await response.json()
 		if(data.user) {
 			localStorage.setItem('token', data.user);
-			console.log(data.user);
-			console.log('Login Successfully');
 			setEmail('');
 			setPassword('');
 			alert('Login Successfully');

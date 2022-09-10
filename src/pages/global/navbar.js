@@ -11,11 +11,9 @@ function Navbar(){
     useEffect(() => {
 		if (token) {
 			const user = jwtDecode(token);
-			console.log(user);
 			if(!user){
 			  localStorage.removeItem('token');  
 			}else{
-			  console.log("You are a logged in User");
 			  setSignIn(true);
 			}
 		}
