@@ -57,18 +57,17 @@
     color: #ffffff;
     font-weight: 700;
 }
+.PathMain .card .text-finished {
+    padding: 5px -12px 5px 12px;
+}
 .PathMain .card .name {
     font-size: inherit;
+    display: inline;
 }
 .PathMain .card .check {
-    position: absolute;
-    top: 0;
-    left: 62.5%;
-    padding: 5px 0;
-    height: auto;
-    font-size: 20px;
-    color: #ffffff;
-    font-weight: 700;
+    font-size: inherit;
+    display: inline;
+    margin-left: 10px;
 }
 @keyframes boxanimation {
     0% {
