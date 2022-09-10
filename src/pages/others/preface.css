@@ -10,9 +10,10 @@
     top: 0;
     position: fixed;
     background-color: #6B9080;
-    width: 100%;
+    width: 90vw;
     height: auto;
     text-align: center;
+    padding: 10px 5vw;
     z-index: 3;
 }
 .PrefacePage .header-shadow{
@@ -20,7 +21,6 @@
 }
 .PrefacePage .header h1 {
     margin: 0;
-    padding: 10px;
     color: #F4F4F4;
     font-size: 18px;
 }
@@ -33,9 +33,13 @@
 
 /* TITLE */
 .PrefacePage .title {
-    padding-top: 70px;
+    padding-top: 20px;
     height: 110px;
     position: relative;
+}
+
+.PrefacePage .title-about {
+    padding-top: 70px;
 }
 
 .PrefacePage .title img {

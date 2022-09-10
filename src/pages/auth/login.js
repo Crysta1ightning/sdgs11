@@ -76,6 +76,7 @@ function LoginPage() {
 		console.log("User Logout");
 		localStorage.removeItem('token');  
 		setSignIn(false);
+		window.location.href = '/login';
 	}
 	
 	if(loading) return <Load/>;

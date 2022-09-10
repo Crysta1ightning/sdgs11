@@ -80,7 +80,7 @@ function SpotPage() {
 			}
 		));
 		id = -1;
-		setTruncateText(data.spotData.description.substring(0, 140).split('\\n').map(
+		setTruncateText(data.spotData.description.substring(0, 135).split('\\n').map(
 			(str) => {
 				id++;
 				if(id === 0) return <p key={id}>&emsp;&emsp;{str}</p>
@@ -229,7 +229,7 @@ function SpotPage() {
 						{/* <img src={require('../../images/sdgsIcon/4.png')} alt="SDGS icon"></img>  */}
 					</div>
 					<div className='description'>
-						{spot.description && spot.description.length>140?
+						{spot.description && spot.description.length>135?
 							(<>{truncate? 
 								<>{truncateText}<p>...</p><button onClick={() => {setTruncate(false)}}>顯示更多</button></> 
 								: 

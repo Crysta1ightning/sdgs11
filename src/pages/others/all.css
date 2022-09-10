@@ -10,23 +10,23 @@
     top: 0;
     position: fixed;
     background-color: #6B9080;
-    width: 100%;
+    width: 90vw;
     height: auto;
     text-align: center;
     z-index: 3;
+    padding: 10px 5vw;
 }
 .AllPage .header-shadow{
     box-shadow: 0px 4px 8px -4px rgba(0,0,0,0.5);
 }
 .AllPage .header h1 {
     margin: 0;
-    padding: 10px;
     color: #F4F4F4;
-    font-size: 18px;
+    font-size: 20px;
 }
 .AllPage .map-btn {
     top: 0;
-    font-size: 18px;
+    font-size: 20px;
     z-index: 3;
     position: fixed;
     right: 0;
