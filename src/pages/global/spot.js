@@ -71,22 +71,34 @@ function SpotPage() {
 			console.log("Failed to Get Spot");
 			return;
 		}
-		var id = -1;
 		setText(data.spotData.description.split('\\n').map(
-			(str) => {
-				id++;
+			(str, id) => {
 				if(id === 0) return <p key={id}>&emsp;&emsp;{str}</p>
 				else return <p key={id}><br/><br/>&emsp;&emsp;{str}</p>
 			}
 		));
-		id = -1;
-		setTruncateText(data.spotData.description.substring(0, 135).split('\\n').map(
-			(str) => {
-				id++;
-				if(id === 0) return <p key={id}>&emsp;&emsp;{str}</p>
-				else return <p key={id}><br/><br/>&emsp;&emsp;{str}</p>
+		if(data.spotData.description.substring(0, 135).includes('\\n')) {
+			if(data.spotData.description.substring(0, 135).split('\\n')[0].length > 120) {
+				setTruncateText(<p>&emsp;&emsp;{data.spotData.description.substring(0, 135).split('\\n')[0]}</p>);
+				console.log(1);
+			} else {
+				console.log(2);
+				setTruncateText(data.spotData.description.substring(0, 100).split('\\n').map(
+					(str, id) => {
+						if(id === 0) return <p key={id}>&emsp;&emsp;{str}</p>
+						else return <p key={id}><br/><br/>&emsp;&emsp;{str}</p>
+					}
+				))
 			}
-		));
+		} else {
+			console.log(3);
+			setTruncateText(data.spotData.description.substring(0, 135).split('\\n').map(
+				(str, id) => {
+					if(id === 0) return <p key={id}>&emsp;&emsp;{str}</p>
+					else return <p key={id}><br/><br/>&emsp;&emsp;{str}</p>
+				}
+			));
+		}
 		setSpot(data.spotData);
 		try {
 			setImg(require('../../images/spot/'+data.spotData.name+'.jpg'));
