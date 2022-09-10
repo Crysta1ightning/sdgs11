@@ -139,18 +139,15 @@ function PathMainPage() {
                 {pathList.map((path) => {
                     return(
                         <div className="card" style={{animationDelay: `${(path.pathID-1)*150}ms`}} key={path.pathID} onClick={() => {ChoosePath(path)}}>
+                            <div className='text'>
+                                <div className='name'>{path.name}</div>
+                            </div>
                             {path.finished? 
-                                <div className='text text-finished'>
-                                    <div className='name'>{path.name}</div>
-                                    <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
-                                </div>
+                                <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
                                 : 
-                                <div className='text'>
-                                    <div className='name'>{path.name}</div>
-                                    {/* <div className='check'><FontAwesomeIcon icon={regular('square')} /></div> */}
-                                </div>
+                                // <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
+                                ""
                             }
-  
                             <img src={imgList[path.pathID-1].src} alt="圖片"></img>
                         </div>
                     )

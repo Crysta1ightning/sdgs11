@@ -51,23 +51,19 @@
     position: absolute;
     background-color: rgba(54, 81, 69, 0.75);
     width: 100%;
-    padding: 5px 0;
-    height: auto;
+    /* height: 50px; */
     font-size: inherit;
     color: #ffffff;
     font-weight: 700;
-}
-.PathMain .card .text-finished {
-    padding: 5px -12px 5px 12px;
+    text-align: center;
 }
 .PathMain .card .name {
-    font-size: inherit;
-    display: inline;
+    padding: 10px 0;
 }
 .PathMain .card .check {
-    font-size: inherit;
-    display: inline;
-    margin-left: 10px;
+    position: absolute;
+    color: #ffffff;
+    padding: 10px 0 10px 62.5%;
 }
 @keyframes boxanimation {
     0% {
