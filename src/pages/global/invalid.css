@@ -8,3 +8,7 @@
     margin: 0;
     padding-top: 20px;
 }
+
+.Invalid a{
+    color: #6B9080;
+}
