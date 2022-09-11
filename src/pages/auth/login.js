@@ -36,10 +36,13 @@ function LoginPage() {
 			if(!user){
 			  alert("Token Invalid")
 			  localStorage.removeItem('token');  
+			  setLoading(false);
 			}else{
 			  setSignIn(true);
 			  getUser();
 			}
+		} else {
+			setLoading(false);
 		}
 	}, [])
 

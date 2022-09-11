@@ -42,7 +42,7 @@ function ProfilePage() {
 			  setSignIn(true);
 			  getUser();
 			  setBackgroundImg(require('../../images/spot/旺宏館.jpg'));
-			  setUserImg(require('../../images/user/image-not-found.png'));
+			  setUserImg(require('../../images/user/avatar.png'));
 			}
 		} else {
 			setBackgroundImg(require('../../images/spot/image-not-found.jpg'));
