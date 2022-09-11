@@ -3,14 +3,10 @@ import './profile.css';
 import jwtDecode from 'jwt-decode'
 import Navbar from '../global/navbar';
 import Load from '../global/load';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
 
 function ProfilePage() {
 	const [loading, setLoading] = useState(true);
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
 	const [signIn, setSignIn] = useState(false);
 	const [user, setUser] = useState({});
 	const [userImg, setUserImg] = useState();

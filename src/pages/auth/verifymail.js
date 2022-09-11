@@ -19,7 +19,10 @@ function VerifyMailPage() {
                 },
             })
             const data = await response.json();
-            if(data.status === 'ok') return;
+            if(data.status === 'ok') {
+                setLoading(false);
+                return;
+            }
         }
         setValid(false);  
         setLoading(false);
@@ -38,8 +41,8 @@ function VerifyMailPage() {
             <div className="container">
                 {valid? (
                     <div>
-                        <h3>Your Email Has Been Verified Successfully</h3>
-                        <p>Go to Login Page <button onClick={() => {window.location.replace('/login')}}>Here</button></p>
+                        <h3>信箱已被成功驗證</h3>
+                        <button onClick={() => {window.location.replace('/login')}}>登入</button>
                     </div>
                 ) : (
                     <div>
