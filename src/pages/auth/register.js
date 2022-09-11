@@ -8,6 +8,7 @@ function RegisterPage() {
 	const [newEmail, setNewEmail] = useState('');
 	const [newPassword, setNewPassword] = useState('');
 	const [studentID, setStudentID] = useState('');
+	const [username, setUsername] = useState('');
 	const [countdown, setCountdown] = useState(60);
     const [resend, setResend] = useState(true);
 
@@ -22,6 +23,7 @@ function RegisterPage() {
 				newEmail,
 				newPassword,
 				studentID,
+				username,
 			}),
 		})
 		const data = await response.json();
@@ -35,6 +37,7 @@ function RegisterPage() {
 			setNewEmail('');
 			setNewPassword('');
 			setStudentID('');
+			setUsername('');
 			setResend(false);
 			setCountdown(60);
 		}else {
@@ -77,7 +80,7 @@ function RegisterPage() {
 							onChange={(e) => setNewEmail(e.target.value)}
 							id="new-email"
 							autoComplete="new-email"
-							placeholder="輸入Email">	
+							placeholder="輸入Emai:l">	
 						</input>
 					</div>
 					<div className='box'>
@@ -90,7 +93,17 @@ function RegisterPage() {
 							onChange={(e) => setNewPassword(e.target.value)}
 							id="new-password"
 							autoComplete="new-password"
-							placeholder='輸入密碼'>
+							placeholder='輸入密碼:'>
+						</input>
+					</div>
+					<div className='box'>
+						<FontAwesomeIcon className='gradient' icon={solid("signature")}/>
+						<input 
+							className='inp'
+							type="text"
+							value={username}
+							onChange={(e) => setUsername(e.target.value)}
+							placeholder="輸入名字(非必填):">
 						</input>
 					</div>
 					<div className='box'>
@@ -100,7 +113,7 @@ function RegisterPage() {
 							type="text"
 							value={studentID}
 							onChange={(e) => setStudentID(e.target.value)}
-							placeholder="學號(非必填):">
+							placeholder="輸入學號(非必填):">
 						</input>
 					</div>
 					{resend? <input className='submit-button' type="submit" value="註冊帳號"></input> :　<p>Send again in {countdown}s</p>}
