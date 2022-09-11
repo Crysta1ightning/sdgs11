@@ -37,6 +37,7 @@
     height: 70px;
     margin: 20px 0;
     position: relative;
+    transition: 0.4s ease-in;
 }
 
 /* CONTACT */
@@ -60,12 +61,14 @@
     top: 20px;
     right: 40px;
     font-size: 20px;
+    line-height: 30px;
 }
 .ContactPage .contact .linkedin {
     position: absolute;
     top: 20px;
     right: 65px;
     font-size: 20px;
+    line-height: 30px;
 }
 .ContactPage .contact .angle {
     position: absolute;
@@ -77,6 +80,7 @@
 /* CONTACT ACTIVE*/
 .ContactPage .contact-active {
     height: 160px;
+    transition: 0.4s ease-in;
 }
 .ContactPage .contact-active .description {
     position: absolute;
