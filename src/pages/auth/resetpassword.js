@@ -62,7 +62,7 @@ function ResetPasswordPage() {
     if(loading) return <Load/>;
 	return (
         <div className='AuthPage'>
-            <div className='decoration-box'>
+            <div className='header'>
                 <h1>忘記密碼</h1>
             </div>
             <div className="container">

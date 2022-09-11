@@ -61,12 +61,11 @@ function RegisterPage() {
 
 	return (
 		<div className='AuthPage'>
-			<div className='decoration-box'>
+			<div className='header'>
 				<Navbar/> 
 				<h1>立即註冊</h1>
 			</div>
 			<div className="container">
-				<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
 				<form onSubmit={register}>
 					<div className='box first' >
 						<FontAwesomeIcon className="gradient" icon={solid("envelope")}/>

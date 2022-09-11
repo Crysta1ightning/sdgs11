@@ -81,12 +81,11 @@ function LoginPage() {
 		<div className='AuthPage'>
 			{!signIn ? (
 				<div>
-					<div className='decoration-box'>
-						<Navbar/> 
-						<h1>立即登入</h1>
+					<div className='header'>
+						<h1>登入</h1>
 					</div>
+					<Navbar/> 
 					<div className="container">
-						<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
 						<form onSubmit={login}>
 							<div className="box first">
 								<FontAwesomeIcon className="gradient" icon={solid("envelope")}/>
@@ -119,7 +118,7 @@ function LoginPage() {
 						<div>
 							<button onClick={() => {window.location.href='/resetmail'}}>忘記密碼?</button>
 						</div>
-						<div className='parent'>
+						<div className='options'>
 							<h2>還沒註冊過?</h2>
 							<button onClick={() => {window.location.href='/register'}}>
 								註冊帳號
@@ -129,12 +128,11 @@ function LoginPage() {
 				</div>
 				) : (
 				<div>
-					<div className='decoration-box'>
-						<Navbar/> 
-						<h1>會員資料</h1>
+					<div className='header'>
+						<h1>登出</h1>
 					</div>
+					<Navbar/> 
 					<div className="container">
-						<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
 						<form onSubmit={logout}>
 							<div>
 								<h3>帳號: {user.email} <br/>{user.studentID ? <>學號: {user.studentID}</> : ""}</h3>

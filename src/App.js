@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
+import Profile from './pages/auth/profile'
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import VerfifyMail from './pages/auth/verifymail'
@@ -24,6 +25,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Preface/>} />
+          <Route path="/profile" element={<Profile/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
           <Route path="/verifymail/:token" element={<VerfifyMail/>} />

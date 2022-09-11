@@ -32,8 +32,8 @@ function VerifyMailPage() {
     if(loading) return <Load/>;
 	return (
         <div className='AuthPage'>
-            <div className='decoration-box'>
-                <h1>Email 驗證</h1>
+            <div className='header'>
+                <h1>驗證信箱</h1>
             </div>
             <div className="container">
                 {valid? (

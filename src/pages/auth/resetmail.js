@@ -46,10 +46,10 @@ function ResetMailPage() {
 
 	return (
 		<div className='AuthPage'>
-            <div className='decoration-box'>
-                <BackKey from={400}/> 
+            <div className='header'>
                 <h1>忘記密碼</h1>
             </div>
+			<BackKey from={400}/> 
             <div className="container">
                 <form onSubmit={resetMail}>
                     <div className='box'>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './auth.css';
+import './profile.css';
 import jwtDecode from 'jwt-decode'
 import Navbar from '../global/navbar';
 import Load from '../global/load';
@@ -13,7 +13,10 @@ function ProfilePage() {
 	const [password, setPassword] = useState('')
 	const [signIn, setSignIn] = useState(false);
 	const [user, setUser] = useState({});
+	const [userImg, setUserImg] = useState();
+	const [backgroundImg, setBackgroundImg] = useState();
 
+	
 	async function getUser() {
 		console.log("Get User Data");
         const req = await fetch ('https://sdgs12.herokuapp.com/api/user', {
@@ -25,6 +28,7 @@ function ProfilePage() {
         const data = await req.json();
         if(data.status === 'ok') setUser(data.user);
         else alert(data.error);
+		setLoading(false);
     }
 
 	useEffect(() => {
@@ -34,113 +38,76 @@ function ProfilePage() {
 			console.log(user);
 			if(!user){
 			  alert("Token Invalid")
-			  localStorage.removeItem('token');  
+			  localStorage.removeItem('token'); 
+			  setBackgroundImg(require('../../images/spot/image-not-found.jpg'));
+			  setUserImg(require('../../images/user/image-not-found.png'));
+			  setLoading(false); 
 			}else{
 			  setSignIn(true);
 			  getUser();
+			  setBackgroundImg(require('../../images/spot/旺宏館.jpg'));
+			  setUserImg(require('../../images/user/image-not-found.png'));
 			}
+		} else {
+			setBackgroundImg(require('../../images/spot/image-not-found.jpg'));
+			setUserImg(require('../../images/user/image-not-found.png'));
+			setLoading(false);
 		}
-		setLoading(false);
 	}, [])
 
-	async function login(event){
-		event.preventDefault()
-		const response = await fetch('https://sdgs12.herokuapp.com/api/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				email,
-				password,
-			}),
-		})
-
-		const data = await response.json()
-		if(data.user) {
-			localStorage.setItem('token', data.user);
-			setEmail('');
-			setPassword('');
-			alert('Login Successfully');
-			window.location.replace('/all');
-		} else {
-			alert(data.error);
-		}
-	}
-
-	function logout(event){
-		event.preventDefault();
-		console.log("User Logout");
-		localStorage.removeItem('token');  
-		setSignIn(false);
-		window.location.href = '/login';
-	}
-	
 	if(loading) return <Load/>;
 	return (
-		<div className='AuthPage'>
-			{!signIn ? (
+		<div className='ProfilePage'>
+			{signIn ? (
 				<div>
-					<div className='decoration-box'>
-						<Navbar/> 
-						<h1>立即登入</h1>
+					<div className='header'>
+						<h1>會員資料</h1>
 					</div>
+					<Navbar/>
 					<div className="container">
-						<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
-						<form onSubmit={login}>
-							<div className="box first">
-								<FontAwesomeIcon className="gradient" icon={solid("envelope")}/>
-								<input
-									className='inp'
-									type="email"
-									required
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-									id="current-email"
-									autoComplete="current-email"
-									placeholder="輸入Email">
-								</input>
-							</div>
-							<div className="box">
-								<FontAwesomeIcon className="gradient" icon={solid("lock")}/>
-								<input
-									className='inp'
-									type="password"
-									required
-									value={password}
-									onChange={(e) => setPassword(e.target.value)}
-									id="current-password"
-									autoComplete="current-password"
-									placeholder="輸入密碼">
-								</input>
-							</div>
-							<input className='submit-button' type="submit" value="登入帳號"></input>
-						</form>
-						<div>
-							<button onClick={() => {window.location.href='/resetmail'}}>忘記密碼?</button>
+						<div className='bgimg-container'>
+							<img src={backgroundImg} alt="圖片"></img>
 						</div>
-						<div className='parent'>
-							<h2>還沒註冊過?</h2>
-							<button onClick={() => {window.location.href='/register'}}>
-								註冊帳號
-							</button>
+						<div className='userimg-container'>
+							<img src={userImg} alt="圖片"></img>
+						</div>
+						<h1 className='name'>使用者名稱</h1>
+						<div className='box-left'>
+							<h2>完成的路徑</h2>
+							<h3>0</h3>
+						</div>
+						<div className='box-right'>
+							<h2>走過的地點</h2>
+							<h3>0</h3>
+						</div>
+						<div className='info'>
+							<h4>帳號: {user.email}</h4>
+							{user.studentID &&<h4>學號: {user.studentID}</h4>}
 						</div>
 					</div>
 				</div>
 				) : (
 				<div>
-					<div className='decoration-box'>
-						<Navbar/> 
+					<div className='header'>
 						<h1>會員資料</h1>
 					</div>
+					<Navbar/>
 					<div className="container">
-						<img src={require("../../images/永續清華logo.png")} alt="nthu sdgs logo"></img>
-						<form onSubmit={logout}>
-							<div>
-								<h3>帳號: {user.email} <br/>{user.studentID ? <>學號: {user.studentID}</> : ""}</h3>
-								<input className="submit-button" type="submit" value="登出"></input>
-							</div>
-						</form>
+						<div className='bgimg-container'>
+							<img src={backgroundImg} alt="圖片"></img>
+						</div>
+						<div className='userimg-container'>
+							<img src={userImg} alt="圖片"></img>
+						</div>
+						<h1 className='name'>使用者名稱</h1>
+						<div className='box-left'>
+							<h2>完成的路徑</h2>
+							<h3>0</h3>
+						</div>
+						<div className='box-right'>
+							<h2>走過的地點</h2>
+							<h3>0</h3>
+						</div>
 					</div>
 				</div>
 				)

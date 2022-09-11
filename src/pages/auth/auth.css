@@ -1,7 +1,32 @@
-.AuthPage{
-    height: 100vh;
+.AuthPage {
     background-color: #F6FFF8;
-    overflow-y: hidden;
+    height: 100vh;
+}
+
+/* HEADER */
+.AuthPage .header {
+    background-color: #6B9080;
+    height: auto;
+    text-align: center;
+    padding: 10px;
+}
+.AuthPage .header h1 {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.AuthPage .container {
+    margin: 20px 5vw 20px 5vw;
+    width: 90%;
+    height: 87.5vh;
+    background-color: #ffffff;
+    text-align: center;
+    place-content: center;
+    border-radius: 25px;
+    box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
+    overflow: hidden;
+    position: relative;
 }
 
 @keyframes dec-animation {
@@ -12,7 +37,6 @@
       transform: translateY(0);
     }
 }
-
 @keyframes cont-animation {
     0% {
       opacity: 0;
@@ -22,53 +46,16 @@
     }
 }
 
-.AuthPage .decoration-box{
-    animation: 0.8s ease-out 1 dec-animation;
-    position: absolute;
-    width: 100%;
-    height: 50vh;
-    background-image: linear-gradient(45deg, #f046ff, #731dd8);
-    border-bottom-left-radius: 35px;
-    border-bottom-right-radius: 35px;
-    box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
-}
 
-.AuthPage img{
-    width: 25%;
-    padding-top: 8%;
-}
-.AuthPage .container{
-    animation: 1s ease-out 1 cont-animation;
-    position: absolute;
-    --width: 80%;
-    width: var(--width);
-    --height: calc(40vh + 288px);
-    height: var(--height);
-    top: calc((110% - var(--height))/2);
-    left: calc((100% - var(--width))/2);
-    background-color: #ffffff;
-    text-align: center;
-    place-content: center;
-    border-radius: 25px;
-    box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
-}
-.AuthPage h1{
-    text-align: center;
-    font-size: 32px;
-    font-family: sans-serif;
-    padding-top: 1%;
-    color: white;
-}
 
-.AuthPage h2{
+.AuthPage .options{
+    display: inline-flex;
+}
+.AuthPage .options h2{
     color: #767676;
     margin: 0;
     font-size: 15px;
     font-family: sans-serif;
-}
-
-.AuthPage .parent{
-    display: inline-flex;
 }
 
 .AuthPage .container form .box{
@@ -84,7 +71,7 @@
 }
 
 .AuthPage .submit-button{
-    background-image: linear-gradient(45deg, #f046ff, #731dd8);
+    background-color: #6B9080;
     width: 80%;
     height: 60px;
     border-radius: 50px;
@@ -112,11 +99,6 @@
     background: none;
 }
 
-.AuthPage button:hover{
-    color:#731dd8;
-    text-decoration: underline;
-}
-
 .AuthPage .container form .inp{
     all: unset;
     font: 16px 'Poppins';
@@ -127,24 +109,6 @@
     padding-left: 10px;
 }
 
-.AuthPage .gradient{
-    font-size: 20px;
-    margin-left: 10px;
-    line-height:60px;
-    text-align: center;
-    color:#731dd8;
-}
 
-.AuthPage .Navbar .menu-btn{
-    color: white;
-}
-
-.AuthPage .Navbar .side-bar .menu .item h1{
-    color: black;
-}
-
-.AuthPage .BackKey .menu-btn{
-    color: white;
-}
 
 
