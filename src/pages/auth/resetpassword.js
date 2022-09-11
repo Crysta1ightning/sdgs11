@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom'
 import './auth.css';
 import Load from '../global/load';
+import Invalid from '../global/invalid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
@@ -60,41 +61,32 @@ function ResetPasswordPage() {
 	}
 
     if(loading) return <Load/>;
+    if(!valid) return <Invalid/>;
 	return (
         <div className='AuthPage'>
             <div className='header'>
                 <h1>忘記密碼</h1>
             </div>
             <div className="container">
-                {valid? (
-                    <div>
-                        <h1>忘記密碼</h1>
-                        <form onSubmit={resetPassword}>
-                            <div className='box'>
-                                <FontAwesomeIcon className="gradient" icon={solid("lock")}/>
-                                <input 
-                                    className='inp'
-                                    type="password"
-                                    required
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    id="new-password"
-                                    autoComplete="new-password"
-                                    placeholder='輸入密碼'>
-                                </input>
-                            </div>
-                            <input className='submit-button' type="submit" value="更新密碼"></input>
-                        </form>
-                        <footer>
-                            Author: David
-                        </footer>
-                    </div>
-                ) : (
-                    <div>
-                        <h3>Invalid or Expired URL</h3>
-                        <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
-                    </div>
-                )}
+                <div>
+                    <h1>忘記密碼</h1>
+                    <form onSubmit={resetPassword}>
+                        <div className='box'>
+                            <FontAwesomeIcon className="gradient" icon={solid("lock")}/>
+                            <input 
+                                className='inp'
+                                type="password"
+                                required
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                id="new-password"
+                                autoComplete="new-password"
+                                placeholder='輸入密碼'>
+                            </input>
+                        </div>
+                        <input className='submit-button' type="submit" value="更新密碼"></input>
+                    </form>
+                </div>
             </div>
             
         </div>

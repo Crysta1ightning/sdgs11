@@ -1,5 +1,6 @@
 import './path.css';
 import Load from '../global/load';
+import Invalid from '../global/invalid';
 import React, { useEffect, useState, useCallback } from 'react'
 import { useJsApiLoader } from '@react-google-maps/api';
 import { useParams } from "react-router-dom";
@@ -247,69 +248,61 @@ function PathPage() {
 	// }, [spotList])
 
 	if(loading || !isLoaded) return <Load/>;
+	if(!valid) return <Invalid/>;
 	return (
 		<div className="Path">
-			{valid? (
-				<>	
-					<div className='header'>
-						<h1>{pathName}</h1>
-						{/* {pathFinished? 
-						<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
-						: 
-						// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
-						""} */}
-					</div>
-					<BackKey from={200}/>
-					<div className='line-text'>
-						<p>路徑建築預覽</p>
-					</div>
-					
-					<div className="pathSpots">
-						{spotList.map((spot, id) => {
-							return ( 
-								<div className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/' + pathID}}>
-									<div className='container'>
-										<img src={imgList[id].src} alt="圖片"></img>
-									</div>
-									<h1>{spot.name}</h1>
-									{spot.finished? 
-										<div className='check'>已領取</div>
-										: 
-										// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
-										""
-									}
-									<p>距離: {
-										!distanceList[id]? 
-										'?'
-										: 
-										<>{distanceList[id] >= 1000 ?
-											<>{Math.round(distanceList[id]/100)/10}公里</> 
-											:
-											<>{distanceList[id]}公尺</>}
-										</>}
-									</p>
-								</div>
-							)
-						})}
-					</div>
-					<div className='line-text'><p>預計完成時間: {predictTime>=60? 
-						<>{Math.round(predictTime/60)}分鐘</>
-						: 
-						<>{predictTime===0? 
-							<>0分鐘</>
-							:
-							<>{"<"}1分鐘</>
-						}</>
-						}</p>
-					</div>
-					<div className='start-btn' onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>開始導覽</div>
-				</>
-            ) : (
-                <div>
-                    <h3>Invalid or Expired URL</h3>
-                    <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
-                </div>
-            )}
+			<div className='header'>
+				<h1>{pathName}</h1>
+				{/* {pathFinished? 
+				<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+				: 
+				// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
+				""} */}
+			</div>
+			<BackKey from={200}/>
+			<div className='line-text'>
+				<p>路徑建築預覽</p>
+			</div>
+			
+			<div className="pathSpots">
+				{spotList.map((spot, id) => {
+					return ( 
+						<div className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/' + pathID}}>
+							<div className='container'>
+								<img src={imgList[id].src} alt="圖片"></img>
+							</div>
+							<h1>{spot.name}</h1>
+							{spot.finished? 
+								<div className='check'>已領取</div>
+								: 
+								// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
+								""
+							}
+							<p>距離: {
+								!distanceList[id]? 
+								'?'
+								: 
+								<>{distanceList[id] >= 1000 ?
+									<>{Math.round(distanceList[id]/100)/10}公里</> 
+									:
+									<>{distanceList[id]}公尺</>}
+								</>}
+							</p>
+						</div>
+					)
+				})}
+			</div>
+			<div className='line-text'><p>預計完成時間: {predictTime>=60? 
+				<>{Math.round(predictTime/60)}分鐘</>
+				: 
+				<>{predictTime===0? 
+					<>0分鐘</>
+					:
+					<>{"<"}1分鐘</>
+				}</>
+				}</p>
+			</div>
+			<div className='start-btn' onClick={() => {window.location.href = '/path/' + pathID + '/map'}}>開始導覽</div>
 		</div>
 	)
 }

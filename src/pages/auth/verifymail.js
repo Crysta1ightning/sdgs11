@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom'
 import './auth.css';
 import Load from '../global/load';
+import Invalid from '../global/invalid';
 
 function VerifyMailPage() {
     const {token} = useParams();
@@ -33,23 +34,17 @@ function VerifyMailPage() {
     }, [verifyToken])
 
     if(loading) return <Load/>;
+    if(!valid) return <Invalid/>;
 	return (
         <div className='AuthPage'>
             <div className='header'>
                 <h1>驗證信箱</h1>
             </div>
             <div className="container">
-                {valid? (
-                    <div>
-                        <h3>信箱已被成功驗證</h3>
-                        <button onClick={() => {window.location.replace('/login')}}>登入</button>
-                    </div>
-                ) : (
-                    <div>
-                        <h3>Invalid or Expired URL</h3>
-                        <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
-                    </div>
-                )}
+                <div>
+                    <h3>信箱已被成功驗證</h3>
+                    <button onClick={() => {window.location.replace('/login')}}>登入</button>
+                </div>
             </div>
         </div>
 	)

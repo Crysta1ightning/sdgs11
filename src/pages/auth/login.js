@@ -25,6 +25,7 @@ function LoginPage() {
         const data = await req.json();
         if(data.status === 'ok') setUser(data.user);
         else alert(data.error);
+		setLoading(false);
     }
 
 	useEffect(() => {
@@ -40,7 +41,6 @@ function LoginPage() {
 			  getUser();
 			}
 		}
-		setLoading(false);
 	}, [])
 
 	async function login(event){

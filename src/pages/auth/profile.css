@@ -5,10 +5,15 @@
 
 /* HEADER */
 .ProfilePage .header {
+    margin: 0;
+    top: 0;
+    position: fixed;
     background-color: #6B9080;
+    width: 90vw;
     height: auto;
     text-align: center;
-    padding: 10px;
+    z-index: 3;
+    padding: 10px 5vw;
 }
 .ProfilePage .header h1 {
     margin: 0;
@@ -17,7 +22,7 @@
 }
 
 .ProfilePage .container {
-    margin: 20px 5vw 20px 5vw;
+    margin: 60px 5vw 20px 5vw;
     width: 90%;
     height: 87.5vh;
     background-color: #ffffff;

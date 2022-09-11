@@ -6,6 +6,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- im
 import './pathmap.css';
 import BackKey from '../global/backkey';
 import Load from '../global/load';
+import Invalid from '../global/invalid';
 
 function PathMap() {
 	const { pathID } = useParams();
@@ -203,127 +204,118 @@ function PathMap() {
 	}, [getUserLatLng])
 
 	if(loading || !isLoaded) return <Load/>;
+	if(!valid) return <Invalid/>;
 	return(
 		<div className='PathMap'>
-			{valid? (
-				<>
-					<div className='header'>
-						<h1>地圖導覽</h1>
-					</div>
-					<BackKey from={pathID}/>
-	
-					{/* <div className='debugbox'>
-						<button onClick={() => {
-							if(!debug){
-								setUserLat(24.79581727332000);
-								setUserLng(120.99469045958209);	
-							}
-							setDebug(!debug);
-						}}>Debug: {debug? "on" : "off"}</button>
-					</div> */}
-					{snake.id !== -1?
-						<div className={snake.active? 'centerbox centerbox-active': 'centerbox centerbox-inactive'}>
-						<div onClick={() => {
-							setCenter({
-								lat: userLat,
-								lng: userLng,
-							})
-							}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
-						</div>
-						:
-						<div className='centerbox'>
-						<div onClick={() => {
-							setCenter({
-								lat: userLat,
-								lng: userLng,
-							})
-							}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
-						</div>
-					}
-					<div className='map'>
-						<GoogleMap
-							options={{
-								fullscreenControl: false,
-								// panControl: true,
-								zoomControl: false,
-								mapTypeControl: false,
-								scaleControl: false,
-								streetViewControl: false,
-								// overviewMapControl: true,
-								// rotateControl: true
-							}}
-							mapContainerStyle={containerStyle}
-							// defaultCenter={center}
-							// defaultZoom={15}
-							clickableIcons={false}
-							center={center}
-							zoom={15.5}
-						>
-							{directions && 
-							<DirectionsRenderer 
-								directions={directions}
-								options={{
-									suppressInfoWindows: true,	
-									suppressMarkers: true,
-									preserveViewport: true
-								}}
-							/>}
-							{positions.map((spot, index) => {
-								return (
-								<Marker
-									key={spot.spotID}
-									// https://developers.google.com/maps/documentation/javascript/markers#maps_marker_simple-javascript
-									onClick={() => {
-										setSnake({id: spot.spotID, name: positions[index].name, active:true, lat:spot.lat, lng:spot.lng})}
-									}
-									position={{lat:spot.lat, lng:spot.lng}}
-									icon={{
-										path: "M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z",
-										fillColor: "#6B9080",
-										fillOpacity: 0.8,
-										scale: 2,
-										strokeColor: "white",
-										strokeWeight: 2,
-									}}
-								/>
-								)
-							})}
-							<Marker
-								position={{lat: userLat, lng: userLng}}
-								// position={{lat: 24.79581727332000, lng: 120.99469045958209}}
-								icon={{
-									path: "M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z",
-									fillColor: "#365145",
-									fillOpacity: 0.9,
-									scale: 2,
-									strokeColor: "white",
-									strokeWeight: 2,
-								}}
-								zIndex={999}
-							/>
-							
-						</GoogleMap>
-					</div>
-					{snake.id !== -1?
-						<div className={snake.active? 'snake' : 'snake hide'}>
-							<div className='title'>{snake.name}</div>
-							<div className='detail' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>導覽</div>
-							<div className='navigate' onClick={() => {window.location.href='https://maps.google.com/?q='+snake.lat+','+snake.lng}}>導航</div>
-							<div className='cancel' onClick={() => {
-								setSnake({id: snake.id, name: snake.name, active:false, lat:snake.lat, lng:snake.lng});
-							}}><FontAwesomeIcon icon={solid('x')} /></div>
-						</div> 
-						:
-						<></>
-					}
+			<div className='header'>
+				<h1>地圖導覽</h1>
+			</div>
+			<BackKey from={pathID}/>
 
-				</>
-			) : (
-				<div>
-                    <h3>Invalid or Expired URL</h3>
-                    <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
-                </div>
-			)}
+			{/* <div className='debugbox'>
+				<button onClick={() => {
+					if(!debug){
+						setUserLat(24.79581727332000);
+						setUserLng(120.99469045958209);	
+					}
+					setDebug(!debug);
+				}}>Debug: {debug? "on" : "off"}</button>
+			</div> */}
+			{snake.id !== -1?
+				<div className={snake.active? 'centerbox centerbox-active': 'centerbox centerbox-inactive'}>
+				<div onClick={() => {
+					setCenter({
+						lat: userLat,
+						lng: userLng,
+					})
+					}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
+				</div>
+				:
+				<div className='centerbox'>
+				<div onClick={() => {
+					setCenter({
+						lat: userLat,
+						lng: userLng,
+					})
+					}}><FontAwesomeIcon icon={solid('location-crosshairs')} /></div>
+				</div>
+			}
+			<div className='map'>
+				<GoogleMap
+					options={{
+						fullscreenControl: false,
+						// panControl: true,
+						zoomControl: false,
+						mapTypeControl: false,
+						scaleControl: false,
+						streetViewControl: false,
+						// overviewMapControl: true,
+						// rotateControl: true
+					}}
+					mapContainerStyle={containerStyle}
+					// defaultCenter={center}
+					// defaultZoom={15}
+					clickableIcons={false}
+					center={center}
+					zoom={15.5}
+				>
+					{directions && 
+					<DirectionsRenderer 
+						directions={directions}
+						options={{
+							suppressInfoWindows: true,	
+							suppressMarkers: true,
+							preserveViewport: true
+						}}
+					/>}
+					{positions.map((spot, index) => {
+						return (
+						<Marker
+							key={spot.spotID}
+							// https://developers.google.com/maps/documentation/javascript/markers#maps_marker_simple-javascript
+							onClick={() => {
+								setSnake({id: spot.spotID, name: positions[index].name, active:true, lat:spot.lat, lng:spot.lng})}
+							}
+							position={{lat:spot.lat, lng:spot.lng}}
+							icon={{
+								path: "M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z",
+								fillColor: "#6B9080",
+								fillOpacity: 0.8,
+								scale: 2,
+								strokeColor: "white",
+								strokeWeight: 2,
+							}}
+						/>
+						)
+					})}
+					<Marker
+						position={{lat: userLat, lng: userLng}}
+						// position={{lat: 24.79581727332000, lng: 120.99469045958209}}
+						icon={{
+							path: "M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z",
+							fillColor: "#365145",
+							fillOpacity: 0.9,
+							scale: 2,
+							strokeColor: "white",
+							strokeWeight: 2,
+						}}
+						zIndex={999}
+					/>
+					
+				</GoogleMap>
+			</div>
+			{snake.id !== -1?
+				<div className={snake.active? 'snake' : 'snake hide'}>
+					<div className='title'>{snake.name}</div>
+					<div className='detail' onClick={() => {window.location.href='/spot/' + snake.id + '/' + (parseInt(pathID, 10)+100)}}>導覽</div>
+					<div className='navigate' onClick={() => {window.location.href='https://maps.google.com/?q='+snake.lat+','+snake.lng}}>導航</div>
+					<div className='cancel' onClick={() => {
+						setSnake({id: snake.id, name: snake.name, active:false, lat:snake.lat, lng:snake.lng});
+					}}><FontAwesomeIcon icon={solid('x')} /></div>
+				</div> 
+				:
+				<></>
+			}
 		</div>
   	)
 

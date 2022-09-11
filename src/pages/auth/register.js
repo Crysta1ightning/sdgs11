@@ -80,7 +80,7 @@ function RegisterPage() {
 							onChange={(e) => setNewEmail(e.target.value)}
 							id="new-email"
 							autoComplete="new-email"
-							placeholder="輸入Emai:l">	
+							placeholder="輸入Email:">	
 						</input>
 					</div>
 					<div className='box'>

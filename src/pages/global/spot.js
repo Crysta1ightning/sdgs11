@@ -1,5 +1,6 @@
 import BackKey from '../global/backkey';
 import Load from '../global/load';
+import Invalid from './invalid';
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState, useCallback } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
@@ -205,59 +206,53 @@ function SpotPage() {
         }));
 	}
 
-	if(loading ||  !isLoaded) return <Load/>;
+	if(loading || !isLoaded) return <Load/>;
+	if(!valid) return <Invalid/>
 	return (
 		<div className='SpotPage'>
-			{valid? 
-				<>
-					<div className='header'>
-						<h1>建築介紹</h1>
-					</div>
-					<BackKey from={from}/>
-					<div className='container'>
-						<img src={img} alt="圖片"></img>
-					</div>
-					<div className='title'>
-						<h1>{spot.name}</h1>
-						<h2>距離: {
-							spot.distance === '?' ? 
-							'?'
+			<>
+				<div className='header'>
+					<h1>建築介紹</h1>
+				</div>
+				<BackKey from={from}/>
+				<div className='container'>
+					<img src={img} alt="圖片"></img>
+				</div>
+				<div className='title'>
+					<h1>{spot.name}</h1>
+					<h2>距離: {
+						spot.distance === '?' ? 
+						'?'
+						: 
+						<>{spot.distance >= 1000 ?
+							<>{Math.round(spot.distance/100)/10}公里</> 
+							:
+							<>{spot.distance}公尺</>}
+						</>}
+					</h2>
+					{/* <img src={require('../../images/sdgsIcon/4.png')} alt="SDGS icon"></img>  */}
+				</div>
+				<div className='description'>
+					{spot.description && spot.description.length>135?
+						(<>{truncate? 
+							<>{truncateText}<p>...</p><button onClick={() => {setTruncate(false)}}>顯示更多</button></> 
 							: 
-							<>{spot.distance >= 1000 ?
-								<>{Math.round(spot.distance/100)/10}公里</> 
-								:
-								<>{spot.distance}公尺</>}
-							</>}
-						</h2>
-						{/* <img src={require('../../images/sdgsIcon/4.png')} alt="SDGS icon"></img>  */}
-					</div>
-					<div className='description'>
-						{spot.description && spot.description.length>135?
-							(<>{truncate? 
-								<>{truncateText}<p>...</p><button onClick={() => {setTruncate(false)}}>顯示更多</button></> 
-								: 
-								<>{text}<button onClick={() => {setTruncate(true)}}>顯示較少</button></>
-							}</>) 
-							:
-							<>{text}</>
-						}
-					</div>
-					{spot.finished?
-						<button className='claim'>已領取</button>
+							<>{text}<button onClick={() => {setTruncate(true)}}>顯示較少</button></>
+						}</>) 
 						:
-						<>{spot.distance <= 50? 
-							<button className='claim active' onClick={() => {claim(spot.spotID)}}>領取地點</button> 
-							:
-							<button className='claim inactive'>再靠近一點點</button> 
-						}</>
+						<>{text}</>
 					}
-				</>
-			: (
-				<div>
-                    <h3>Invalid or Expired URL</h3>
-                    <p>If you have any problem with this, please contact us via <a href = "mailto: nthutestsdgs@gmail.com">nthutestsdgs@gmail</a></p>
-                </div>
-			)}
+				</div>
+				{spot.finished?
+					<button className='claim'>已領取</button>
+					:
+					<>{spot.distance <= 50? 
+						<button className='claim active' onClick={() => {claim(spot.spotID)}}>領取地點</button> 
+						:
+						<button className='claim inactive'>再靠近一點點</button> 
+					}</>
+				}
+			</>
 		</div>
 	)
 }

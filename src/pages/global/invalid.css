@@ -1,0 +1,10 @@
+.Invalid {
+    background-color: #F6FFF8;
+    text-align: center;
+    height: 100vh;
+}
+
+.Invalid h3{
+    margin: 0;
+    padding-top: 20px;
+}

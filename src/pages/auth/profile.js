@@ -67,7 +67,7 @@ function ProfilePage() {
 						<div className='userimg-container'>
 							<img src={userImg} alt="圖片"></img>
 						</div>
-						<h1 className='name'>使用者名稱</h1>
+						<h1 className='name'>{user.username}</h1>
 						<div className='box-left'>
 							<h2>完成的路徑</h2>
 							<h3>0</h3>
