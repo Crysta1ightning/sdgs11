@@ -16,13 +16,13 @@
     color: #FFFFFF;
     font-size: 20px;
 }
-.Path .header .check {
+/* .Path .header .check {
     position: absolute;
     left: 60%;
     top: 10px;
     color: #FFFFFF;
     font-size: 20px;
-}
+} */
 
 /* LINE TEXT */
 .Path .line-text {
@@ -95,9 +95,18 @@
     margin: 0;
 }
 .Path .pathSpots .card .check {
-    font-size: 16px;
-    display: inline;
-    margin: 0 0 0 10px;
+    font-family: 'Noto Sans TC', sans-serif;
+    position: absolute;
+    top: 12px;
+    right: 0;
+    padding: 3px;
+    font-size: 14px;
+    /* margin-top: 10px; */
+    background-color: #365145;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 2px 2px 2px 1.5px rgba(0, 0, 0, 0.2);
 }
 .Path .pathSpots .card p{
     position: absolute;

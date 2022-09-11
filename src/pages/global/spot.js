@@ -5,8 +5,6 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
 import './spot.css'
 import '../global/header.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 function SpotPage() {
 	const { spotID } = useParams();
@@ -221,13 +219,7 @@ function SpotPage() {
 						<img src={img} alt="圖片"></img>
 					</div>
 					<div className='title'>
-						<h1>{spot.name}
-							{spot.finished? 
-							<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
-							: 
-							// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
-							""}
-						</h1>
+						<h1>{spot.name}</h1>
 						<h2>距離: {
 							spot.distance === '?' ? 
 							'?'

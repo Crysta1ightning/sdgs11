@@ -2,9 +2,6 @@ import Load from '../global/load';
 import React, { useCallback, useEffect, useState } from 'react';
 import './pathmain.css';
 import Navbar from '../global/navbar';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
-
 
 function PathMainPage() {
     const [loading, setLoading] = useState(true);
@@ -142,13 +139,14 @@ function PathMainPage() {
                             <div className='text'>
                                 <div className='name'>{path.name}</div>
                             </div>
+                            <img src={imgList[path.pathID-1].src} alt="圖片"></img>
                             {path.finished? 
-                                <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+                                // <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+                                <div className='check'>已完成</div>
                                 : 
                                 // <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
                                 ""
                             }
-                            <img src={imgList[path.pathID-1].src} alt="圖片"></img>
                         </div>
                     )
                 })}

@@ -4,8 +4,6 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { useJsApiLoader } from '@react-google-maps/api';
 import { useParams } from "react-router-dom";
 import BackKey from '../global/backkey';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular} from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function PathPage() {
 	const {pathID} = useParams();
@@ -30,7 +28,7 @@ function PathPage() {
     ]);
 	const [distanceList, setDistanceList] = useState([])
 	const [pathName, setPathName] = useState('');
-	const [pathFinished, setPathFinished] = useState(false);
+	// const [pathFinished, setPathFinished] = useState(false);
     const [imgList, setImgList] = useState([
         // {src: require('../../images/spot/人社院.jpg')},
         // {src: require('../../images/spot/台達館.jpg')},
@@ -236,18 +234,17 @@ function PathPage() {
 		}
     }, [userLat, userLng, spotList]);
 
-	useEffect(() => {
-		if(spotList.length === 0) return;
-		console.log("Set Predict Time & PathFinished");
-		var finished = true;
-		for(var i in spotList){
-			if(!spotList[i].finished) {
-				finished = false
-				break;
-			}
-		}
-		if(finished) setPathFinished(true);
-	}, [spotList])
+	// useEffect(() => {
+	// 	if(spotList.length === 0) return;
+	// 	var finished = true;
+	// 	for(var i in spotList){
+	// 		if(!spotList[i].finished) {
+	// 			finished = false
+	// 			break;
+	// 		}
+	// 	}
+	// 	// if(finished) setPathFinished(true);
+	// }, [spotList])
 
 	if(loading || !isLoaded) return <Load/>;
 	return (
@@ -256,11 +253,11 @@ function PathPage() {
 				<>	
 					<div className='header'>
 						<h1>{pathName}</h1>
-						{pathFinished? 
+						{/* {pathFinished? 
 						<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
 						: 
 						// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
-						""}
+						""} */}
 					</div>
 					<BackKey from={200}/>
 					<div className='line-text'>
@@ -274,12 +271,13 @@ function PathPage() {
 									<div className='container'>
 										<img src={imgList[id].src} alt="圖片"></img>
 									</div>
-									<h1>{spot.name}{spot.finished? 
-										<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
+									<h1>{spot.name}</h1>
+									{spot.finished? 
+										<div className='check'>已領取</div>
 										: 
 										// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
-										""}
-									</h1>
+										""
+									}
 									<p>距離: {
 										!distanceList[id]? 
 										'?'
