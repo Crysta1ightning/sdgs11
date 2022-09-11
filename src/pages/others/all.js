@@ -155,7 +155,7 @@ function AllPage () {
     const [scrollDirection, setScrollDirection] = useState(null);
 
     useEffect(() => {
-        if(typeof window === 'undefined') console.log("undefined");
+        if(typeof window === 'undefined') return;
         let lastScrollY = window.pageYOffset;
         const updateScrollDirection = () => {
             const scrollY = window.pageYOffset;

@@ -27,5 +27,89 @@
 
 /* CONTACTS */
 .ContactPage .contacts {
-    padding-top: 40px;
+    padding: 40px 5vw;
+}
+.ContactPage .contact {
+    background-color: #6B9080;
+    /* background-color: #365145; */
+    color: #F6FFF8;
+    /* padding: 10px; */
+    height: 70px;
+    margin: 20px 0;
+    position: relative;
+}
+
+/* CONTACT */
+.ContactPage .contact .name {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    font-size: 20px;
+    margin: 0;
+}
+.ContactPage .contact .title {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+}
+.ContactPage .contact .gmail {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 20px;
+}
+.ContactPage .contact .linkedin {
+    position: absolute;
+    top: 20px;
+    right: 65px;
+    font-size: 20px;
+}
+.ContactPage .contact .angle {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    font-size: 20px;
+}
+
+/* CONTACT ACTIVE*/
+.ContactPage .contact-active {
+    height: 160px;
+}
+.ContactPage .contact-active .description {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    font-size: 18px;
+    margin: 0;
+}
+.ContactPage .contact-active .icons {
+    position: absolute;
+    top: 90px;
+    left: 10px;
+    /* background-color: aqua; */
+}
+.ContactPage .contact-active .gmail {
+    all: unset;
+    font-size: 18px;
+    display: block;
+}
+.ContactPage .contact-active .gmail a {
+    all: unset;
+    display: inline;
+    padding-left: 10px;
+    text-decoration: underline;
+}
+.ContactPage .contact-active .linkedin {
+    all: unset;
+    font-size: 18px;
+    display: block;
+}
+.ContactPage .contact-active .linkedin a {
+    all: unset;
+    display: inline;
+    padding-left: 10px;
+    text-decoration: underline;
 }
