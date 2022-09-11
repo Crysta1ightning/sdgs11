@@ -2,7 +2,7 @@
     margin: 0;
     top: 0;
     position: fixed;
-    background-color: #6B9080;
+    /* background-color: #6B9080; */
     height: auto;
     z-index: 3;
     padding: 10px;
@@ -10,5 +10,6 @@
 .BackKey .menu-btn{
     color: #FFFFFF;
     font-size: 20px;
+    line-height: 30px;
     margin: 0;
 }

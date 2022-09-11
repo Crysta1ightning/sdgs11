@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState, useCallback } from 'react';
 import { useJsApiLoader } from '@react-google-maps/api';
 import './spot.css'
-import '../global/header.css'
 
 function SpotPage() {
 	const { spotID } = useParams();
