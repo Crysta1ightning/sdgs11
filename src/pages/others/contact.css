@@ -27,7 +27,7 @@
 
 /* CONTACTS */
 .ContactPage .contacts {
-    padding: 40px 5vw;
+    padding: 50px 5vw 20px 5vw;
 }
 .ContactPage .contact {
     background-color: #6B9080;
@@ -61,20 +61,21 @@
     top: 20px;
     right: 40px;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 35px;
 }
 .ContactPage .contact .linkedin {
     position: absolute;
     top: 20px;
     right: 65px;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 35px;
 }
 .ContactPage .contact .angle {
     position: absolute;
     right: 10px;
     top: 20px;
     font-size: 20px;
+    line-height: 35px;
 }
 
 /* CONTACT ACTIVE*/
