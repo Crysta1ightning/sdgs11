@@ -56,7 +56,8 @@
 }
 .Navbar .menu-btn{
     color: #FFFFFF;
-    font-size: 22px;
+    font-size: 20px;
+    line-height: 26.5px;
     margin: 0;
 }
 .Navbar .login-btn {
