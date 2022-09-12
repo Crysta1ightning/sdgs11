@@ -55,17 +55,39 @@
     padding: 10px 5vw;
     line-height: 35px;
 }
+
+.Navbar .close-btn:hover{
+    color: red;
+}
+
 .Navbar .menu-btn{
-    color: #FFFFFF;
+    color: #F6FFF8;
     font-size: 20px;
     margin: 0;
 }
+
+.Navbar .menu-btn:hover{
+    color:#537164;
+}
+
 .Navbar .login-btn {
-    margin-top: 20px;
+    border: 3px solid #6B9080;
+    border-radius: 16px;
+    padding: 2vh 0;
+    margin: 2vh 7.5vw;
     text-align: center;
-    color: #365145;
+    /* color: #F6FFF8;
+    background-color: #6B9080; */
+    color: #6B9080;
+    background-color: #F6FFF8;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: bolder;
+}
+
+.Navbar .login-btn:hover{
+    color: #F6FFF8;
+    background-color: #6B9080;
+    transition: 0.2s;
 }
 
 /* HEADER */

@@ -35,13 +35,19 @@
     margin: 35px auto;
     width: 85%;
     height: 230px;
-    box-shadow: 0px 35px 25px -24px rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0px 35px 25px -24px rgba(0, 0, 0, 0.19); */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     /* transition: 0.2s; */
     overflow: hidden;
     font-size: 20px;
     text-align: center;
     position: relative;
 }
+
+.PathMain .card:hover{
+    opacity: 0.9;
+}
+
 .PathMain .card img {
     animation: 0.6s ease-out 1 imganimation;
     width: 100%;
@@ -51,12 +57,14 @@
 .PathMain .card .text {
     position: absolute;
     /* background-color: rgba(54, 81, 69, 0.75); */
-    background-color: rgba(0, 0, 0, 0.6);
+    /* background-color: rgba(0, 0, 0, 0.6); */
+    background-color: #365145;
+    opacity: 0.9;
     width: 100%;
     height: auto;
     padding: 5px 0;
     font-size: inherit;
-    color: #ffffff;
+    color: #F6FFF8;
     font-weight: 700;
     text-align: center;
     vertical-align: middle;

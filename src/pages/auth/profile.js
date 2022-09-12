@@ -18,6 +18,7 @@ function ProfilePage() {
 	const [showBIL, setShowBIL] = useState(false);
 	const [UIchoice, setUIchoice] = useState(0);
 	const [BIchoice, setBIchoice] = useState(0);
+	const [changed, setChanged] = useState(false);
 
 	async function getUser() {
 		console.log("Get User Data");
@@ -103,6 +104,7 @@ function ProfilePage() {
 
 	const setBIL = async () => {
 		console.log(BIchoice);
+		setChanged(false);
 		const response = await fetch('https://sdgs12.herokuapp.com/api/chooseImg', {
 			method: 'POST',
 			headers: {
@@ -124,6 +126,7 @@ function ProfilePage() {
 
 	const setUIL = async () => {
 		console.log(UIchoice);
+		setChanged(false);
 		const response = await fetch('https://sdgs12.herokuapp.com/api/chooseImg', {
 			method: 'POST',
 			headers: {
@@ -156,14 +159,24 @@ function ProfilePage() {
 					<Navbar/>
 					<div className="container">
 						<div className='bgimg-container' onClick={() => {
-								setShowBIL(true);
-								setShowUIL(false);
+								if(!showBIL) {
+									if(showUIL && changed) {
+										setUIL();
+										setShowUIL(false);
+									}
+									setShowBIL(true);
+								} 
 							}}>
 							<img src={backgroundImg} alt="圖片"></img>
 						</div>
 						<div className='userimg-container' onClick={() => {
-								setShowUIL(true);
-								setShowBIL(false);
+								if(!showUIL) {
+									if(showBIL && changed) {
+										setBIL();
+										setShowBIL(false);
+									}
+									setShowUIL(true);
+								}
 							}}>
 							<img src={userImg} alt="圖片"></img>
 						</div>
@@ -186,14 +199,17 @@ function ProfilePage() {
 							<div className='cancel'>
 							<FontAwesomeIcon icon={solid('x')} onClick={() => {
 									setShowBIL(false);
-									setBIL();
+									if(changed) setBIL();
 								}} /></div>
 							<h1>選擇要更換的背景</h1>
 							{backgroundImgList.map((bgimg, id) => {
 								return(
 									<img key={id} className='bgimg' src={bgimg} alt="背景" onClick={() => {
-										setBackgroundImg(backgroundImgList[id]);
-										setBIchoice(id);
+										if(BIchoice !== id) {
+											setBackgroundImg(backgroundImgList[id]);
+											setBIchoice(id);
+											setChanged(true);
+										}
 									}}></img>
 								)
 							})}
@@ -206,15 +222,18 @@ function ProfilePage() {
 							<div className='cancel'>
 								<FontAwesomeIcon icon={solid('x')} onClick={() => {
 									setShowUIL(false);
-									setUIL();
+									if(changed) setUIL();
 								}}/>
 							</div>
 							<h1>選擇要更換的頭貼</h1>
 							{userImgList.map((userimg, id) => {
 								return (
 									<img key={id} className='userimg' src={userimg} alt="頭貼" onClick={() => {
-										setUserImg(userImgList[id]);
-										setUIchoice(id);
+										if(UIchoice !== id) {
+											setUserImg(userImgList[id]);
+											setUIchoice(id);
+											setChanged(true);
+										}
 									}}></img>
 								)
 							})}
