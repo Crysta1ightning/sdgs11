@@ -65,9 +65,9 @@ function RegisterPage() {
 	return (
 		<div className='AuthPage'>
 			<div className='header'>
-				<Navbar/> 
 				<h1>立即註冊</h1>
 			</div>
+			<Navbar/> 
 			<div className="container">
 				<form onSubmit={register}>
 					<div className='box first' >
@@ -118,7 +118,7 @@ function RegisterPage() {
 					</div>
 					{resend? <input className='submit-button' type="submit" value="註冊帳號"></input> :　<p>Send again in {countdown}s</p>}
 				</form>
-				<div className='parent'>
+				<div className='options'>
 					<h2>已經註冊了?</h2>
 					<button onClick={() => {window.location.href = '/login'}}>
 						登入帳號

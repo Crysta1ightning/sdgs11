@@ -169,6 +169,7 @@ function ProfilePage() {
 									}}></img>
 								)
 							})}
+							<a href="https://www.flaticon.com/free-icons/person" title="person icons">Person icons created by Freepik - Flaticon</a>
 						</div>
 						:
 						<div className='choose-container hide-container'></div>

@@ -150,6 +150,9 @@
     padding: 2.16%;
     height: auto;
 }
+.ProfilePage .choose-container a {
+    color: #6B9080;
+}
 
 @keyframes showContainer {
     0% {

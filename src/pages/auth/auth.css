@@ -24,7 +24,7 @@
 .AuthPage .container {
     margin: 60px 5vw 20px 5vw;
     width: 90%;
-    height: 87.5vh;
+    height: 85vh;
     background-color: #ffffff;
     text-align: center;
     place-content: center;
@@ -32,6 +32,7 @@
     box-shadow: 0px 10px 40px -10px rgba(0,0,0,0.7);
     overflow: hidden;
     position: relative;
+    padding-top: 20px;
 }
 
 @keyframes dec-animation {

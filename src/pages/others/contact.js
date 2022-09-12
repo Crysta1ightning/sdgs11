@@ -53,13 +53,13 @@ function ContactPage() {
 		},
 		{
 			name: "宋宇然", title: "UI/UX設計", description: "經濟學系 大二",
-			gmail: "LorenIspum@gmail.com",
+			gmail: "a0966033399@gmail.com",
 			linkedin: "",
 			active: false
 		},
 		{
 			name: "陳佑祥", title: "地圖API串接", description: "科技管理學院學士班 大三",
-			gmail: "LorenIspum@gmail.com",
+			gmail: "bob020416@gmail.com",
 			linkedin: "",
 			active: false
 		},
