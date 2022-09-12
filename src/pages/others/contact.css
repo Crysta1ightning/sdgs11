@@ -27,7 +27,12 @@
 
 /* CONTACTS */
 .ContactPage .contacts {
-    padding: 50px 5vw 20px 5vw;
+    padding: 70px 5vw 40px 5vw;
+}
+.ContactPage .contacts .cat{
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    color: #6B9080;
 }
 .ContactPage .contact {
     background-color: #6B9080;
@@ -35,7 +40,7 @@
     color: #F6FFF8;
     /* padding: 10px; */
     height: 70px;
-    margin: 20px 0;
+    margin: 0 0 20px 0;
     position: relative;
     transition: 0.4s ease-in;
 }
@@ -64,6 +69,13 @@
     line-height: 35px;
 }
 .ContactPage .contact .linkedin {
+    position: absolute;
+    top: 20px;
+    right: 65px;
+    font-size: 20px;
+    line-height: 35px;
+}
+.ContactPage .contact .phone {
     position: absolute;
     top: 20px;
     right: 65px;
@@ -117,4 +129,14 @@
     display: inline;
     padding-left: 10px;
     text-decoration: underline;
+}
+.ContactPage .contact-active .phone {
+    all: unset;
+    font-size: 18px;
+    display: block;
+}
+.ContactPage .contact-active .phone p {
+    all: unset;
+    display: inline;
+    padding-left: 10px;
 }

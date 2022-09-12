@@ -84,7 +84,8 @@ function ProfilePage() {
 			setBackgroundImg(require('../../images/spot/image-not-found.jpg'));
 			setUserImg(require('../../images/user/image-not-found.png'));
 			setLoading(false);
-		}
+			alert("登入以取得資料")
+		} 
 	}, [])
 
 	useEffect(() => {
