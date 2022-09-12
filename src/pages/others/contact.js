@@ -31,7 +31,7 @@ function ContactPage() {
 			gmail: "nthutestsdgs@gmail.com",
 		},
 		{
-			name: "區創中心", title: "", description: "國立清華大學教育館222A辦公室",
+			name: "區域創新中心", title: "", description: "國立清華大學教育館222A辦公室",
 			gmail: "ric@gapp.nthu.edu.tw",
 			phone: "(+886) 3-571-5131 #33316, #33317"
 		},
@@ -83,7 +83,7 @@ function ContactPage() {
             </div>
 			<Navbar/>
 			<div className='contacts'>
-				<h1 className='cat'>此專案</h1>
+				<h1 className='cat'>專案窗口</h1>
 				<div className={activeList[0]? 'contact contact-active': 'contact'} key={0}>
 					{activeList[0]?
 						<div key={0}>

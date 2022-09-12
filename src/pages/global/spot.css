@@ -16,6 +16,9 @@
     z-index: 3;
     padding: 10px 5vw;
 }
+.SpotPage .header-shadow{
+    box-shadow: 0px 4px 8px -4px rgba(0,0,0,0.5);
+}
 .SpotPage .header h1 {
     margin: 0;
     color: #ffffff;

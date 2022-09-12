@@ -16,6 +16,8 @@ function ProfilePage() {
 	const [backgroundImgList, setBackgroundImgList] = useState([]);
 	const [showUIL, setShowUIL] = useState(false);
 	const [showBIL, setShowBIL] = useState(false);
+	const [UIchoice, setUIchoice] = useState(0);
+	const [BIchoice, setBIchoice] = useState(0);
 
 	async function getUser() {
 		console.log("Get User Data");
@@ -89,17 +91,59 @@ function ProfilePage() {
 	}, [])
 
 	useEffect(() => {
-		// userImg
+		// userImg // backgroundImg
 		if(userImgList.length === 0) return;
-		setUserImg(userImgList[0]);
-	}, [userImgList])
-
-	useEffect(() => {
-		// backgroundImg
 		if(backgroundImgList.length === 0) return;
-		setBackgroundImg(backgroundImgList[0]);
+		setUserImg(userImgList[user.userimg]);
+		setBackgroundImg(backgroundImgList[user.bgimg]);
+		setUIchoice(user.userimg);
+		setBIchoice(user.bgimg);
 		setLoading(false);
-	}, [backgroundImgList])
+	}, [user.userimg, user.bgimg, userImgList, backgroundImgList])
+
+	const setBIL = async () => {
+		console.log(BIchoice);
+		const response = await fetch('https://sdgs12.herokuapp.com/api/chooseImg', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				user,
+				BIchoice,
+				type: 0,
+			}),
+		})
+		const data = await response.json();
+        if(data.error) {
+            alert(data.error);
+        } else {
+            alert('Background Image Saved Successfully');
+        }
+	}
+
+	const setUIL = async () => {
+		console.log(UIchoice);
+		const response = await fetch('https://sdgs12.herokuapp.com/api/chooseImg', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				user,
+				UIchoice,
+				type: 1,
+			}),
+		})
+		const data = await response.json();
+        if(data.error) {
+            alert(data.error);
+        } else {
+            alert('Avatar Image Saved Successfully');
+        }
+	}
+	 
+
 
 	if(loading) return <Load/>;
 	return (
@@ -141,13 +185,15 @@ function ProfilePage() {
 						<div className='choose-container'>
 							<div className='cancel'>
 							<FontAwesomeIcon icon={solid('x')} onClick={() => {
-								setShowBIL(false);
-							}} /></div>
+									setShowBIL(false);
+									setBIL();
+								}} /></div>
 							<h1>選擇要更換的背景</h1>
 							{backgroundImgList.map((bgimg, id) => {
 								return(
 									<img key={id} className='bgimg' src={bgimg} alt="背景" onClick={() => {
 										setBackgroundImg(backgroundImgList[id]);
+										setBIchoice(id);
 									}}></img>
 								)
 							})}
@@ -159,14 +205,16 @@ function ProfilePage() {
 						<div className='choose-container'>
 							<div className='cancel'>
 								<FontAwesomeIcon icon={solid('x')} onClick={() => {
-								setShowUIL(false);
-							}}/>
+									setShowUIL(false);
+									setUIL();
+								}}/>
 							</div>
 							<h1>選擇要更換的頭貼</h1>
 							{userImgList.map((userimg, id) => {
 								return (
 									<img key={id} className='userimg' src={userimg} alt="頭貼" onClick={() => {
 										setUserImg(userImgList[id]);
+										setUIchoice(id);
 									}}></img>
 								)
 							})}

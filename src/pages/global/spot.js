@@ -183,14 +183,33 @@ function SpotPage() {
         }));
 	}
 
+	// disappearable shadow
+	const [active, setActive] = useState(false);
+	useEffect(() => {
+		if(typeof(window) === 'undefined') return;
+		window.addEventListener('scroll', pop);
+		
+		return () => window.removeEventListener('scroll', pop);
+	},[]);
+
+	const pop = () => {
+		if(typeof(window) === 'undefined') return;
+		if (window.scrollY > 0) {
+			setActive(true);
+		}        
+		if (window.scrollY === 0) {
+			setActive(false);
+		}
+	}
+
 	if(loading || !isLoaded) return <Load/>;
 	if(!valid) return <Invalid/>
 	return (
 		<div className='SpotPage'>
 			<>
-				<div className='header'>
-					<h1>建築介紹</h1>
-				</div>
+				<div className={active? 'header header-shadow': 'header'}>
+                	<h1>建築介紹</h1>
+            	</div>
 				<BackKey from={from}/>
 				<div className='container'>
 					<img src={img} alt="圖片"></img>
