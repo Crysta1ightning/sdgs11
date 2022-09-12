@@ -105,51 +105,28 @@ function SpotPage() {
 		}
 
 		await setFinished();
+		setLoading(false);
     }, [spotID, setFinished]);
 
 	useEffect(() => {
         getSpot();
     }, [getSpot]);
 
+	function distance(lat1, lon1, lat2, lon2) {
+		var p = 0.017453292519943295;    // Math.PI / 180
+		var c = Math.cos;
+		var a = 0.5 - c((lat2 - lat1) * p)/2 + 
+				c(lat1 * p) * c(lat2 * p) * 
+				(1 - c((lon2 - lon1) * p))/2;
+		return 12742 * Math.asin(Math.sqrt(a)) * 1000; // 2 * R; R = 6371 km
+	}
+
 	useEffect(() => {
-		if(navigator.geolocation){
-			if(userLat === 0) return;
-			function error() {
-				alert('無法取得你的位置');
-				setSpot(prev => ({
-					...prev,
-					distance: "?"
-				}));
-				setLoading(false);
-			}
-			async function success(position) {
-				if(spot.lat === 0) return;
-				const service = new window.google.maps.DistanceMatrixService();
-				await service.getDistanceMatrix({
-					origins: [{lat: userLat, lng: userLng}],
-					destinations: [{lat: spot.lat, lng: spot.lng}],
-					travelMode: 'WALKING', // 交通方式：BICYCLING(自行車)、DRIVING(開車，預設)、TRANSIT(大眾運輸)、WALKING(走路)
-					unitSystem: window.google.maps.UnitSystem.METRIC, // 單位 METRIC(公里，預設)、IMPERIAL(哩)
-					avoidHighways: true, // 是否避開高速公路
-					avoidTolls: true // 是否避開收費路線
-				}, callback);  
-				function callback(response, status){
-					setSpot(prev => ({
-						...prev,
-						distance: response.rows[0].elements[0].distance.value
-					}));
-					console.log(response.rows[0].elements[0].distance.value);
-				}
-				setLoading(false);
-			}
-			navigator.geolocation.getCurrentPosition(success, error);
-		} else {
-			setSpot(prev => ({
-				...prev,
-				distance: "?"
-			}));
-			setLoading(false);
-		}
+		if(userLat === 0) return;
+		setSpot(prev => ({
+			...prev,
+			distance: distance(userLat, userLng, spot.lat, spot.lng)
+		}));
     }, [userLat, userLng, spot.lat, spot.lng]);
 
 	
@@ -227,7 +204,7 @@ function SpotPage() {
 						<>{spot.distance >= 1000 ?
 							<>{Math.round(spot.distance/100)/10}公里</> 
 							:
-							<>{spot.distance}公尺</>}
+							<>{Math.round(spot.distance)}公尺</>}
 						</>}
 					</h2>
 					{/* <img src={require('../../images/sdgsIcon/4.png')} alt="SDGS icon"></img>  */}

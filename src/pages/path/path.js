@@ -195,44 +195,24 @@ function PathPage() {
 		onLoad();
 	}, [onLoad])
 	
+	function distance(lat1, lon1, lat2, lon2) {
+		var p = 0.017453292519943295;    // Math.PI / 180
+		var c = Math.cos;
+		var a = 0.5 - c((lat2 - lat1) * p)/2 + 
+				c(lat1 * p) * c(lat2 * p) * 
+				(1 - c((lon2 - lon1) * p))/2;
+		return 12742 * Math.asin(Math.sqrt(a)) * 1000; // 2 * R; R = 6371 km
+	}
+
     useEffect(() => {
-		let destinations = [];
-		for (var i in spotList) {
-			if(i > 24) {
-				// console.log(spotList[i])
-				continue;
-			}
-			destinations.push({lat: spotList[i].lat, lng: spotList[i].lng});
+		if(userLat === 0) return;
+		var tempList = [];
+		for(var i in spotList) {
+			if(i > 24) break;
+			tempList.push(distance(userLat, userLng, spotList[i].lat, spotList[i].lng));
 		}
-		if(navigator.geolocation){
-			if(userLat === 0) return;
-			function error() {
-				alert('無法取得你的位置');
-			}
-			async function success(position) {
-				const service = new window.google.maps.DistanceMatrixService();
-				await service.getDistanceMatrix({
-					origins: [{lat: userLat, lng: userLng}],
-					destinations: destinations,
-					travelMode: 'WALKING', // 交通方式：BICYCLING(自行車)、DRIVING(開車，預設)、TRANSIT(大眾運輸)、WALKING(走路)
-					unitSystem: window.google.maps.UnitSystem.METRIC, // 單位 METRIC(公里，預設)、IMPERIAL(哩)
-					avoidHighways: true, // 是否避開高速公路
-					avoidTolls: true // 是否避開收費路線
-				}, callback);  
-				function callback(response, status){
-					var tempList = [];
-					for(i in response.rows[0].elements) {
-						tempList.push(response.rows[0].elements[i].distance.value);
-					}
-					setDistanceList(tempList);
-					console.log(status);
-				}
-				setLoading(false);
-			}
-			navigator.geolocation.getCurrentPosition(success, error);
-		} else {
-			alert('sorry')
-		}
+		setDistanceList(tempList);
+		setLoading(false);
     }, [userLat, userLng, spotList]);
 
 	// useEffect(() => {
@@ -285,7 +265,7 @@ function PathPage() {
 								<>{distanceList[id] >= 1000 ?
 									<>{Math.round(distanceList[id]/100)/10}公里</> 
 									:
-									<>{distanceList[id]}公尺</>}
+									<>{Math.round(distanceList[id])}公尺</>}
 								</>}
 							</p>
 						</div>
