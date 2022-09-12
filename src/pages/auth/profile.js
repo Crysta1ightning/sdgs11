@@ -138,9 +138,10 @@ function ProfilePage() {
 					</div>
 					{showBIL?
 						<div className='choose-container'>
-							<div className='cancel' onClick={() => {
+							<div className='cancel'>
+							<FontAwesomeIcon icon={solid('x')} onClick={() => {
 								setShowBIL(false);
-							}}><FontAwesomeIcon icon={solid('x')} /></div>
+							}} /></div>
 							<h1>選擇要更換的背景</h1>
 							{backgroundImgList.map((bgimg, id) => {
 								return(
@@ -155,9 +156,11 @@ function ProfilePage() {
 					}
 					{showUIL? 
 						<div className='choose-container'>
-							<div className='cancel' onClick={() => {
+							<div className='cancel'>
+								<FontAwesomeIcon icon={solid('x')} onClick={() => {
 								setShowUIL(false);
-							}}><FontAwesomeIcon icon={solid('x')} /></div>
+							}}/>
+							</div>
 							<h1>選擇要更換的頭貼</h1>
 							{userImgList.map((userimg, id) => {
 								return (
