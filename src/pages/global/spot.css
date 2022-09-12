@@ -6,20 +6,25 @@
 
 /* HEADER */
 .SpotPage .header {
+    margin: 0;
+    top: 0;
+    position: fixed;
     background-color: #6B9080;
+    width: 90vw;
     height: auto;
     text-align: center;
-    padding: 10px;
+    z-index: 3;
+    padding: 10px 5vw;
 }
 .SpotPage .header h1 {
     margin: 0;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 20px;
 }
 
 /* IMG CONTAINER */
 .SpotPage .container{
-    margin: 20px 5vw;
+    margin: 60px 5vw 20px 5vw;
     height: 30vh;
     width: 90vw;
     overflow: hidden;
@@ -52,10 +57,9 @@
 .SpotPage .description {
     font-family: 'Noto Sans TC', sans-serif;
     background-color: #A4C3B2;
-    position: absolute;
-    margin: 10px 5vw;
+    margin: 15px 5vw;
     padding: 8px;
-    height: 30%;
+    height: 30vh;
     overflow-y: scroll;
 }
 .SpotPage .description p {
@@ -69,7 +73,6 @@
     font-size: 17px;
     color:#365145;
 }
-
 .SpotPage .claim {
     all: unset;
     text-align: center;
@@ -80,10 +83,21 @@
     left: 5vw;
     font-size: 18px;
     color: #FFFFFF;
-    background: #537164;
+    background-color: #537164;
     border-radius: 16px;
     font-family: 'Noto Sans TC', sans-serif;
     letter-spacing: 1.5px;
+}
+@media screen and (max-height: 700px) {
+    .SpotPage .claim {
+        position: relative;
+        width: 90%;
+        height: 60px;
+        /* bottom: 20px; */
+        /* left: 5vw; */
+        margin-top: 20px;
+        background-color: #040415;
+    }
 }
 @keyframes glowing {
     0% {
