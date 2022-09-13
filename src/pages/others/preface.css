@@ -106,6 +106,7 @@
     color: #F6FFF8;
     display: inline-block;
     border-radius: 16px;
+    font-weight: bold;
 }
 .PrefacePage .btns .login-btn{
     text-align: center;
@@ -117,8 +118,20 @@
     color: #6B9080;
     display: inline-block;
     border-radius: 16px;
+    font-weight: bold;
 }
 
+.PrefacePage .btns .start-btn:hover{
+    background-color: #F6FFF8;
+    color: #6B9080;
+    transition: 0.2s;
+}
+
+.PrefacePage .btns .login-btn:hover{
+    background-color: #6B9080;
+    color: #F6FFF8;
+    transition: 0.2s;
+}
 
 /* .PrefacePage *{
     margin: 0;

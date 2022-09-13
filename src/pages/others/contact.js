@@ -44,6 +44,8 @@ function ContactPage() {
 		{
 			name: "呂庭羽", title: "前端網頁製作", description: "計量財務金融學系 大三",
 			gmail: "lutinyu@gmail.com",
+			linkedin:"https://www.linkedin.com/in/magnus-lu-bb201a1ba/",
+			linkedinName:"Magnus Lu",
 		},
 		{
 			name: "宋宇然", title: "UI/UX設計", description: "經濟學系 大二",
