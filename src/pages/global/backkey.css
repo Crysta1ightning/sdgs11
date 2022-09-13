@@ -8,7 +8,11 @@
     padding: 10px;
 }
 .BackKey .menu-btn{
-    color: #FFFFFF;
+    color: #f6fff8;
     font-size: 20px;
     margin: 0;
+}
+
+.BackKey .menu-btn:hover{
+    color: #537164;
 }
