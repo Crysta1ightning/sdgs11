@@ -215,17 +215,6 @@ function PathPage() {
 		setLoading(false);
     }, [userLat, userLng, spotList]);
 
-	// useEffect(() => {
-	// 	if(spotList.length === 0) return;
-	// 	var finished = true;
-	// 	for(var i in spotList){
-	// 		if(!spotList[i].finished) {
-	// 			finished = false
-	// 			break;
-	// 		}
-	// 	}
-	// 	// if(finished) setPathFinished(true);
-	// }, [spotList])
 
 	if(loading || !isLoaded) return <Load/>;
 	if(!valid) return <Invalid/>;
@@ -233,11 +222,6 @@ function PathPage() {
 		<div className="Path">
 			<div className='header'>
 				<h1>{pathName}</h1>
-				{/* {pathFinished? 
-				<div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
-				: 
-				// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
-				""} */}
 			</div>
 			<BackKey from={200}/>
 			<div className='line-text'>

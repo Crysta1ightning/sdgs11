@@ -3,7 +3,7 @@ import './all.css';
 import Navbar from '../global/navbar';
 import Load from '../global/load';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 function AllPage () {
     const [loading, setLoading] = useState(true);
@@ -61,24 +61,24 @@ function AllPage () {
         // FINISHED DATA
         var finishedSpots = [];
         var i;
-        // if(!localStorage.getItem('token')){
-		// 	console.log("User Not Logged In, No Need to Set Finished");
-		// } else {
-        //     // fetch API for finished Spots
-        //     const response2 = await fetch('https://sdgs12.herokuapp.com/api/finished', {
-        //         method: 'GET',
-        //         headers: {
-        //             'x-access-token': localStorage.getItem('token')
-        //         }
-        //     });
-        //     const data2 = await response2.json();
-        //     if(data2.status === 'fail') {
-        //         console.log("Failed to Set Finished");
-        //     } else {
-        //         const finishedData = data2.finishedData; // all the spots you visited
-        //         for(i in finishedData) finishedSpots.push(finishedData[i].spotID);
-        //     }
-        // }
+        if(!localStorage.getItem('token')){
+			console.log("User Not Logged In, No Need to Set Finished");
+		} else {
+            // fetch API for finished Spots
+            const response2 = await fetch('https://sdgs12.herokuapp.com/api/finished', {
+                method: 'GET',
+                headers: {
+                    'x-access-token': localStorage.getItem('token')
+                }
+            });
+            const data2 = await response2.json();
+            if(data2.status === 'fail') {
+                console.log("Failed to Set Finished");
+            } else {
+                const finishedData = data2.finishedData; // all the spots you visited
+                for(i in finishedData) finishedSpots.push(finishedData[i].spotID);
+            }
+        }
 
         var newList = [];
         var newImgList = [];
@@ -190,9 +190,8 @@ function AllPage () {
                     onChange={(e) => {
                         setSearchText(e.target.value);
                         search(e.target.value);
-                    }
-
-                    }>
+                    }}
+                >
                 </input>
                 <div className="search-button">
                     <FontAwesomeIcon icon={solid('magnifying-glass')}/>
@@ -203,16 +202,13 @@ function AllPage () {
                     return ( 
                         <div className="card" key={spot.spotID} onClick={() => {window.location.href = '/spot/' + spot.spotID + '/0'}}>
                             <img src={imgList[spot.spotID-1].src} alt="圖片"></img>
+                            <h1>{spot.name}</h1>
                             {spot.finished? 
-                                <div className='text finished'>
-                                    {spot.name}
-                                    <div className='check'><FontAwesomeIcon icon={regular('check-square')} /></div>
-                                </div>
-                                :
-                                <div className='text'>
-                                    {spot.name}
-                                </div>
-                            }
+								<div className='check'>已領取</div>
+								: 
+								// <div className='check'><FontAwesomeIcon icon={regular('square')} /></div>
+								""
+							}
                         </div>
                     )
                 })}

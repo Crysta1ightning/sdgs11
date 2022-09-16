@@ -19,6 +19,8 @@ function ProfilePage() {
 	const [UIchoice, setUIchoice] = useState(0);
 	const [BIchoice, setBIchoice] = useState(0);
 	const [changed, setChanged] = useState(false);
+	const [finishedSpots, setFinishedSpots] = useState(0);
+	const [finishedPaths, setFinishedPaths] = useState(0)
 
 	async function getUser() {
 		console.log("Get User Data");
@@ -66,6 +68,68 @@ function ProfilePage() {
             }
         }
 		setBackgroundImgList(tempBackgroundImgList);
+
+		// FINISHED SPOTS
+		const response3 = await fetch('https://sdgs12.herokuapp.com/api/finished', {
+			method: 'GET',
+			headers: {
+				'x-access-token': localStorage.getItem('token')
+			}
+		});
+		const data3 = await response3.json();
+		// var tempfinish = 0;
+		if(data3.status === 'fail') {
+			console.log("Failed to Set Finished");
+		} else {
+			const finishedData = data3.finishedData; // all the spots you visited
+			setFinishedSpots(finishedData.length);
+		}
+		setLoading(false);
+		// FINISHED PATHS
+		// const response4 = await fetch('https://sdgs12.herokuapp.com/api/pathFinish', {
+		// 	method: 'GET',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 		'x-access-token': localStorage.getItem('token')
+		// 	},
+		// })
+		// const data4 = await response4.json();
+		// if(data4.status === 'fail'){
+		// 	console.log(data.error);
+		// 	return;
+		// }
+		// const spotPath = data.spotPath; 
+		// const userSpot = data.userSpot;
+	
+		// // Make spsotPathList
+		// var spotPathList = new Map();
+		// var newlist;
+		// for(i in spotPath){
+		// 	if(spotPathList.has(spotPath[i].pathID)){
+		// 		newlist = spotPathList.get(spotPath[i].pathID);
+		// 	}else{
+		// 		newlist = [];
+		// 	}
+		// 	newlist.push(spotPath[i].spotID);
+		// 	spotPathList.set(spotPath[i].pathID, newlist);
+		// }
+		// console.log(spotPathList);
+	
+		// // make userhas 
+		// var userhas = [];
+		// for(i in userSpot){
+		// 	userhas.push(userSpot[i].spotID);
+		// }
+		// console.log(userhas);
+
+		// // compare
+		// var tempfinish = 0;
+		// for(i=0; i<5; i++) {
+		// 	if(spotPathList.get(i).every(val => userhas.includes(val))){
+		// 		tempfinish++;
+		// 	}
+		// }
+		// setFinishedPaths(tempfinish);
     }
 
 	useEffect(() => {
@@ -99,7 +163,6 @@ function ProfilePage() {
 		setBackgroundImg(backgroundImgList[user.bgimg]);
 		setUIchoice(user.userimg);
 		setBIchoice(user.bgimg);
-		setLoading(false);
 	}, [user.userimg, user.bgimg, userImgList, backgroundImgList])
 
 	const setBIL = async () => {
@@ -183,11 +246,11 @@ function ProfilePage() {
 						<h1 className='name'>{user.username}</h1>
 						<div className='box-left'>
 							<h2>完成的路徑</h2>
-							<h3>0</h3>
+							<h3>{finishedPaths}</h3>
 						</div>
 						<div className='box-right'>
-							<h2>走過的地點</h2>
-							<h3>0</h3>
+							<h2>領取的地點</h2>
+							<h3>{finishedSpots}</h3>
 						</div>
 						<div className='info'>
 							<h4>帳號: {user.email}</h4>

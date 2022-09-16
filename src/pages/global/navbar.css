@@ -57,7 +57,7 @@
 }
 
 .Navbar .close-btn:hover{
-    color: red;
+    color:#537164
 }
 
 .Navbar .menu-btn{
@@ -110,4 +110,10 @@
     color: #040415;
     opacity: 0.5;
 }
-
+@media screen and (max-height: 700px) {
+    .Navbar .footer {
+        position: relative;
+        padding-top: 40px;
+        width: 100%;
+    }
+}
