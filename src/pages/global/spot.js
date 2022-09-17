@@ -78,10 +78,8 @@ function SpotPage() {
 		if(data.spotData.description.substring(0, 140).includes('\\n')) {
 			if(data.spotData.description.substring(0, 140).split('\\n')[0].length > 120) {
 				setTruncateText(<p>&emsp;&emsp;{data.spotData.description.substring(0, 140).split('\\n')[0]}</p>);
-				console.log(1);
 			} else {
-				console.log(2);
-				setTruncateText(data.spotData.description.substring(0, 100).split('\\n').map(
+				setTruncateText(data.spotData.description.substring(0, 120).split('\\n').map(
 					(str, id) => {
 						if(id === 0) return <p key={id}>&emsp;&emsp;{str}</p>
 						else return <p key={id}><br/><br/>&emsp;&emsp;{str}</p>
