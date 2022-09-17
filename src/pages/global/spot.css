@@ -96,20 +96,18 @@
         position: relative;
         width: 90%;
         height: 60px;
-        /* bottom: 20px; */
-        /* left: 5vw; */
         margin-top: 20px;
-        background-color: #040415;
+        background-color: #537164;
     }
 }
 @keyframes glowing {
     0% {
       background-color: #cccccc;
     }
-    20% {
+    30% {
       background-color: #537164;
     }
-    80% {
+    70% {
         background-color: #537164;
     }
     100% {
@@ -117,7 +115,7 @@
     }
 }
 .SpotPage .active {
-    animation: glowing 3000ms infinite;
+    animation: glowing 2000ms infinite;
 }
 .SpotPage .inactive {
     background-color: #cccccc;

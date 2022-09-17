@@ -75,9 +75,9 @@ function SpotPage() {
 				else return <p key={id}><br/><br/>&emsp;&emsp;{str}</p>
 			}
 		));
-		if(data.spotData.description.substring(0, 135).includes('\\n')) {
-			if(data.spotData.description.substring(0, 135).split('\\n')[0].length > 120) {
-				setTruncateText(<p>&emsp;&emsp;{data.spotData.description.substring(0, 135).split('\\n')[0]}</p>);
+		if(data.spotData.description.substring(0, 140).includes('\\n')) {
+			if(data.spotData.description.substring(0, 140).split('\\n')[0].length > 120) {
+				setTruncateText(<p>&emsp;&emsp;{data.spotData.description.substring(0, 140).split('\\n')[0]}</p>);
 				console.log(1);
 			} else {
 				console.log(2);
@@ -229,7 +229,7 @@ function SpotPage() {
 					{/* <img src={require('../../images/sdgsIcon/4.png')} alt="SDGS icon"></img>  */}
 				</div>
 				<div className='description'>
-					{spot.description && spot.description.length>135?
+					{spot.description && spot.description.length>140?
 						(<>{truncate? 
 							<>{truncateText}<p>...</p><button onClick={() => {setTruncate(false)}}>顯示更多</button></> 
 							: 

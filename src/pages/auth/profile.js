@@ -70,66 +70,67 @@ function ProfilePage() {
 		setBackgroundImgList(tempBackgroundImgList);
 
 		// FINISHED SPOTS
-		const response3 = await fetch('https://sdgs12.herokuapp.com/api/finished', {
-			method: 'GET',
-			headers: {
-				'x-access-token': localStorage.getItem('token')
-			}
-		});
-		const data3 = await response3.json();
-		// var tempfinish = 0;
-		if(data3.status === 'fail') {
-			console.log("Failed to Set Finished");
-		} else {
-			const finishedData = data3.finishedData; // all the spots you visited
-			setFinishedSpots(finishedData.length);
-		}
-		setLoading(false);
-		// FINISHED PATHS
-		// const response4 = await fetch('https://sdgs12.herokuapp.com/api/pathFinish', {
+		// const response3 = await fetch('https://sdgs12.herokuapp.com/api/finished', {
 		// 	method: 'GET',
 		// 	headers: {
-		// 		'Content-Type': 'application/json',
 		// 		'x-access-token': localStorage.getItem('token')
-		// 	},
-		// })
-		// const data4 = await response4.json();
-		// if(data4.status === 'fail'){
-		// 	console.log(data.error);
-		// 	return;
+		// 	}
+		// });
+		// const data3 = await response3.json();
+		// // var tempfinish = 0;
+		// if(data3.status === 'fail') {
+		// 	console.log("Failed to Set Finished");
+		// } else {
+		// 	const finishedData = data3.finishedData; // all the spots you visited
+		// 	setFinishedSpots(finishedData.length);
 		// }
-		// const spotPath = data.spotPath; 
-		// const userSpot = data.userSpot;
+		// FINISHED PATHS
+		const response3 = await fetch('https://sdgs12.herokuapp.com/api/pathFinish', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'x-access-token': localStorage.getItem('token')
+			},
+		})
+		const data3 = await response3.json();
+		if(data3.status === 'fail'){
+			console.log(data.error);
+			return;
+		}
+		const spotPath = data3.spotPath; 
+		const userSpot = data3.userSpot;
 	
 		// // Make spsotPathList
-		// var spotPathList = new Map();
-		// var newlist;
-		// for(i in spotPath){
-		// 	if(spotPathList.has(spotPath[i].pathID)){
-		// 		newlist = spotPathList.get(spotPath[i].pathID);
-		// 	}else{
-		// 		newlist = [];
-		// 	}
-		// 	newlist.push(spotPath[i].spotID);
-		// 	spotPathList.set(spotPath[i].pathID, newlist);
-		// }
-		// console.log(spotPathList);
+		var spotPathList = new Map();
+		var newlist;
+		for(i in spotPath){
+			if(spotPathList.has(spotPath[i].pathID)){
+				newlist = spotPathList.get(spotPath[i].pathID);
+			}else{
+				newlist = [];
+			}
+			newlist.push(spotPath[i].spotID);
+			spotPathList.set(spotPath[i].pathID, newlist);
+		}
+		console.log(spotPathList);
 	
-		// // make userhas 
-		// var userhas = [];
-		// for(i in userSpot){
-		// 	userhas.push(userSpot[i].spotID);
-		// }
-		// console.log(userhas);
+		// make userhas 
+		var userhas = [];
+		for(i in userSpot){
+			userhas.push(userSpot[i].spotID);
+		}
+		console.log(userhas);
+		setFinishedSpots(userhas.length);
 
-		// // compare
-		// var tempfinish = 0;
-		// for(i=0; i<5; i++) {
-		// 	if(spotPathList.get(i).every(val => userhas.includes(val))){
-		// 		tempfinish++;
-		// 	}
-		// }
-		// setFinishedPaths(tempfinish);
+		// compare
+		var tempfinish = 0;
+		for(i=1; i<=5; i++) {
+			if(spotPathList.get(i).every(val => userhas.includes(val))){
+				tempfinish++;
+			}
+		}
+		setFinishedPaths(tempfinish);
+		setLoading(false);
     }
 
 	useEffect(() => {
